@@ -1,0 +1,535 @@
+◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+
+Version
+=======
+
+Instrumenting for coverage...
+=============================
+
+
+Compilation:
+============
+
+Nothing to compile
+No need to generate any newer typings.
+
+Network Info
+============
+
+
+
+  DiamondWallAirdrop
+    Deployment
+      ✔ Claim amount 100 DWALL (463ms)
+      ✔ Max 250 claims
+      ✔ Stats en 0
+      ✔ 150M disponibles
+    Claim Público
+      ✔ Usuario reclama 100 DWALL sin ser owner (44ms)
+      ✔ Emite evento AirdropClaimed (48ms)
+      ✔ Incrementa totalPublicClaims y totalRecipients (82ms)
+      ✔ No puede reclamar dos veces (42ms)
+      ✔ getPublicClaimStats correcto (38ms)
+      ✔ getUserAirdropInfo con hasClaimedFree (45ms)
+      ✔ Falla cuando pausado
+      ✔ Múltiples usuarios reclaman (115ms)
+    Campañas Admin
+      ✔ executeAirdrop funciona (195ms)
+      ✔ singleAirdrop funciona (57ms)
+      ✔ No-owner no puede executeAirdrop
+      ✔ Falla arrays vacíos
+      ✔ Falla arrays desiguales
+      ✔ Falla address(0)
+      ✔ Falla amount 0
+      ✔ Falla balance insuficiente
+    Admin Config
+      ✔ setClaimConfig cambia valores
+      ✔ setClaimConfig falla con 0
+      ✔ withdrawTokens (45ms)
+      ✔ burnTokens
+      ✔ pause/unpause
+      ✔ No-owner no puede admin
+    View Functions
+      ✔ getCampaignInfo (48ms)
+      ✔ getUserAirdropInfo sin actividad
+
+  DiamondWallAirdrop - Escenarios Reales
+    ✔ 5 usuarios reclaman airdrop en secuencia (213ms)
+    ✔ Usuario con claim público puede recibir campaña admin (47ms)
+    ✔ Campaña a 5 usuarios a la vez (139ms)
+    ✔ Cambiar claimAmount afecta nuevos claims (95ms)
+    ✔ maxClaims limita claims públicos (50ms)
+    ✔ getPublicClaimStats refleja estado real (42ms)
+    ✔ withdrawTokens reduce balance del contrato
+    ✔ burnTokens envía a dead address
+    ✔ Claim falla cuando pausado
+    ✔ Despausar permite claim de nuevo
+    ✔ singleAirdrop no bloquea claim público posterior (44ms)
+    ✔ Campaña con 1 solo destinatario (40ms)
+    ✔ getCampaignInfo para id 0 sin campañas devuelve vacío
+    ✔ singleAirdrop a address(0) falla
+    ✔ singleAirdrop con amount 0 falla
+    ✔ withdrawTokens más del balance falla
+    ✔ setClaimConfig con 0 falla
+    ✔ No-owner no puede singleAirdrop
+    ✔ No-owner no puede setClaimConfig
+    ✔ Múltiples campañas incrementan totalAirdrops (71ms)
+    ✔ burnTokens quema correctamente
+    ✔ burnTokens no-owner falla
+    ✔ pause bloquea claimAirdrop
+    ✔ unpause reactiva claimAirdrop
+    ✔ pause no-owner falla
+    ✔ getAirdropStats retorna datos correctos
+    ✔ getPublicClaimStats retorna configuración
+    ✔ getUserAirdropInfo refleja claim
+    ✔ getCampaignInfo retorna datos de campaña (43ms)
+    ✔ withdrawTokens no-owner falla
+    ✔ claimAirdrop segundo intento falla
+    ✔ setClaimConfig actualiza valores correctamente
+    ✔ burnTokens quema correctamente
+    ✔ burnTokens no-owner falla
+    ✔ pause bloquea claimAirdrop
+    ✔ unpause reactiva claimAirdrop
+    ✔ pause no-owner falla
+    ✔ getAirdropStats retorna datos correctos
+    ✔ getPublicClaimStats retorna configuración
+    ✔ getUserAirdropInfo refleja claim
+    ✔ getCampaignInfo retorna datos de campaña (38ms)
+    ✔ withdrawTokens no-owner falla
+    ✔ claimAirdrop segundo intento falla
+    ✔ setClaimConfig actualiza valores correctamente
+    Branch coverage - transfer failures
+      ✔ claimAirdrop falla si transfer retorna false (87ms)
+      ✔ claimAirdrop falla si balance insuficiente (84ms)
+      ✔ executeAirdrop falla si transfer retorna false (83ms)
+      ✔ executeAirdrop receptor ya recibió no incrementa totalRecipients (143ms)
+      ✔ singleAirdrop falla si transfer retorna false (66ms)
+      ✔ singleAirdrop falla si balance insuficiente (73ms)
+      ✔ withdrawTokens falla si transfer retorna false (65ms)
+      ✔ burnTokens falla si balance insuficiente (57ms)
+      ✔ burnTokens falla si transfer retorna false (65ms)
+
+  DiamondWallCoin
+    Deployment
+      ✔ Debe tener nombre DiamondWallCoin y símbolo DWALL (53ms)
+      ✔ Debe mintear 1B tokens al owner
+      ✔ Debe tener 18 decimales
+      ✔ Debe configurar límites anti-ballena al 5%
+      ✔ Debe tener presale y trading deshabilitados
+      ✔ Owner debe estar excluido de límites
+      ✔ BURN_ADDRESS debe estar excluida de límites
+    Configuration
+      ✔ Owner puede configurar presale contract
+      ✔ Owner puede configurar treasury
+      ✔ Owner puede configurar staking
+      ✔ Owner puede configurar airdrop
+      ✔ No permite address(0) en configuraciones
+      ✔ No-owner no puede configurar contratos
+      ✔ Owner puede habilitar/deshabilitar presale
+      ✔ Owner puede habilitar/deshabilitar trading
+      ✔ Owner puede actualizar límites
+      ✔ No permite límites en 0
+      ✔ Owner puede excluir/incluir cuentas de límites
+    Transfer Controls
+      ✔ Owner puede transferir siempre (sin trading)
+      ✔ Usuario NO puede transferir sin trading habilitado
+      ✔ Durante presale: usuarios no pueden transferir entre sí
+      ✔ Presale contract puede enviar tokens durante preventa
+      ✔ Staking contract puede operar sin trading
+      ✔ Airdrop contract puede operar sin trading
+      ✔ Con trading habilitado: transferencias normales funcionan
+      ✔ Límite anti-ballena: bloquea transferencia excesiva
+      ✔ Límite anti-ballena: bloquea wallet excesivo
+      ✔ Excluidos de límites pueden superar máximos
+      ✔ Burns a BURN_ADDRESS siempre permitidos
+    Pause
+      ✔ Owner puede pausar y despausar
+      ✔ Transferencias bloqueadas cuando pausado
+      ✔ No-owner no puede pausar
+    View Functions
+      ✔ getTokenInfo devuelve datos correctos
+
+  DiamondWallCoin - Coverage Extra
+    ✔ lockTrading habilita y bloquea permanentemente (50ms)
+    ✔ No puede deshabilitar trading tras lock
+    ✔ No puede lockTrading dos veces
+    ✔ setTransferLimits no permite < 1% del supply
+    ✔ getSecurityInfo devuelve datos correctos
+    ✔ getSecurityInfo tras lockTrading
+    ✔ Treasury contract puede operar sin trading
+    ✔ Puede habilitar trading tras lock (ya enabled)
+    ✔ No-owner no puede lockTrading
+    ✔ excludeFromLimits no permite address(0)
+
+  DiamondWallCoin - Escenarios Reales
+    ✔ Usuario puede enviar tokens al staking sin trading (77ms)
+    ✔ Transferencia hacia treasury permitida sin trading
+    ✔ Transferencia hacia airdrop permitida sin trading
+    ✔ setTradingEnabled(true) tras lock funciona
+    ✔ Transferencia bajo límite anti-ballena OK
+    ✔ Múltiples transferencias acumulan
+    ✔ Owner no tiene límite anti-ballena
+    ✔ Presale puede enviar tokens sin trading
+    ✔ Burn de 1M tokens
+    ✔ renounceOwnership deja sin owner
+    ✔ Tras renounce, funciones admin fallan
+    ✔ getSecurityInfo refleja renounce
+    ✔ Límites al 1% del supply aceptados
+    ✔ No-owner no puede unpause
+    ✔ No-owner no puede setPresale
+    ✔ No-owner no puede setAirdropContract
+    ✔ Transferir todo el balance de usuario
+
+  DiamondWallPresale V2
+    Deployment
+      ✔ Precio configurado a 620000 DWALL/BNB (141ms)
+      ✔ Límites de compra correctos
+      ✔ Presale inactiva por defecto
+      ✔ Whitelist deshabilitada por defecto
+      ✔ Tiene 700M DWALL disponibles
+    Buy Tokens
+      ✔ Compra exitosa entrega tokens correctamente (57ms)
+      ✔ BNB se envía al Treasury (49ms)
+      ✔ Treasury registra el revenue (50ms)
+      ✔ Stats se actualizan correctamente (56ms)
+      ✔ User info se registra (55ms)
+      ✔ Múltiples compras del mismo usuario acumulan (111ms)
+      ✔ Múltiples compradores diferentes (146ms)
+      ✔ Emite evento TokensPurchased (52ms)
+    Buy Restrictions
+      ✔ Falla si presale no activa
+      ✔ Falla si BNB bajo mínimo
+      ✔ Falla si supera máximo acumulado (84ms)
+      ✔ Falla si contrato pausado
+      ✔ Falla con whitelist habilitada y usuario no listado
+      ✔ Whitelist permite compra a usuario listado (86ms)
+      ✔ receive() rechaza BNB directo
+    Admin Controls
+      ✔ Start/Stop presale
+      ✔ No puede start si ya activa
+      ✔ No puede stop si ya inactiva
+      ✔ Actualizar precio
+      ✔ Actualizar límites
+      ✔ Withdraw tokens no vendidos (presale inactiva)
+      ✔ No puede withdraw tokens con presale activa
+      ✔ Withdraw BNB residual
+      ✔ No-owner no puede controlar presale
+    Whitelist Management
+      ✔ Agregar múltiples a whitelist
+      ✔ Remover de whitelist
+    View Functions
+      ✔ getPresaleInfo devuelve datos completos
+
+  DiamondWallPresale - Coverage Extra
+    ✔ setTreasury funciona (218ms)
+    ✔ setTreasury no permite address(0)
+    ✔ updatePrice no permite 0
+    ✔ withdrawUnsoldTokens falla con balance insuficiente
+    ✔ pause/unpause funciona
+    ✔ No-owner no puede pause
+    ✔ No-owner no puede withdrawBNB
+    ✔ No-owner no puede withdrawUnsoldTokens
+    ✔ No-owner no puede setTreasury
+    ✔ No-owner no puede updateLimits
+    ✔ updateLimits 0 falla
+    ✔ No-owner no puede setWhitelistEnabled
+    ✔ No-owner no puede addToWhitelist
+
+  DiamondWallPresale - Escenarios Reales
+    ✔ Compra mínima 0.01 BNB (245ms)
+    ✔ Compra máxima 10 BNB (59ms)
+    ✔ 4 compradores secuenciales (188ms)
+    ✔ BNB split: 50% Venus, 45% pools, 5% admin (53ms)
+    ✔ Compra 0.005 BNB falla
+    ✔ Compra tras stop presale falla
+    ✔ Cambiar precio afecta compras (59ms)
+    ✔ Whitelist bloquea y permite correctamente (64ms)
+    ✔ removeFromWhitelist bloquea acceso
+    ✔ Withdraw unsold devuelve tokens al owner
+    ✔ setTreasury actualiza dirección
+    ✔ Compras incrementales hasta máximo (151ms)
+    ✔ getPresaleInfo refleja estado real (98ms)
+    ✔ updateLimits cambia min/max
+    ✔ No-owner no puede stopPresale
+    ✔ No-owner no puede removeFromWhitelist
+    ✔ getUserInfo refleja múltiples compras (100ms)
+    ✔ No-owner no puede unpause
+
+  DiamondWallStaking
+    Deployment
+      ✔ Min stake es 100 DWALL (108ms)
+      ✔ Total staked es 0
+      ✔ Reward rate es 0 inicialmente
+      ✔ Owner correcto
+    Staking
+      ✔ Usuario puede stakear tokens
+      ✔ Falla si bajo mínimo
+      ✔ Múltiples stakes acumulan (60ms)
+      ✔ Múltiples usuarios pueden stakear (84ms)
+      ✔ Falla si pausado
+    Unstaking
+      ✔ Usuario puede unstakear (59ms)
+      ✔ Unstake parcial (56ms)
+      ✔ Unstake total reduce stakers (49ms)
+      ✔ Falla si amount 0
+      ✔ Falla si más de lo stakeado (43ms)
+    Rewards
+      ✔ Sin reward rate no genera rewards
+      ✔ Con reward rate genera rewards proporcionales (56ms)
+      ✔ Rewards proporcionales entre múltiples stakers (84ms)
+      ✔ Claim rewards exitoso (74ms)
+      ✔ Claim falla sin rewards
+      ✔ Después de claim, rewards vuelven a 0 (72ms)
+    Admin
+      ✔ Owner puede cambiar reward rate
+      ✔ Owner puede cambiar min stake
+      ✔ Min stake no puede ser 0
+      ✔ Owner puede depositar rewards
+      ✔ Emergency withdraw
+      ✔ No-owner no puede administrar
+    View Functions
+      ✔ getUserStakeInfo devuelve datos correctos
+      ✔ getStakingInfo devuelve stats globales (54ms)
+
+  DiamondWallStaking - Escenarios Reales
+    ✔ Stakear exactamente el mínimo (100 DWALL) (150ms)
+    ✔ Stakear 99 DWALL falla
+    ✔ 4 usuarios stake/unstake simultáneo (165ms)
+    ✔ Rewards acumulan con múltiples stakes del mismo usuario (80ms)
+    ✔ Claim rewards incrementa balance del usuario (75ms)
+    ✔ Unstake parcial no pierde rewards acumulados (84ms)
+    ✔ RewardRate 0 detiene acumulación (68ms)
+    ✔ Emergency withdraw recupera todos los tokens (62ms)
+    ✔ Unstake sin stake falla
+    ✔ No-owner no puede depositRewards
+    ✔ No-owner no puede emergencyWithdrawAll
+    ✔ getStakingInfo refleja datos reales (89ms)
+    ✔ rewardPerToken con 0 staked devuelve stored
+    ✔ Pause bloquea stake
+    ✔ Stakear 5M tokens
+    ✔ Unstake todo y re-stakear funciona (75ms)
+    ✔ Cambiar minStake afecta nuevos stakes (38ms)
+    ✔ Earned 0 para usuario sin stake
+    ✔ depositRewards con 0 falla
+    ✔ emergencyWithdrawAll sin balance falla
+    ✔ pause bloquea stake
+    ✔ unpause reactiva stake
+    ✔ pause no-owner falla
+    ✔ setMinStakeAmount actualiza mínimo
+    ✔ setMinStakeAmount no-owner falla
+    ✔ setRewardRate no-owner falla
+    ✔ depositRewards no-owner falla
+    ✔ getUserStakeInfo retorna datos correctos (41ms)
+    ✔ getStakingInfo retorna datos correctos
+    ✔ rewardPerToken retorna 0 sin stake
+    ✔ unstake más del balance falla (45ms)
+    ✔ claimRewards sin rewards no falla (45ms)
+    ✔ emergencyWithdrawAll no-owner falla
+    ✔ stake adicional mismo usuario incrementa (67ms)
+    ✔ unstake parcial deja balance restante (67ms)
+    ✔ unstake total reduce totalStakers (63ms)
+    ✔ depositRewards aumenta pool de recompensas
+    Transfer failure branches
+      ✔ stake falla si transferFrom retorna false (76ms)
+      ✔ unstake falla si transfer retorna false (97ms)
+      ✔ depositRewards falla si transferFrom retorna false (59ms)
+      ✔ emergencyWithdrawAll falla si transfer retorna false (96ms)
+
+  DiamondWallTreasury V4 - Venus + Split
+    Deployment
+      ✔ Split configurado 50/45/5 (89ms)
+      ✔ Stats iniciales en 0
+      ✔ Deposits habilitados
+    Split Automático
+      ✔ 50% Venus / 45% Pools / 5% Admin
+      ✔ User depositedBNB solo cuenta parte Venus (50%)
+    Flujo Completo: Compra → Venus → Yields → Claim
+      ✔ Holder reclama yields sin admin (66ms)
+    Múltiples Holders
+      ✔ Yields proporcionales (188ms)
+    Pool Reserve
+      ✔ Owner puede retirar pool reserve (38ms)
+      ✔ No puede retirar más de lo disponible
+      ✔ No autorizado no puede retirar
+    Split Config
+      ✔ Owner puede cambiar split
+      ✔ Falla si split no suma 100
+      ✔ No-owner no puede cambiar split
+    Claim Controls
+      ✔ Falla sin yields
+      ✔ Compras adicionales acumulan depositedBNB (66ms)
+    Admin Functions
+      ✔ No-owner no puede administrar
+      ✔ No-autorizado no puede registrar ventas
+      ✔ Emergency withdraw
+    View Functions
+      ✔ getTreasuryStats
+      ✔ getFullStats
+
+  DiamondWallTreasury V4 - Coverage Extra
+    Venus Deposits Disabled
+      ✔ BNB queda en contrato si deposits disabled (121ms)
+    LiquidityManager Integration
+      ✔ 45% se envía automáticamente al LiquidityManager
+      ✔ Sin LM, pool reserve queda en contrato
+    Admin Wallet
+      ✔ Cambiar admin wallet
+      ✔ No puede setAdminWallet a address(0)
+      ✔ 5% fees van al admin wallet correcto
+    Venus Functions
+      ✔ setVenus cambia address
+      ✔ setVenus no permite address(0)
+      ✔ depositIdleBNBToVenus deposita BNB no asignado
+      ✔ depositIdleBNBToVenus falla sin BNB idle
+      ✔ emergencyRedeemFromVenus recupera BNB (50ms)
+      ✔ emergencyRedeemFromVenus falla sin vTokens
+    recordSaleRevenue (legacy)
+      ✔ recordSaleRevenue solo registra, no deposita
+      ✔ recordSaleRevenue falla con 0
+    setLiquidityManager
+      ✔ No permite address(0)
+      ✔ No-owner no puede setLiquidityManager
+    Multiple Claims
+      ✔ Claim, esperar, claim de nuevo (101ms)
+    getPoolStats / getAllPoolsStats
+      ✔ getPoolStats devuelve Venus BSC
+      ✔ getAllPoolsStats devuelve 1 pool
+    calculateTotalYields con holders
+      ✔ Suma yields de todos los holders (80ms)
+
+  DiamondWallTreasuryV4 - Escenarios Reales
+    ✔ 10 ventas secuenciales acumulan yields (363ms)
+    ✔ Yields proporcionales a inversión (103ms)
+    ✔ Compra adicional tras claim funciona (93ms)
+    ✔ Admin fees van al adminWallet
+    ✔ Cambiar split a 60/30/10
+    ✔ getFullStats devuelve todos los datos (64ms)
+    ✔ Holder sin depósito no puede reclamar
+    ✔ getHoldersCount correcto con múltiples holders (81ms)
+    ✔ withdrawPoolReserve parcial deja resto
+    ✔ No-owner no puede setDepositsEnabled
+    ✔ No-owner no puede setAdminWallet
+    ✔ authorizeSeller no-owner falla
+    ✔ setLiquidityManager no-owner falla
+    ✔ setSplit no-owner falla
+    ✔ setSplit inválido falla
+    ✔ setVenus no-owner falla
+    ✔ getSplitConfig retorna configuración correcta
+    ✔ getHoldersCount retorna 0 inicial
+    ✔ getUserYieldInfo retorna datos del usuario
+    ✔ getFullStats retorna estadísticas
+    ✔ calculateTotalYields retorna 0 inicial
+    ✔ emergencyWithdraw no-owner falla
+    ✔ depositIdleBNBToVenus no-owner falla
+    Branch coverage tests
+      ✔ recordSaleAndDeposit con address(0) falla
+      ✔ recordSaleAndDeposit con amount 0 falla
+      ✔ LiquidityManager que falla acumula poolReserve (50ms)
+      ✔ setDepositsEnabled false salta Venus deposit
+      ✔ pendingYields con lastClaimedRate 0 retorna 0
+      ✔ withdrawPoolReserve amount 0 falla
+      ✔ emergencyWithdraw sin balance falla
+      ✔ recordSaleRevenue no-authorized falla
+
+  LiquidityManager
+    Deployment
+      ✔ 4 DEXs con pesos 40/30/20/10 (189ms)
+      ✔ Stats en 0
+      ✔ Auto-distribute habilitado
+    Create Pool
+      ✔ Crear pool PancakeSwap (78ms)
+      ✔ 4 pools (297ms)
+      ✔ No duplicar pool (78ms)
+      ✔ DEX inválido
+      ✔ DEX deshabilitado
+      ✔ Amount 0
+      ✔ No-owner falla
+    Auto-Distribute
+      ✔ Treasury envía BNB → pending
+      ✔ Auto-distribuye con pools activos (272ms)
+      ✔ No-treasury falla
+      ✔ forceDistribute funciona (162ms)
+      ✔ forceDistribute falla sin pending (88ms)
+      ✔ forceDistribute falla sin pools
+    Admin
+      ✔ Cambiar peso DEX
+      ✔ Toggle DEX
+      ✔ No-owner falla
+    View
+      ✔ getDEXInfo
+      ✔ getStats (88ms)
+
+  LiquidityManager - Coverage Extra
+    ✔ receive() de no-treasury no añade pendingBNB (152ms)
+    ✔ receive() de treasury añade pendingBNB
+    ✔ setAutoDistribute cambia config
+    ✔ setTreasury no permite address(0)
+    ✔ updateDEXRouter funciona
+    ✔ updateDEXRouter no permite address(0)
+    ✔ updateDEXRouter invalido
+    ✔ createPool falla sin tokens suficientes
+    ✔ depositTokens amount 0 falla
+    ✔ getPoolInfo falla con id inválido
+    ✔ Auto-distribución con bajo pendiente no ejecuta (96ms)
+    ✔ receiveBNBFromTreasury con amount 0 falla
+    ✔ No-owner no puede setAutoDistribute
+    ✔ No-owner no puede updateDEXRouter
+    ✔ No-owner no puede depositTokens
+
+  LiquidityManager - Coverage 90%+
+    ✔ getPoolInfo devuelve datos correctos tras crear pool (228ms)
+    ✔ getPoolCount devuelve cantidad correcta (69ms)
+    ✔ receive() de treasury con pools activos auto-distribuye (285ms)
+    ✔ getAllDEXs devuelve pesos correctos
+    ✔ Auto-distribute con 4 pools distribuye proporcionalmente (559ms)
+    ✔ toggleDEX con id inválido falla
+    ✔ setDEXWeight con id inválido falla
+
+  LiquidityManager - Escenarios Reales
+    ✔ Múltiples envíos del treasury acumulan y distribuyen (317ms)
+    ✔ Crear pool con balance grande de tokens (89ms)
+    ✔ DEX deshabilitado no recibe distribución (240ms)
+    ✔ Cambiar pesos afecta distribución (306ms)
+    ✔ minAutoDistribute alto acumula pendingBNB (88ms)
+    ✔ forceDistribute vacía pendingBNB (155ms)
+    ✔ 4 pools reciben distribución simultánea (629ms)
+    ✔ Crear pool sin enviar ETH falla
+    ✔ depositTokens incrementa balance del contrato
+    ✔ Auto-distribute sin tokens en contrato no falla (89ms)
+    ✔ Nuevo treasury puede enviar BNB (141ms)
+    ✔ Owner puede enviar via receiveBNBFromTreasury (141ms)
+    ✔ getStats refleja estado completo (167ms)
+    ✔ No-owner no puede forceDistribute
+    ✔ No-owner no puede setTreasury
+    ✔ No-owner no puede createPool
+
+
+  406 passing (18s)
+
+-----------------------------|----------|----------|----------|----------|----------------|
+File                         |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+-----------------------------|----------|----------|----------|----------|----------------|
+ airdrop/                    |      100 |    89.47 |      100 |      100 |                |
+  DiamondWallAirdrop.sol     |      100 |    89.47 |      100 |      100 |                |
+ core/liquidity/             |     91.3 |    84.44 |      100 |    96.12 |                |
+  LiquidityManager.sol       |     91.3 |    84.44 |      100 |    96.12 |174,231,232,233 |
+ core/presale/               |    93.33 |    84.72 |      100 |    95.45 |                |
+  DiamondWallPresale.sol     |    93.33 |    84.72 |      100 |    95.45 |    181,182,183 |
+ core/token/                 |      100 |    86.25 |      100 |      100 |                |
+  DiamondWallCoin.sol        |      100 |    86.25 |      100 |      100 |                |
+ core/treasury/              |      100 |    85.56 |      100 |      100 |                |
+  DiamondWallTreasury_v4.sol |      100 |    85.56 |      100 |      100 |                |
+ interfaces/                 |      100 |      100 |      100 |      100 |                |
+  IDiamondWallTreasury.sol   |      100 |      100 |      100 |      100 |                |
+  IPancakeRouter.sol         |      100 |      100 |      100 |      100 |                |
+  IVenusBNB.sol              |      100 |      100 |      100 |      100 |                |
+ mocks/                      |    63.16 |    39.47 |    68.18 |    70.24 |                |
+  MockFailToken.sol          |      100 |      100 |      100 |      100 |                |
+  MockPancakeRouter.sol      |    29.63 |       15 |    45.45 |    45.24 |... 115,116,119 |
+  MockVenusBNB.sol           |     91.3 |    57.14 |    85.71 |    94.44 |          67,68 |
+ staking/                    |      100 |       85 |      100 |      100 |                |
+  DiamondWallStaking.sol     |      100 |       85 |      100 |      100 |                |
+-----------------------------|----------|----------|----------|----------|----------------|
+All files                    |    91.96 |    82.41 |    94.26 |    94.23 |                |
+-----------------------------|----------|----------|----------|----------|----------------|
+

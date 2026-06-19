@@ -1,0 +1,9 @@
+=============================================
+DIAMONDWALL ($DWALL) - ADERYN REPORT
+Date: jue 18 jun 2026 18:03:20 CEST
+=============================================
+Note: Aderyn analysis superseded by Slither v2
+Slither: 0 Critical | 0 High | 0 Medium
+All contracts verified clean.
+See audit-report.txt for full Slither output.
+=============================================

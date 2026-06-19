@@ -1,0 +1,685 @@
+◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+
+  DiamondWallAirdrop
+    Deployment
+      ✔ Claim amount 100 DWALL (343ms)
+      ✔ Max 250 claims
+      ✔ Stats en 0
+      ✔ 150M disponibles
+    Claim Público
+      ✔ Usuario reclama 100 DWALL sin ser owner
+      ✔ Emite evento AirdropClaimed
+      ✔ Incrementa totalPublicClaims y totalRecipients
+      ✔ No puede reclamar dos veces
+      ✔ getPublicClaimStats correcto
+      ✔ getUserAirdropInfo con hasClaimedFree
+      ✔ Falla cuando pausado
+      ✔ Múltiples usuarios reclaman
+    Campañas Admin
+      ✔ executeAirdrop funciona
+      ✔ singleAirdrop funciona
+      ✔ No-owner no puede executeAirdrop
+      ✔ Falla arrays vacíos
+      ✔ Falla arrays desiguales
+      ✔ Falla address(0)
+      ✔ Falla amount 0
+      ✔ Falla balance insuficiente
+    Admin Config
+      ✔ setClaimConfig cambia valores
+      ✔ setClaimConfig falla con 0
+      ✔ withdrawTokens
+      ✔ burnTokens
+      ✔ pause/unpause
+      ✔ No-owner no puede admin
+    View Functions
+      ✔ getCampaignInfo
+      ✔ getUserAirdropInfo sin actividad
+
+  DiamondWallAirdrop - Escenarios Reales
+    ✔ 5 usuarios reclaman airdrop en secuencia (104ms)
+    ✔ Usuario con claim público puede recibir campaña admin
+    ✔ Campaña a 5 usuarios a la vez
+    ✔ Cambiar claimAmount afecta nuevos claims
+    ✔ maxClaims limita claims públicos
+    ✔ getPublicClaimStats refleja estado real
+    ✔ withdrawTokens reduce balance del contrato
+    ✔ burnTokens envía a dead address
+    ✔ Claim falla cuando pausado
+    ✔ Despausar permite claim de nuevo
+    ✔ singleAirdrop no bloquea claim público posterior
+    ✔ Campaña con 1 solo destinatario
+    ✔ getCampaignInfo para id 0 sin campañas devuelve vacío
+    ✔ singleAirdrop a address(0) falla
+    ✔ singleAirdrop con amount 0 falla
+    ✔ withdrawTokens más del balance falla
+    ✔ setClaimConfig con 0 falla
+    ✔ No-owner no puede singleAirdrop
+    ✔ No-owner no puede setClaimConfig
+    ✔ Múltiples campañas incrementan totalAirdrops
+    ✔ burnTokens quema correctamente
+    ✔ burnTokens no-owner falla
+    ✔ pause bloquea claimAirdrop
+    ✔ unpause reactiva claimAirdrop
+    ✔ pause no-owner falla
+    ✔ getAirdropStats retorna datos correctos
+    ✔ getPublicClaimStats retorna configuración
+    ✔ getUserAirdropInfo refleja claim
+    ✔ getCampaignInfo retorna datos de campaña
+    ✔ withdrawTokens no-owner falla
+    ✔ claimAirdrop segundo intento falla
+    ✔ setClaimConfig actualiza valores correctamente
+    ✔ burnTokens quema correctamente
+    ✔ burnTokens no-owner falla
+    ✔ pause bloquea claimAirdrop
+    ✔ unpause reactiva claimAirdrop
+    ✔ pause no-owner falla
+    ✔ getAirdropStats retorna datos correctos
+    ✔ getPublicClaimStats retorna configuración
+    ✔ getUserAirdropInfo refleja claim
+    ✔ getCampaignInfo retorna datos de campaña
+    ✔ withdrawTokens no-owner falla
+    ✔ claimAirdrop segundo intento falla
+    ✔ setClaimConfig actualiza valores correctamente
+    Branch coverage - transfer failures
+      ✔ claimAirdrop falla si transfer retorna false (63ms)
+      ✔ claimAirdrop falla si balance insuficiente (104ms)
+      ✔ executeAirdrop falla si transfer retorna false (60ms)
+      ✔ executeAirdrop receptor ya recibió no incrementa totalRecipients (85ms)
+      ✔ singleAirdrop falla si transfer retorna false (58ms)
+      ✔ singleAirdrop falla si balance insuficiente (55ms)
+      ✔ withdrawTokens falla si transfer retorna false (45ms)
+      ✔ burnTokens falla si balance insuficiente (40ms)
+      ✔ burnTokens falla si transfer retorna false (45ms)
+
+  DiamondWallCoin
+    Deployment
+      ✔ Debe tener nombre DiamondWallCoin y símbolo DWALL
+      ✔ Debe mintear 1B tokens al owner
+      ✔ Debe tener 18 decimales
+      ✔ Debe configurar límites anti-ballena al 5%
+      ✔ Debe tener presale y trading deshabilitados
+      ✔ Owner debe estar excluido de límites
+      ✔ BURN_ADDRESS debe estar excluida de límites
+    Configuration
+      ✔ Owner puede configurar presale contract
+      ✔ Owner puede configurar treasury
+      ✔ Owner puede configurar staking
+      ✔ Owner puede configurar airdrop
+      ✔ No permite address(0) en configuraciones
+      ✔ No-owner no puede configurar contratos
+      ✔ Owner puede habilitar/deshabilitar presale
+      ✔ Owner puede habilitar/deshabilitar trading
+      ✔ Owner puede actualizar límites
+      ✔ No permite límites en 0
+      ✔ Owner puede excluir/incluir cuentas de límites
+    Transfer Controls
+      ✔ Owner puede transferir siempre (sin trading)
+      ✔ Usuario NO puede transferir sin trading habilitado
+      ✔ Durante presale: usuarios no pueden transferir entre sí
+      ✔ Presale contract puede enviar tokens durante preventa
+      ✔ Staking contract puede operar sin trading
+      ✔ Airdrop contract puede operar sin trading
+      ✔ Con trading habilitado: transferencias normales funcionan
+      ✔ Límite anti-ballena: bloquea transferencia excesiva
+      ✔ Límite anti-ballena: bloquea wallet excesivo
+      ✔ Excluidos de límites pueden superar máximos
+      ✔ Burns a BURN_ADDRESS siempre permitidos
+    Pause
+      ✔ Owner puede pausar y despausar
+      ✔ Transferencias bloqueadas cuando pausado
+      ✔ No-owner no puede pausar
+    View Functions
+      ✔ getTokenInfo devuelve datos correctos
+
+  DiamondWallCoin - Coverage Extra
+    ✔ lockTrading habilita y bloquea permanentemente (52ms)
+    ✔ No puede deshabilitar trading tras lock
+    ✔ No puede lockTrading dos veces
+    ✔ setTransferLimits no permite < 1% del supply
+    ✔ getSecurityInfo devuelve datos correctos
+    ✔ getSecurityInfo tras lockTrading
+    ✔ Treasury contract puede operar sin trading
+    ✔ Puede habilitar trading tras lock (ya enabled)
+    ✔ No-owner no puede lockTrading
+    ✔ excludeFromLimits no permite address(0)
+
+  DiamondWallCoin - Escenarios Reales
+    ✔ Usuario puede enviar tokens al staking sin trading (67ms)
+    ✔ Transferencia hacia treasury permitida sin trading
+    ✔ Transferencia hacia airdrop permitida sin trading
+    ✔ setTradingEnabled(true) tras lock funciona
+    ✔ Transferencia bajo límite anti-ballena OK
+    ✔ Múltiples transferencias acumulan
+    ✔ Owner no tiene límite anti-ballena
+    ✔ Presale puede enviar tokens sin trading
+    ✔ Burn de 1M tokens
+    ✔ renounceOwnership deja sin owner
+    ✔ Tras renounce, funciones admin fallan
+    ✔ getSecurityInfo refleja renounce
+    ✔ Límites al 1% del supply aceptados
+    ✔ No-owner no puede unpause
+    ✔ No-owner no puede setPresale
+    ✔ No-owner no puede setAirdropContract
+    ✔ Transferir todo el balance de usuario
+
+  DiamondWallPresale V2
+    Deployment
+      ✔ Precio configurado a 620000 DWALL/BNB (128ms)
+      ✔ Límites de compra correctos
+      ✔ Presale inactiva por defecto
+      ✔ Whitelist deshabilitada por defecto
+      ✔ Tiene 700M DWALL disponibles
+    Buy Tokens
+      ✔ Compra exitosa entrega tokens correctamente
+      ✔ BNB se envía al Treasury
+      ✔ Treasury registra el revenue
+      ✔ Stats se actualizan correctamente
+      ✔ User info se registra
+      ✔ Múltiples compras del mismo usuario acumulan
+      ✔ Múltiples compradores diferentes
+      ✔ Emite evento TokensPurchased
+    Buy Restrictions
+      ✔ Falla si presale no activa
+      ✔ Falla si BNB bajo mínimo
+      ✔ Falla si supera máximo acumulado
+      ✔ Falla si contrato pausado
+      ✔ Falla con whitelist habilitada y usuario no listado
+      ✔ Whitelist permite compra a usuario listado
+      ✔ receive() rechaza BNB directo
+    Admin Controls
+      ✔ Start/Stop presale
+      ✔ No puede start si ya activa
+      ✔ No puede stop si ya inactiva
+      ✔ Actualizar precio
+      ✔ Actualizar límites
+      ✔ No permite min > max en límites
+      ✔ Withdraw tokens no vendidos (presale inactiva)
+      ✔ No puede withdraw tokens con presale activa
+      ✔ Withdraw BNB residual
+      ✔ No-owner no puede controlar presale
+    Whitelist Management
+      ✔ Agregar múltiples a whitelist
+      ✔ Remover de whitelist
+    View Functions
+      ✔ getPresaleInfo devuelve datos completos
+
+  DiamondWallPresale - Coverage Extra
+    ✔ setTreasury funciona (134ms)
+    ✔ setTreasury no permite address(0)
+    ✔ updatePrice no permite 0
+    ✔ withdrawUnsoldTokens falla con balance insuficiente
+    ✔ pause/unpause funciona
+    ✔ No-owner no puede pause
+    ✔ No-owner no puede withdrawBNB
+    ✔ No-owner no puede withdrawUnsoldTokens
+    ✔ No-owner no puede setTreasury
+    ✔ No-owner no puede updateLimits
+    ✔ updateLimits 0 falla
+    ✔ No-owner no puede setWhitelistEnabled
+    ✔ No-owner no puede addToWhitelist
+
+  DiamondWallPresale - Escenarios Reales
+    ✔ Compra mínima 0.01 BNB (151ms)
+    ✔ Compra máxima 10 BNB
+    ✔ 4 compradores secuenciales
+    ✔ BNB split: 50% Venus, 45% pools, 5% admin
+    ✔ Compra 0.005 BNB falla
+    ✔ Compra tras stop presale falla
+    ✔ Cambiar precio afecta compras
+    ✔ Whitelist bloquea y permite correctamente
+    ✔ removeFromWhitelist bloquea acceso
+    ✔ Withdraw unsold devuelve tokens al owner
+    ✔ setTreasury actualiza dirección
+    ✔ Compras incrementales hasta máximo
+    ✔ getPresaleInfo refleja estado real
+    ✔ updateLimits cambia min/max
+    ✔ No-owner no puede stopPresale
+    ✔ No-owner no puede removeFromWhitelist
+    ✔ getUserInfo refleja múltiples compras
+    ✔ No-owner no puede unpause
+
+  DiamondWallStaking
+    Deployment
+      ✔ Min stake es 100 DWALL (136ms)
+      ✔ Total staked es 0
+      ✔ Reward rate es 0 inicialmente
+      ✔ Owner correcto
+    Staking
+      ✔ Usuario puede stakear tokens
+      ✔ Falla si bajo mínimo
+      ✔ Múltiples stakes acumulan
+      ✔ Múltiples usuarios pueden stakear
+      ✔ Falla si pausado
+    Unstaking
+      ✔ Usuario puede unstakear
+      ✔ Unstake parcial
+      ✔ Unstake total reduce stakers
+      ✔ Falla si amount 0
+      ✔ Falla si más de lo stakeado
+    Rewards
+      ✔ Sin reward rate no genera rewards (39ms)
+      ✔ Con reward rate genera rewards proporcionales (63ms)
+      ✔ Rewards proporcionales entre múltiples stakers (50ms)
+      ✔ Claim rewards exitoso
+      ✔ Claim falla sin rewards
+      ✔ Después de claim, rewards vuelven a 0
+    Admin
+      ✔ Owner puede cambiar reward rate
+      ✔ Owner puede cambiar min stake
+      ✔ Min stake no puede ser 0
+      ✔ Owner puede depositar rewards
+      ✔ Emergency withdraw
+      ✔ No-owner no puede administrar
+    View Functions
+      ✔ getUserStakeInfo devuelve datos correctos
+      ✔ getStakingInfo devuelve stats globales
+
+  DiamondWallStaking - Escenarios Reales
+    ✔ Stakear exactamente el mínimo (100 DWALL) (232ms)
+    ✔ Stakear 99 DWALL falla
+    ✔ 4 usuarios stake/unstake simultáneo (58ms)
+    ✔ Rewards acumulan con múltiples stakes del mismo usuario (46ms)
+    ✔ Claim rewards incrementa balance del usuario (56ms)
+    ✔ Unstake parcial no pierde rewards acumulados (56ms)
+    ✔ RewardRate 0 detiene acumulación (47ms)
+    ✔ Emergency withdraw recupera todos los tokens
+    ✔ Unstake sin stake falla
+    ✔ No-owner no puede depositRewards
+    ✔ No-owner no puede emergencyWithdrawAll
+    ✔ getStakingInfo refleja datos reales
+    ✔ rewardPerToken con 0 staked devuelve stored
+    ✔ Pause bloquea stake
+    ✔ Stakear 5M tokens
+    ✔ Unstake todo y re-stakear funciona
+    ✔ Cambiar minStake afecta nuevos stakes
+    ✔ Earned 0 para usuario sin stake
+    ✔ depositRewards con 0 falla
+    ✔ emergencyWithdrawAll sin balance falla
+    ✔ pause bloquea stake
+    ✔ unpause reactiva stake
+    ✔ pause no-owner falla
+    ✔ setMinStakeAmount actualiza mínimo
+    ✔ setMinStakeAmount no-owner falla
+    ✔ setRewardRate no-owner falla
+    ✔ depositRewards no-owner falla
+    ✔ getUserStakeInfo retorna datos correctos
+    ✔ getStakingInfo retorna datos correctos
+    ✔ rewardPerToken retorna 0 sin stake
+    ✔ unstake más del balance falla
+    ✔ claimRewards sin rewards no falla
+    ✔ emergencyWithdrawAll no-owner falla
+    ✔ stake adicional mismo usuario incrementa
+    ✔ unstake parcial deja balance restante
+    ✔ unstake total reduce totalStakers
+    ✔ rewardPerToken con totalStaked > 0
+    ✔ depositRewards aumenta pool de recompensas
+    Transfer failure branches
+      ✔ stake falla si transferFrom retorna false (59ms)
+      ✔ unstake falla si transfer retorna false (64ms)
+      ✔ depositRewards falla si transferFrom retorna false (57ms)
+      ✔ emergencyWithdrawAll falla si transfer retorna false (68ms)
+
+  DiamondWallTreasury V4 - Venus + Split
+    Deployment
+      ✔ Split configurado 50/45/5 (88ms)
+      ✔ Stats iniciales en 0
+      ✔ Deposits habilitados
+    Split Automático
+      ✔ 50% Venus / 45% Pools / 5% Admin
+      ✔ User depositedBNB solo cuenta parte Venus (50%)
+    Flujo Completo: Compra → Venus → Yields → Claim
+      ✔ Holder reclama yields sin admin
+    Múltiples Holders
+      ✔ Yields proporcionales
+    Pool Reserve
+      ✔ Owner puede retirar pool reserve
+      ✔ No puede retirar más de lo disponible
+      ✔ No autorizado no puede retirar
+    Split Config
+      ✔ Owner puede cambiar split
+      ✔ Falla si split no suma 100
+      ✔ No-owner no puede cambiar split
+    Claim Controls
+      ✔ Falla sin yields
+      ✔ Compras adicionales acumulan depositedBNB
+    Admin Functions
+      ✔ No-owner no puede administrar
+      ✔ No-autorizado no puede registrar ventas
+      ✔ Emergency withdraw
+    View Functions
+      ✔ getTreasuryStats
+      ✔ getFullStats
+
+  DiamondWallTreasury V4 - Coverage Extra
+    Venus Deposits Disabled
+      ✔ BNB queda en contrato si deposits disabled (106ms)
+    LiquidityManager Integration
+      ✔ 45% se envía automáticamente al LiquidityManager
+      ✔ Sin LM, pool reserve queda en contrato
+    Admin Wallet
+      ✔ Cambiar admin wallet
+      ✔ No puede setAdminWallet a address(0)
+      ✔ 5% fees van al admin wallet correcto
+    Venus Functions
+      ✔ setVenus cambia address
+      ✔ setVenus no permite address(0)
+      ✔ depositIdleBNBToVenus deposita BNB no asignado
+      ✔ depositIdleBNBToVenus falla sin BNB idle
+      ✔ emergencyRedeemFromVenus recupera BNB
+      ✔ emergencyRedeemFromVenus falla sin vTokens
+    recordSaleRevenue (legacy)
+      ✔ recordSaleRevenue solo registra, no deposita
+      ✔ recordSaleRevenue falla con 0
+    setLiquidityManager
+      ✔ No permite address(0)
+      ✔ No-owner no puede setLiquidityManager
+    Multiple Claims
+      ✔ Claim, esperar, claim de nuevo
+    getPoolStats / getAllPoolsStats
+      ✔ getPoolStats devuelve Venus BSC
+      ✔ getAllPoolsStats devuelve 1 pool
+    calculateTotalYields con holders
+      ✔ Suma yields de todos los holders
+
+  DiamondWallTreasuryV4 - Escenarios Reales
+    ✔ 10 ventas secuenciales acumulan yields (183ms)
+    ✔ Yields proporcionales a inversión
+    ✔ Compra adicional tras claim funciona
+    ✔ Admin fees van al adminWallet
+    ✔ Cambiar split a 60/30/10
+    ✔ getFullStats devuelve todos los datos
+    ✔ Holder sin depósito no puede reclamar
+    ✔ getHoldersCount correcto con múltiples holders
+    ✔ withdrawPoolReserve parcial deja resto
+    ✔ No-owner no puede setDepositsEnabled
+    ✔ No-owner no puede setAdminWallet
+    ✔ authorizeSeller no-owner falla
+    ✔ setLiquidityManager no-owner falla
+    ✔ setSplit no-owner falla
+    ✔ setSplit inválido falla
+    ✔ setVenus no-owner falla
+    ✔ getSplitConfig retorna configuración correcta
+    ✔ getHoldersCount retorna 0 inicial
+    ✔ getUserYieldInfo retorna datos del usuario
+    ✔ getFullStats retorna estadísticas
+    ✔ calculateTotalYields retorna 0 inicial
+    ✔ emergencyWithdraw no-owner falla
+    ✔ depositIdleBNBToVenus no-owner falla
+    Branch coverage tests
+      ✔ recordSaleAndDeposit con address(0) falla
+      ✔ recordSaleAndDeposit con amount 0 falla
+      ✔ LiquidityManager que falla acumula poolReserve
+      ✔ setDepositsEnabled false salta Venus deposit
+      ✔ pendingYields con lastClaimedRate 0 retorna 0
+      ✔ withdrawPoolReserve amount 0 falla
+      ✔ emergencyWithdraw sin balance falla
+      ✔ recordSaleRevenue no-authorized falla
+
+  LiquidityManager
+    Deployment
+      ✔ 4 DEXs con pesos 40/30/20/10 (127ms)
+      ✔ Stats en 0
+      ✔ Auto-distribute habilitado
+    Create Pool
+      ✔ Crear pool PancakeSwap
+      ✔ 4 pools
+      ✔ No duplicar pool
+      ✔ DEX inválido
+      ✔ DEX deshabilitado
+      ✔ Amount 0
+      ✔ No-owner falla
+    Auto-Distribute
+      ✔ Treasury envía BNB → pending
+      ✔ Auto-distribuye con pools activos
+      ✔ No-treasury falla
+      ✔ forceDistribute funciona
+      ✔ forceDistribute falla sin pending
+      ✔ forceDistribute falla sin pools
+    Admin
+      ✔ Cambiar peso DEX
+      ✔ Toggle DEX
+      ✔ No-owner falla
+    View
+      ✔ getDEXInfo
+      ✔ getStats
+
+  LiquidityManager - Coverage Extra
+    ✔ receive() de no-treasury no añade pendingBNB (120ms)
+    ✔ receive() de treasury añade pendingBNB
+    ✔ setAutoDistribute cambia config
+    ✔ setTreasury no permite address(0)
+    ✔ updateDEXRouter funciona
+    ✔ updateDEXRouter no permite address(0)
+    ✔ updateDEXRouter invalido
+    ✔ createPool falla sin tokens suficientes
+    ✔ depositTokens amount 0 falla
+    ✔ getPoolInfo falla con id inválido
+    ✔ getDEXInfo falla con id > 3
+    ✔ Auto-distribución con bajo pendiente no ejecuta
+    ✔ receiveBNBFromTreasury con amount 0 falla
+    ✔ No-owner no puede setAutoDistribute
+    ✔ No-owner no puede updateDEXRouter
+    ✔ No-owner no puede depositTokens
+
+  LiquidityManager - Coverage 90%+
+    ✔ getPoolInfo devuelve datos correctos tras crear pool (139ms)
+    ✔ getPoolCount devuelve cantidad correcta
+    ✔ receive() de treasury con pools activos auto-distribuye
+    ✔ getAllDEXs devuelve pesos correctos
+    ✔ Auto-distribute con 4 pools distribuye proporcionalmente (38ms)
+    ✔ toggleDEX con id inválido falla
+    ✔ setDEXWeight con id inválido falla
+
+  LiquidityManager - Escenarios Reales
+    ✔ Múltiples envíos del treasury acumulan y distribuyen (144ms)
+    ✔ Crear pool con balance grande de tokens
+    ✔ DEX deshabilitado no recibe distribución
+    ✔ Cambiar pesos afecta distribución
+    ✔ minAutoDistribute alto acumula pendingBNB
+    ✔ forceDistribute vacía pendingBNB
+    ✔ 4 pools reciben distribución simultánea (44ms)
+    ✔ Crear pool sin enviar ETH falla
+    ✔ depositTokens incrementa balance del contrato
+    ✔ Auto-distribute sin tokens en contrato no falla
+    ✔ Nuevo treasury puede enviar BNB
+    ✔ Owner puede enviar via receiveBNBFromTreasury
+    ✔ getStats refleja estado completo
+    ✔ No-owner no puede forceDistribute
+    ✔ No-owner no puede setTreasury
+    ✔ No-owner no puede createPool
+
+
+  406 passing (8s)
+
+······················································································································
+|  [32m[1mSolidity and Network Configuration[22m[39m                                                                                │
+·································|·················|···············|·················|································
+|  [36mSolidity: 0.8.20[39m              ·  [36mOptim: true[39m    ·  [36mRuns: 200[39m    ·  [36mviaIR: false[39m   ·     [36mBlock: 60,000,000 gas[39m     │
+·································|·················|···············|·················|································
+|  [32m[1mMethods[22m[39m                                                                                                           │
+·································|·················|···············|·················|················|···············
+|  [32m[1mContracts / Methods[22m[39m           ·  [1mMin[22m            ·  [1mMax[22m          ·  [1mAvg[22m            ·  [1m# calls[22m       ·  [1musd (avg)[22m   │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallAirdrop[22m            ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      burnTokens                ·         [36m61,088[39m  ·       [31m61,100[39m  ·         61,091  ·             4  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      claimAirdrop              ·        [36m115,207[39m  ·      [31m208,882[39m  ·        189,530  ·            34  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      executeAirdrop            ·        [36m182,723[39m  ·      [31m605,768[39m  ·        321,322  ·            10  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,758  ·             8  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setClaimConfig            ·         [36m32,518[39m  ·       [31m35,330[39m  ·         34,176  ·             5  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      singleAirdrop             ·         [36m69,361[39m  ·      [31m163,055[39m  ·        131,824  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             4  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      withdrawTokens            ·         [36m39,695[39m  ·       [31m45,008[39m  ·         42,352  ·             4  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallCoin[22m               ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      approve                   ·         [36m29,329[39m  ·       [31m46,729[39m  ·         39,272  ·            21  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      excludeFromLimits         ·         [36m26,011[39m  ·       [31m47,923[39m  ·         44,793  ·             7  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      lockTrading               ·         [36m29,387[39m  ·       [31m46,487[39m  ·         43,637  ·             6  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,737  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      renounceOwnership         ·              [90m-[39m  ·            [90m-[39m  ·         23,294  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setAirdropContract        ·              [90m-[39m  ·            [90m-[39m  ·         69,473  ·             6  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setPresale                ·         [36m69,460[39m  ·       [31m69,472[39m  ·         69,470  ·             7  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setPresaleEnabled         ·         [36m25,096[39m  ·       [31m47,008[39m  ·         40,773  ·             9  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setStakingPlatform        ·              [90m-[39m  ·            [90m-[39m  ·         69,561  ·             6  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setTradingEnabled         ·         [36m27,301[39m  ·       [31m47,193[39m  ·         41,183  ·            18  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setTransferLimits         ·              [90m-[39m  ·            [90m-[39m  ·         35,601  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setTreasury               ·              [90m-[39m  ·            [90m-[39m  ·         69,516  ·             7  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      transfer                  ·         [36m48,972[39m  ·       [31m72,657[39m  ·         55,661  ·            61  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallPresale[22m            ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      addToWhitelist            ·         [36m48,553[39m  ·       [31m73,094[39m  ·         53,461  ·             5  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      buyTokens                 ·        [36m190,210[39m  ·      [31m534,007[39m  ·        453,189  ·            31  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,770  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      removeFromWhitelist       ·              [90m-[39m  ·            [90m-[39m  ·         26,653  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setTreasury               ·              [90m-[39m  ·            [90m-[39m  ·         30,216  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setWhitelistEnabled       ·              [90m-[39m  ·            [90m-[39m  ·         46,919  ·             4  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      startPresale              ·              [90m-[39m  ·            [90m-[39m  ·         46,743  ·            17  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      stopPresale               ·              [90m-[39m  ·            [90m-[39m  ·         24,894  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,786  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      updateLimits              ·              [90m-[39m  ·            [90m-[39m  ·         35,403  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      updatePrice               ·              [90m-[39m  ·            [90m-[39m  ·         30,079  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      withdrawUnsoldTokens      ·         [36m47,154[39m  ·       [31m47,166[39m  ·         47,160  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallStaking[22m            ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      claimRewards              ·              [90m-[39m  ·            [90m-[39m  ·        108,521  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      depositRewards            ·         [36m45,641[39m  ·       [31m62,741[39m  ·         61,297  ·            13  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      emergencyWithdrawAll      ·              [90m-[39m  ·            [90m-[39m  ·         39,925  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,758  ·             4  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setMinStakeAmount         ·              [90m-[39m  ·            [90m-[39m  ·         29,818  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setRewardRate             ·         [36m54,714[39m  ·       [31m56,726[39m  ·         56,196  ·            13  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      stake                     ·         [36m84,667[39m  ·      [31m181,830[39m  ·        163,211  ·            51  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      unstake                   ·         [36m66,543[39m  ·      [31m134,995[39m  ·         76,952  ·            10  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallTreasuryV4[22m         ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      authorizeSeller           ·         [36m47,920[39m  ·       [31m47,932[39m  ·         47,930  ·             6  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      claimYields               ·         [36m88,022[39m  ·      [31m122,222[39m  ·        113,672  ·             8  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      depositIdleBNBToVenus     ·              [90m-[39m  ·            [90m-[39m  ·        109,982  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      emergencyRedeemFromVenus  ·              [90m-[39m  ·            [90m-[39m  ·         54,517  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      emergencyWithdraw         ·              [90m-[39m  ·            [90m-[39m  ·         34,590  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      recordSaleAndDeposit      ·        [36m116,820[39m  ·      [31m340,166[39m  ·        249,446  ·            42  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      recordSaleRevenue         ·              [90m-[39m  ·            [90m-[39m  ·         46,038  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setAdminWallet            ·         [36m30,263[39m  ·       [31m30,275[39m  ·         30,271  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setDepositsEnabled        ·              [90m-[39m  ·            [90m-[39m  ·         24,022  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setLiquidityManager       ·              [90m-[39m  ·            [90m-[39m  ·         30,209  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setSplit                  ·              [90m-[39m  ·            [90m-[39m  ·         40,780  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setVenus                  ·              [90m-[39m  ·            [90m-[39m  ·         29,078  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      withdrawPoolReserve       ·              [90m-[39m  ·            [90m-[39m  ·         41,928  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mLiquidityManager[22m              ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      createPool                ·        [36m803,364[39m  ·      [31m831,952[39m  ·        821,292  ·            38  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      depositTokens             ·              [90m-[39m  ·            [90m-[39m  ·         44,606  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      forceDistribute           ·              [90m-[39m  ·            [90m-[39m  ·        151,110  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      receiveBNBFromTreasury    ·         [36m40,233[39m  ·      [31m414,036[39m  ·        145,251  ·            19  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setAutoDistribute         ·         [36m29,149[39m  ·       [31m34,021[39m  ·         30,955  ·             5  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setDEXWeight              ·         [36m30,344[39m  ·       [31m30,356[39m  ·         30,348  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setTreasury               ·         [36m29,050[39m  ·       [31m29,062[39m  ·         29,055  ·             5  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      toggleDEX                 ·         [36m29,080[39m  ·       [31m29,092[39m  ·         29,088  ·             3  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      updateDEXRouter           ·              [90m-[39m  ·            [90m-[39m  ·         29,318  ·             1  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mMockFailToken[22m                 ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      approve                   ·         [36m46,384[39m  ·       [31m46,729[39m  ·         46,453  ·             5  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setShouldFail             ·              [90m-[39m  ·            [90m-[39m  ·         43,652  ·             9  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      transfer                  ·         [36m31,032[39m  ·       [31m54,170[39m  ·         52,221  ·            14  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mMockVenusBNB[22m                  ·                                                                                   │
+·································|·················|···············|·················|················|···············
+|      simulateYields            ·         [36m34,075[39m  ·       [31m34,087[39m  ·         34,081  ·            10  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [32m[1mDeployments[22m[39m                                     ·                                 ·  [1m% of limit[22m    ·              │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallAirdrop[22m            ·      [36m1,760,981[39m  ·    [31m1,760,993[39m  ·      1,760,991  ·         2.9 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallCoin[22m               ·              [90m-[39m  ·            [90m-[39m  ·      1,532,992  ·         2.6 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallPresale[22m            ·              [90m-[39m  ·            [90m-[39m  ·      1,495,820  ·         2.5 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallStaking[22m            ·      [36m1,183,893[39m  ·    [31m1,183,917[39m  ·      1,183,913  ·           2 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mDiamondWallTreasuryV4[22m         ·      [36m2,050,314[39m  ·    [31m2,050,326[39m  ·      2,050,322  ·         3.4 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mLiquidityManager[22m              ·              [90m-[39m  ·            [90m-[39m  ·      2,548,702  ·         4.2 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mMockFailToken[22m                 ·              [90m-[39m  ·            [90m-[39m  ·        590,254  ·           1 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mMockPancakeRouter[22m             ·              [90m-[39m  ·            [90m-[39m  ·      1,000,940  ·         1.7 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [1mMockVenusBNB[22m                  ·              [90m-[39m  ·            [90m-[39m  ·        492,801  ·         0.8 %  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|  [32m[1mKey[22m[39m                                                                                                               │
+······················································································································
+|  [35m[1m◯[22m[39m  Execution gas for this method does not include intrinsic gas overhead                                          │
+······················································································································
+|  [35m[1m△[22m[39m  Cost was non-zero but below the precision setting for the currency display (see options)                       │
+······················································································································
+|  [35mToolchain:[39m  hardhat                                                                                               │
+······················································································································

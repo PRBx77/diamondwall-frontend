@@ -1,0 +1,401 @@
+
+[<img width="200" alt="get in touch with Consensys Diligence" src="https://user-images.githubusercontent.com/2865694/56826101-91dcf380-685b-11e9-937c-af49c2510aa0.png">](https://consensys.io/diligence)<br/>
+<sup>
+[[  🌐  ](https://consensys.io/diligence)  [  📩  ](mailto:diligence@consensys.net)  [  🔥  ](https://consensys.io/diligence/tools/)]
+</sup><br/><br/>
+
+
+
+# Solidity Metrics for 'CLI'
+
+## Table of contents
+
+- [Scope](#t-scope)
+    - [Source Units in Scope](#t-source-Units-in-Scope)
+        - [Deployable Logic Contracts](#t-deployable-contracts)
+    - [Out of Scope](#t-out-of-scope)
+        - [Excluded Source Units](#t-out-of-scope-excluded-source-units)
+        - [Duplicate Source Units](#t-out-of-scope-duplicate-source-units)
+        - [Doppelganger Contracts](#t-out-of-scope-doppelganger-contracts)
+- [Report Overview](#t-report)
+    - [Risk Summary](#t-risk)
+    - [Source Lines](#t-source-lines)
+    - [Inline Documentation](#t-inline-documentation)
+    - [Components](#t-components)
+    - [Exposed Functions](#t-exposed-functions)
+    - [StateVariables](#t-statevariables)
+    - [Capabilities](#t-capabilities)
+    - [Dependencies](#t-package-imports)
+    - [Totals](#t-totals)
+
+## <span id=t-scope>Scope</span>
+
+This section lists files that are in scope for the metrics report. 
+
+- **Project:** `'CLI'`
+- **Included Files:** 
+    - ``
+- **Excluded Paths:** 
+    - ``
+- **File Limit:** `undefined`
+    - **Exclude File list Limit:** `undefined`
+
+- **Workspace Repository:** `unknown` (`undefined`@`undefined`)
+
+### <span id=t-source-Units-in-Scope>Source Units in Scope</span>
+
+Source Units Analyzed: **`8`**<br>
+Source Units in Scope: **`8`** (**100%**)
+
+| Type | File   | Logic Contracts | Interfaces | Lines | nLines | nSLOC | Comment Lines | Complex. Score | Capabilities |
+| ---- | ------ | --------------- | ---------- | ----- | ------ | ----- | ------------- | -------------- | ------------ | 
+| 📝 | contracts/airdrop/DiamondWallAirdrop.sol | 1 | **** | 217 | 199 | 142 | 25 | 143 | **<abbr title='Initiates ETH Value Transfer'>📤</abbr>** |
+| 🔍 | contracts/interfaces/IDiamondWallTreasury.sol | **** | 1 | 14 | 5 | 3 | 1 | 12 | **<abbr title='Payable Functions'>💰</abbr>** |
+| 🔍 | contracts/interfaces/IPancakeRouter.sol | **** | 3 | 31 | 7 | 5 | 1 | 34 | **<abbr title='Payable Functions'>💰</abbr>** |
+| 🔍 | contracts/interfaces/IVenusBNB.sol | **** | 1 | 16 | 9 | 3 | 12 | 18 | **<abbr title='Payable Functions'>💰</abbr>** |
+| 📝 | contracts/mocks/MockFailToken.sol | 1 | **** | 26 | 26 | 19 | 1 | 16 | **<abbr title='Initiates ETH Value Transfer'>📤</abbr>** |
+| 📝 | contracts/mocks/MockPancakeRouter.sol | 3 | **** | 123 | 109 | 85 | 5 | 94 | **<abbr title='Payable Functions'>💰</abbr><abbr title='Initiates ETH Value Transfer'>📤</abbr><abbr title='create/create2'>🌀</abbr>** |
+| 📝 | contracts/mocks/MockVenusBNB.sol | 1 | **** | 91 | 91 | 60 | 19 | 39 | **<abbr title='Payable Functions'>💰</abbr>** |
+| 📝 | contracts/staking/DiamondWallStaking.sol | 1 | **** | 200 | 190 | 137 | 17 | 115 | **<abbr title='Initiates ETH Value Transfer'>📤</abbr>** |
+| 📝🔍 | **Totals** | **7** | **5** | **718**  | **636** | **454** | **81** | **471** | **<abbr title='Payable Functions'>💰</abbr><abbr title='Initiates ETH Value Transfer'>📤</abbr><abbr title='create/create2'>🌀</abbr>** |
+
+<sub>
+Legend: <a onclick="toggleVisibility('table-legend', this)">[➕]</a>
+<div id="table-legend" style="display:none">
+
+<ul>
+<li> <b>Lines</b>: total lines of the source unit </li>
+<li> <b>nLines</b>: normalized lines of the source unit (e.g. normalizes functions spanning multiple lines) </li>
+<li> <b>nSLOC</b>: normalized source lines of code (only source-code lines; no comments, no blank lines) </li>
+<li> <b>Comment Lines</b>: lines containing single or block comments </li>
+<li> <b>Complexity Score</b>: a custom complexity score derived from code statements that are known to introduce code complexity (branches, loops, calls, external interfaces, ...) </li>
+</ul>
+
+</div>
+</sub>
+
+
+##### <span id=t-deployable-contracts>Deployable Logic Contracts</span>
+Total: 7
+* 📝 `DiamondWallAirdrop`
+* 📝 `MockFailToken`
+* 📝 `MockPancakeFactory`
+* 📝 `MockPancakePair`
+* 📝 `MockPancakeRouter`
+* <a onclick="toggleVisibility('deployables', this)">[➕]</a>
+<div id="deployables" style="display:none">
+<ul>
+<li> 📝 <code>MockVenusBNB</code></li>
+<li> 📝 <code>DiamondWallStaking</code></li>
+</ul>
+</div>
+            
+
+
+
+#### <span id=t-out-of-scope>Out of Scope</span>
+
+##### <span id=t-out-of-scope-excluded-source-units>Excluded Source Units</span>
+
+Source Units Excluded: **`0`**
+
+<a onclick="toggleVisibility('excluded-files', this)">[➕]</a>
+<div id="excluded-files" style="display:none">
+| File   |
+| ------ |
+| None |
+
+</div>
+
+
+##### <span id=t-out-of-scope-duplicate-source-units>Duplicate Source Units</span>
+
+Duplicate Source Units Excluded: **`0`** 
+
+<a onclick="toggleVisibility('duplicate-files', this)">[➕]</a>
+<div id="duplicate-files" style="display:none">
+| File   |
+| ------ |
+| None |
+
+</div>
+
+##### <span id=t-out-of-scope-doppelganger-contracts>Doppelganger Contracts</span>
+
+Doppelganger Contracts: **`0`** 
+
+<a onclick="toggleVisibility('doppelganger-contracts', this)">[➕]</a>
+<div id="doppelganger-contracts" style="display:none">
+| File   | Contract | Doppelganger | 
+| ------ | -------- | ------------ |
+
+
+</div>
+
+
+## <span id=t-report>Report</span>
+
+### Overview
+
+The analysis finished with **`0`** errors and **`0`** duplicate files.
+
+
+
+
+
+#### <span id=t-risk>Risk</span>
+
+<div class="wrapper" style="max-width: 512px; margin: auto">
+			<canvas id="chart-risk-summary"></canvas>
+</div>
+
+#### <span id=t-source-lines>Source Lines (sloc vs. nsloc)</span>
+
+<div class="wrapper" style="max-width: 512px; margin: auto">
+    <canvas id="chart-nsloc-total"></canvas>
+</div>
+
+#### <span id=t-inline-documentation>Inline Documentation</span>
+
+- **Comment-to-Source Ratio:** On average there are`6.59` code lines per comment (lower=better).
+- **ToDo's:** `0` 
+
+#### <span id=t-components>Components</span>
+
+| 📝Contracts   | 📚Libraries | 🔍Interfaces | 🎨Abstract |
+| ------------- | ----------- | ------------ | ---------- |
+| 7 | 0  | 5  | 0 |
+
+#### <span id=t-exposed-functions>Exposed Functions</span>
+
+This section lists functions that are explicitly declared public or payable. Please note that getter methods for public stateVars are not included.  
+
+| 🌐Public   | 💰Payable |
+| ---------- | --------- |
+| 70 | 7  | 
+
+| External   | Internal | Private | Pure | View |
+| ---------- | -------- | ------- | ---- | ---- |
+| 66 | 46  | 0 | 3 | 22 |
+
+#### <span id=t-statevariables>StateVariables</span>
+
+| Total      | 🌐Public  |
+| ---------- | --------- |
+| 35  | 34 |
+
+#### <span id=t-capabilities>Capabilities</span>
+
+| Solidity Versions observed | 🧪 Experimental Features | 💰 Can Receive Funds | 🖥 Uses Assembly | 💣 Has Destroyable Contracts | 
+| -------------------------- | ------------------------ | -------------------- | ---------------- | ---------------------------- |
+| `^0.8.20` |  | `yes` | **** | **** | 
+
+| 📤 Transfers ETH | ⚡ Low-Level Calls | 👥 DelegateCall | 🧮 Uses Hash Functions | 🔖 ECRecover | 🌀 New/Create/Create2 |
+| ---------------- | ----------------- | --------------- | ---------------------- | ------------ | --------------------- |
+| `yes` | **** | **** | **** | **** | `yes`<br>→ `NewContract:MockPancakePair`<br/>→ `NewContract:MockPancakeFactory` | 
+
+| ♻️ TryCatch | Σ Unchecked |
+| ---------- | ----------- |
+| **** | **** |
+
+#### <span id=t-package-imports>Dependencies / External Imports</span>
+
+| Dependency / Import Path | Count  | 
+| ------------------------ | ------ |
+| @openzeppelin/contracts/access/Ownable.sol | 2 |
+| @openzeppelin/contracts/token/ERC20/ERC20.sol | 1 |
+| @openzeppelin/contracts/token/ERC20/IERC20.sol | 3 |
+| @openzeppelin/contracts/utils/Pausable.sol | 2 |
+| @openzeppelin/contracts/utils/ReentrancyGuard.sol | 2 |
+
+#### <span id=t-totals>Totals</span>
+
+##### Summary
+
+<div class="wrapper" style="max-width: 90%; margin: auto">
+    <canvas id="chart-num-bar"></canvas>
+</div>
+
+##### AST Node Statistics
+
+###### Function Calls
+
+<div class="wrapper" style="max-width: 90%; margin: auto">
+    <canvas id="chart-num-bar-ast-funccalls"></canvas>
+</div>
+
+###### Assembly Calls
+
+<div class="wrapper" style="max-width: 90%; margin: auto">
+    <canvas id="chart-num-bar-ast-asmcalls"></canvas>
+</div>
+
+###### AST Total
+
+<div class="wrapper" style="max-width: 90%; margin: auto">
+    <canvas id="chart-num-bar-ast"></canvas>
+</div>
+
+##### Inheritance Graph
+
+<a onclick="toggleVisibility('surya-inherit', this)">[➕]</a>
+<div id="surya-inherit" style="display:none">
+<div class="wrapper" style="max-width: 512px; margin: auto">
+    <div id="surya-inheritance" style="text-align: center;"></div> 
+</div>
+</div>
+
+##### CallGraph
+
+<a onclick="toggleVisibility('surya-call', this)">[➕]</a>
+<div id="surya-call" style="display:none">
+<div class="wrapper" style="max-width: 512px; margin: auto">
+    <div id="surya-callgraph" style="text-align: center;"></div>
+</div>
+</div>
+
+###### Contract Summary
+
+<a onclick="toggleVisibility('surya-mdreport', this)">[➕]</a>
+<div id="surya-mdreport" style="display:none">
+ 
+
+ Files Description Table
+
+
+|  File Name  |  SHA-1 Hash  |
+|-------------|--------------|
+| contracts/airdrop/DiamondWallAirdrop.sol | ce7b737e72dac9632f575f55f174fc8bbc2069d7 |
+| contracts/interfaces/IDiamondWallTreasury.sol | 7a883a5db70c72da1640cb4f524a491f5776fd07 |
+| contracts/interfaces/IPancakeRouter.sol | 7084c986145f41fb08c6bdf53abc3d662b84a406 |
+| contracts/interfaces/IVenusBNB.sol | b6b7913e0a2915a54bf1329ae2dabaa5164e2435 |
+| contracts/mocks/MockFailToken.sol | 0babf4ea95f5d059b1927670ae6a5e22d4ddb352 |
+| contracts/mocks/MockPancakeRouter.sol | dcda996418beefeaabe56d13e56273aebeb9e271 |
+| contracts/mocks/MockVenusBNB.sol | 3e39cd901e264ce9a7ec0a0f4ae82acd99eab705 |
+| contracts/staking/DiamondWallStaking.sol | 27c352bb4979a4f98947635d0507d166505889fc |
+
+
+ Contracts Description Table
+
+
+|  Contract  |         Type        |       Bases      |                  |                 |
+|:----------:|:-------------------:|:----------------:|:----------------:|:---------------:|
+|     └      |  **Function Name**  |  **Visibility**  |  **Mutability**  |  **Modifiers**  |
+||||||
+| **DiamondWallAirdrop** | Implementation | Ownable, ReentrancyGuard, Pausable |||
+| └ | <Constructor> | Public ❗️ | 🛑  | Ownable |
+| └ | claimAirdrop | External ❗️ | 🛑  | nonReentrant whenNotPaused |
+| └ | executeAirdrop | External ❗️ | 🛑  | onlyOwner nonReentrant whenNotPaused |
+| └ | singleAirdrop | External ❗️ | 🛑  | onlyOwner nonReentrant whenNotPaused |
+| └ | setClaimConfig | External ❗️ | 🛑  | onlyOwner |
+| └ | withdrawTokens | External ❗️ | 🛑  | onlyOwner |
+| └ | burnTokens | External ❗️ | 🛑  | onlyOwner |
+| └ | pause | External ❗️ | 🛑  | onlyOwner |
+| └ | unpause | External ❗️ | 🛑  | onlyOwner |
+| └ | getAirdropStats | External ❗️ |   |NO❗️ |
+| └ | getPublicClaimStats | External ❗️ |   |NO❗️ |
+| └ | getCampaignInfo | External ❗️ |   |NO❗️ |
+| └ | getUserAirdropInfo | External ❗️ |   |NO❗️ |
+||||||
+| **IDiamondWallTreasury** | Interface |  |||
+| └ | recordSaleRevenue | External ❗️ | 🛑  |NO❗️ |
+| └ | recordSaleAndDeposit | External ❗️ |  💵 |NO❗️ |
+| └ | calculateTotalYields | External ❗️ |   |NO❗️ |
+| └ | getTreasuryStats | External ❗️ |   |NO❗️ |
+||||||
+| **IPancakeRouter** | Interface |  |||
+| └ | factory | External ❗️ |   |NO❗️ |
+| └ | WETH | External ❗️ |   |NO❗️ |
+| └ | addLiquidityETH | External ❗️ |  💵 |NO❗️ |
+| └ | removeLiquidityETH | External ❗️ | 🛑  |NO❗️ |
+| └ | getAmountsOut | External ❗️ |   |NO❗️ |
+||||||
+| **IPancakeFactory** | Interface |  |||
+| └ | getPair | External ❗️ |   |NO❗️ |
+| └ | createPair | External ❗️ | 🛑  |NO❗️ |
+||||||
+| **IPancakePair** | Interface |  |||
+| └ | getReserves | External ❗️ |   |NO❗️ |
+| └ | token0 | External ❗️ |   |NO❗️ |
+| └ | token1 | External ❗️ |   |NO❗️ |
+| └ | totalSupply | External ❗️ |   |NO❗️ |
+| └ | balanceOf | External ❗️ |   |NO❗️ |
+| └ | approve | External ❗️ | 🛑  |NO❗️ |
+| └ | transfer | External ❗️ | 🛑  |NO❗️ |
+||||||
+| **IVenusBNB** | Interface |  |||
+| └ | mint | External ❗️ |  💵 |NO❗️ |
+| └ | redeem | External ❗️ | 🛑  |NO❗️ |
+| └ | redeemUnderlying | External ❗️ | 🛑  |NO❗️ |
+| └ | balanceOf | External ❗️ |   |NO❗️ |
+| └ | balanceOfUnderlying | External ❗️ | 🛑  |NO❗️ |
+| └ | exchangeRateStored | External ❗️ |   |NO❗️ |
+| └ | supplyRatePerBlock | External ❗️ |   |NO❗️ |
+||||||
+| **MockFailToken** | Implementation | ERC20 |||
+| └ | <Constructor> | Public ❗️ | 🛑  | ERC20 |
+| └ | setShouldFail | External ❗️ | 🛑  |NO❗️ |
+| └ | transfer | Public ❗️ | 🛑  |NO❗️ |
+| └ | transferFrom | Public ❗️ | 🛑  |NO❗️ |
+||||||
+| **MockPancakeFactory** | Implementation |  |||
+| └ | createPair | External ❗️ | 🛑  |NO❗️ |
+| └ | allPairsLength | External ❗️ |   |NO❗️ |
+||||||
+| **MockPancakePair** | Implementation |  |||
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
+| └ | mint | External ❗️ | 🛑  |NO❗️ |
+| └ | burn | External ❗️ | 🛑  |NO❗️ |
+| └ | approve | External ❗️ | 🛑  |NO❗️ |
+| └ | transfer | External ❗️ | 🛑  |NO❗️ |
+| └ | getReserves | External ❗️ |   |NO❗️ |
+||||||
+| **MockPancakeRouter** | Implementation |  |||
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
+| └ | addLiquidityETH | External ❗️ |  💵 |NO❗️ |
+| └ | removeLiquidityETH | External ❗️ | 🛑  |NO❗️ |
+| └ | <Receive Ether> | External ❗️ |  💵 |NO❗️ |
+||||||
+| **MockVenusBNB** | Implementation |  |||
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
+| └ | mint | External ❗️ |  💵 |NO❗️ |
+| └ | redeem | External ❗️ | 🛑  |NO❗️ |
+| └ | redeemUnderlying | External ❗️ | 🛑  |NO❗️ |
+| └ | balanceOfUnderlying | External ❗️ | 🛑  |NO❗️ |
+| └ | _accrueInterest | Internal 🔒 | 🛑  | |
+| └ | simulateYields | External ❗️ | 🛑  |NO❗️ |
+| └ | <Receive Ether> | External ❗️ |  💵 |NO❗️ |
+||||||
+| **DiamondWallStaking** | Implementation | Ownable, ReentrancyGuard, Pausable |||
+| └ | <Constructor> | Public ❗️ | 🛑  | Ownable |
+| └ | stake | External ❗️ | 🛑  | nonReentrant whenNotPaused updateReward |
+| └ | unstake | External ❗️ | 🛑  | nonReentrant updateReward |
+| └ | claimRewards | External ❗️ | 🛑  | nonReentrant updateReward |
+| └ | rewardPerToken | Public ❗️ |   |NO❗️ |
+| └ | earned | Public ❗️ |   |NO❗️ |
+| └ | totalStaked | External ❗️ |   |NO❗️ |
+| └ | getUserStakeInfo | External ❗️ |   |NO❗️ |
+| └ | getStakingInfo | External ❗️ |   |NO❗️ |
+| └ | setRewardRate | External ❗️ | 🛑  | onlyOwner updateReward |
+| └ | setMinStakeAmount | External ❗️ | 🛑  | onlyOwner |
+| └ | depositRewards | External ❗️ | 🛑  | onlyOwner |
+| └ | pause | External ❗️ | 🛑  | onlyOwner |
+| └ | unpause | External ❗️ | 🛑  | onlyOwner |
+| └ | emergencyWithdrawAll | External ❗️ | 🛑  | onlyOwner |
+
+
+ Legend
+
+|  Symbol  |  Meaning  |
+|:--------:|-----------|
+|    🛑    | Function can modify state |
+|    💵    | Function is payable |
+ 
+
+</div>
+____
+<sub>
+Thinking about smart contract security? We can provide training, ongoing advice, and smart contract auditing. [Contact us](https://consensys.io/diligence/contact/).
+</sub>
+
+
