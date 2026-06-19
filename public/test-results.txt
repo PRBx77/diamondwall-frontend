@@ -1,9 +1,9 @@
-◇ injected env (1) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
 
 
   DiamondWallAirdrop
     Deployment
-      ✔ Claim amount 100 DWALL (343ms)
+      ✔ Claim amount 100 DWALL (184ms)
       ✔ Max 250 claims
       ✔ Stats en 0
       ✔ 150M disponibles
@@ -37,7 +37,7 @@
       ✔ getUserAirdropInfo sin actividad
 
   DiamondWallAirdrop - Escenarios Reales
-    ✔ 5 usuarios reclaman airdrop en secuencia (104ms)
+    ✔ 5 usuarios reclaman airdrop en secuencia (60ms)
     ✔ Usuario con claim público puede recibir campaña admin
     ✔ Campaña a 5 usuarios a la vez
     ✔ Cambiar claimAmount afecta nuevos claims
@@ -82,15 +82,15 @@
     ✔ claimAirdrop segundo intento falla
     ✔ setClaimConfig actualiza valores correctamente
     Branch coverage - transfer failures
-      ✔ claimAirdrop falla si transfer retorna false (63ms)
-      ✔ claimAirdrop falla si balance insuficiente (104ms)
-      ✔ executeAirdrop falla si transfer retorna false (60ms)
-      ✔ executeAirdrop receptor ya recibió no incrementa totalRecipients (85ms)
-      ✔ singleAirdrop falla si transfer retorna false (58ms)
-      ✔ singleAirdrop falla si balance insuficiente (55ms)
-      ✔ withdrawTokens falla si transfer retorna false (45ms)
-      ✔ burnTokens falla si balance insuficiente (40ms)
-      ✔ burnTokens falla si transfer retorna false (45ms)
+      ✔ claimAirdrop falla si transfer retorna false
+      ✔ claimAirdrop falla si balance insuficiente
+      ✔ executeAirdrop falla si transfer retorna false
+      ✔ executeAirdrop receptor ya recibió no incrementa totalRecipients (69ms)
+      ✔ singleAirdrop falla si transfer retorna false
+      ✔ singleAirdrop falla si balance insuficiente
+      ✔ withdrawTokens falla si transfer retorna false
+      ✔ burnTokens falla si balance insuficiente
+      ✔ burnTokens falla si transfer retorna false
 
   DiamondWallCoin
     Deployment
@@ -133,7 +133,7 @@
       ✔ getTokenInfo devuelve datos correctos
 
   DiamondWallCoin - Coverage Extra
-    ✔ lockTrading habilita y bloquea permanentemente (52ms)
+    ✔ lockTrading habilita y bloquea permanentemente
     ✔ No puede deshabilitar trading tras lock
     ✔ No puede lockTrading dos veces
     ✔ setTransferLimits no permite < 1% del supply
@@ -145,7 +145,7 @@
     ✔ excludeFromLimits no permite address(0)
 
   DiamondWallCoin - Escenarios Reales
-    ✔ Usuario puede enviar tokens al staking sin trading (67ms)
+    ✔ Usuario puede enviar tokens al staking sin trading
     ✔ Transferencia hacia treasury permitida sin trading
     ✔ Transferencia hacia airdrop permitida sin trading
     ✔ setTradingEnabled(true) tras lock funciona
@@ -165,7 +165,7 @@
 
   DiamondWallPresale V2
     Deployment
-      ✔ Precio configurado a 620000 DWALL/BNB (128ms)
+      ✔ Precio configurado a 620000 DWALL/BNB (63ms)
       ✔ Límites de compra correctos
       ✔ Presale inactiva por defecto
       ✔ Whitelist deshabilitada por defecto
@@ -205,7 +205,7 @@
       ✔ getPresaleInfo devuelve datos completos
 
   DiamondWallPresale - Coverage Extra
-    ✔ setTreasury funciona (134ms)
+    ✔ setTreasury funciona (62ms)
     ✔ setTreasury no permite address(0)
     ✔ updatePrice no permite 0
     ✔ withdrawUnsoldTokens falla con balance insuficiente
@@ -220,7 +220,7 @@
     ✔ No-owner no puede addToWhitelist
 
   DiamondWallPresale - Escenarios Reales
-    ✔ Compra mínima 0.01 BNB (151ms)
+    ✔ Compra mínima 0.01 BNB (62ms)
     ✔ Compra máxima 10 BNB
     ✔ 4 compradores secuenciales
     ✔ BNB split: 50% Venus, 45% pools, 5% admin
@@ -238,10 +238,17 @@
     ✔ No-owner no puede removeFromWhitelist
     ✔ getUserInfo refleja múltiples compras
     ✔ No-owner no puede unpause
+    LiquidityManager auto-transfer
+      ✔ setLiquidityManager actualiza correctamente
+      ✔ setLiquidityManager con address(0) falla
+      ✔ setLiquidityManager no-owner falla
+      ✔ stopPresale transfiere remanente automáticamente al LiquidityManager
+      ✔ stopPresale sin liquidityManager configurado no transfiere
+      ✔ stopPresale con balance 0 no falla aunque LM esté configurado
 
   DiamondWallStaking
     Deployment
-      ✔ Min stake es 100 DWALL (136ms)
+      ✔ Min stake es 100 DWALL (42ms)
       ✔ Total staked es 0
       ✔ Reward rate es 0 inicialmente
       ✔ Owner correcto
@@ -258,9 +265,9 @@
       ✔ Falla si amount 0
       ✔ Falla si más de lo stakeado
     Rewards
-      ✔ Sin reward rate no genera rewards (39ms)
-      ✔ Con reward rate genera rewards proporcionales (63ms)
-      ✔ Rewards proporcionales entre múltiples stakers (50ms)
+      ✔ Sin reward rate no genera rewards
+      ✔ Con reward rate genera rewards proporcionales
+      ✔ Rewards proporcionales entre múltiples stakers
       ✔ Claim rewards exitoso
       ✔ Claim falla sin rewards
       ✔ Después de claim, rewards vuelven a 0
@@ -276,13 +283,13 @@
       ✔ getStakingInfo devuelve stats globales
 
   DiamondWallStaking - Escenarios Reales
-    ✔ Stakear exactamente el mínimo (100 DWALL) (232ms)
+    ✔ Stakear exactamente el mínimo (100 DWALL) (48ms)
     ✔ Stakear 99 DWALL falla
-    ✔ 4 usuarios stake/unstake simultáneo (58ms)
-    ✔ Rewards acumulan con múltiples stakes del mismo usuario (46ms)
-    ✔ Claim rewards incrementa balance del usuario (56ms)
-    ✔ Unstake parcial no pierde rewards acumulados (56ms)
-    ✔ RewardRate 0 detiene acumulación (47ms)
+    ✔ 4 usuarios stake/unstake simultáneo
+    ✔ Rewards acumulan con múltiples stakes del mismo usuario
+    ✔ Claim rewards incrementa balance del usuario
+    ✔ Unstake parcial no pierde rewards acumulados
+    ✔ RewardRate 0 detiene acumulación
     ✔ Emergency withdraw recupera todos los tokens
     ✔ Unstake sin stake falla
     ✔ No-owner no puede depositRewards
@@ -315,14 +322,14 @@
     ✔ rewardPerToken con totalStaked > 0
     ✔ depositRewards aumenta pool de recompensas
     Transfer failure branches
-      ✔ stake falla si transferFrom retorna false (59ms)
-      ✔ unstake falla si transfer retorna false (64ms)
-      ✔ depositRewards falla si transferFrom retorna false (57ms)
-      ✔ emergencyWithdrawAll falla si transfer retorna false (68ms)
+      ✔ stake falla si transferFrom retorna false
+      ✔ unstake falla si transfer retorna false
+      ✔ depositRewards falla si transferFrom retorna false
+      ✔ emergencyWithdrawAll falla si transfer retorna false
 
   DiamondWallTreasury V4 - Venus + Split
     Deployment
-      ✔ Split configurado 50/45/5 (88ms)
+      ✔ Split configurado 50/45/5 (42ms)
       ✔ Stats iniciales en 0
       ✔ Deposits habilitados
     Split Automático
@@ -353,7 +360,7 @@
 
   DiamondWallTreasury V4 - Coverage Extra
     Venus Deposits Disabled
-      ✔ BNB queda en contrato si deposits disabled (106ms)
+      ✔ BNB queda en contrato si deposits disabled (48ms)
     LiquidityManager Integration
       ✔ 45% se envía automáticamente al LiquidityManager
       ✔ Sin LM, pool reserve queda en contrato
@@ -383,7 +390,7 @@
       ✔ Suma yields de todos los holders
 
   DiamondWallTreasuryV4 - Escenarios Reales
-    ✔ 10 ventas secuenciales acumulan yields (183ms)
+    ✔ 10 ventas secuenciales acumulan yields (86ms)
     ✔ Yields proporcionales a inversión
     ✔ Compra adicional tras claim funciona
     ✔ Admin fees van al adminWallet
@@ -418,7 +425,7 @@
 
   LiquidityManager
     Deployment
-      ✔ 4 DEXs con pesos 40/30/20/10 (127ms)
+      ✔ 4 DEXs con pesos 40/30/20/10 (75ms)
       ✔ Stats en 0
       ✔ Auto-distribute habilitado
     Create Pool
@@ -445,7 +452,7 @@
       ✔ getStats
 
   LiquidityManager - Coverage Extra
-    ✔ receive() de no-treasury no añade pendingBNB (120ms)
+    ✔ receive() de no-treasury no añade pendingBNB (58ms)
     ✔ receive() de treasury añade pendingBNB
     ✔ setAutoDistribute cambia config
     ✔ setTreasury no permite address(0)
@@ -463,22 +470,22 @@
     ✔ No-owner no puede depositTokens
 
   LiquidityManager - Coverage 90%+
-    ✔ getPoolInfo devuelve datos correctos tras crear pool (139ms)
+    ✔ getPoolInfo devuelve datos correctos tras crear pool (94ms)
     ✔ getPoolCount devuelve cantidad correcta
     ✔ receive() de treasury con pools activos auto-distribuye
     ✔ getAllDEXs devuelve pesos correctos
-    ✔ Auto-distribute con 4 pools distribuye proporcionalmente (38ms)
+    ✔ Auto-distribute con 4 pools distribuye proporcionalmente
     ✔ toggleDEX con id inválido falla
     ✔ setDEXWeight con id inválido falla
 
   LiquidityManager - Escenarios Reales
-    ✔ Múltiples envíos del treasury acumulan y distribuyen (144ms)
+    ✔ Múltiples envíos del treasury acumulan y distribuyen (62ms)
     ✔ Crear pool con balance grande de tokens
     ✔ DEX deshabilitado no recibe distribución
     ✔ Cambiar pesos afecta distribución
     ✔ minAutoDistribute alto acumula pendingBNB
     ✔ forceDistribute vacía pendingBNB
-    ✔ 4 pools reciben distribución simultánea (44ms)
+    ✔ 4 pools reciben distribución simultánea
     ✔ Crear pool sin enviar ETH falla
     ✔ depositTokens incrementa balance del contrato
     ✔ Auto-distribute sin tokens en contrato no falla
@@ -490,7 +497,7 @@
     ✔ No-owner no puede createPool
 
 
-  406 passing (8s)
+  412 passing (3s)
 
 ······················································································································
 |  [32m[1mSolidity and Network Configuration[22m[39m                                                                                │
@@ -551,29 +558,31 @@
 ·································|·················|···············|·················|················|···············
 |  [1mDiamondWallPresale[22m            ·                                                                                   │
 ·································|·················|···············|·················|················|···············
-|      addToWhitelist            ·         [36m48,553[39m  ·       [31m73,094[39m  ·         53,461  ·             5  ·           [32m[90m-[39m[32m[39m  │
+|      addToWhitelist            ·         [36m48,575[39m  ·       [31m73,116[39m  ·         53,483  ·             5  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      buyTokens                 ·        [36m190,210[39m  ·      [31m534,007[39m  ·        453,189  ·            31  ·           [32m[90m-[39m[32m[39m  │
+|      buyTokens                 ·        [36m190,211[39m  ·      [31m534,008[39m  ·        453,190  ·            31  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,770  ·             3  ·           [32m[90m-[39m[32m[39m  │
+|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,792  ·             3  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      removeFromWhitelist       ·              [90m-[39m  ·            [90m-[39m  ·         26,653  ·             2  ·           [32m[90m-[39m[32m[39m  │
+|      removeFromWhitelist       ·              [90m-[39m  ·            [90m-[39m  ·         26,697  ·             2  ·           [32m[90m-[39m[32m[39m  │
+·································|·················|···············|·················|················|···············
+|      setLiquidityManager       ·              [90m-[39m  ·            [90m-[39m  ·         47,252  ·             3  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
 |      setTreasury               ·              [90m-[39m  ·            [90m-[39m  ·         30,216  ·             2  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      setWhitelistEnabled       ·              [90m-[39m  ·            [90m-[39m  ·         46,919  ·             4  ·           [32m[90m-[39m[32m[39m  │
+|      setWhitelistEnabled       ·              [90m-[39m  ·            [90m-[39m  ·         46,920  ·             4  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      startPresale              ·              [90m-[39m  ·            [90m-[39m  ·         46,743  ·            17  ·           [32m[90m-[39m[32m[39m  │
+|      startPresale              ·              [90m-[39m  ·            [90m-[39m  ·         46,743  ·            18  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      stopPresale               ·              [90m-[39m  ·            [90m-[39m  ·         24,894  ·             3  ·           [32m[90m-[39m[32m[39m  │
+|      stopPresale               ·         [36m27,020[39m  ·       [31m62,773[39m  ·         38,021  ·             7  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,786  ·             1  ·           [32m[90m-[39m[32m[39m  │
+|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,742  ·             1  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
 |      updateLimits              ·              [90m-[39m  ·            [90m-[39m  ·         35,403  ·             2  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      updatePrice               ·              [90m-[39m  ·            [90m-[39m  ·         30,079  ·             2  ·           [32m[90m-[39m[32m[39m  │
+|      updatePrice               ·              [90m-[39m  ·            [90m-[39m  ·         30,101  ·             2  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|      withdrawUnsoldTokens      ·         [36m47,154[39m  ·       [31m47,166[39m  ·         47,160  ·             2  ·           [32m[90m-[39m[32m[39m  │
+|      withdrawUnsoldTokens      ·         [36m47,199[39m  ·       [31m47,211[39m  ·         47,205  ·             2  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
 |  [1mDiamondWallStaking[22m            ·                                                                                   │
 ·································|·················|···············|·················|················|···············
@@ -661,9 +670,9 @@
 ·································|·················|···············|·················|················|···············
 |  [1mDiamondWallCoin[22m               ·              [90m-[39m  ·            [90m-[39m  ·      1,532,992  ·         2.6 %  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|  [1mDiamondWallPresale[22m            ·              [90m-[39m  ·            [90m-[39m  ·      1,495,820  ·         2.5 %  ·           [32m[90m-[39m[32m[39m  │
+|  [1mDiamondWallPresale[22m            ·              [90m-[39m  ·            [90m-[39m  ·      1,630,577  ·         2.7 %  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
-|  [1mDiamondWallStaking[22m            ·      [36m1,183,893[39m  ·    [31m1,183,917[39m  ·      1,183,913  ·           2 %  ·           [32m[90m-[39m[32m[39m  │
+|  [1mDiamondWallStaking[22m            ·              [90m-[39m  ·            [90m-[39m  ·      1,183,917  ·           2 %  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············
 |  [1mDiamondWallTreasuryV4[22m         ·      [36m2,050,314[39m  ·    [31m2,050,326[39m  ·      2,050,322  ·         3.4 %  ·           [32m[90m-[39m[32m[39m  │
 ·································|·················|···············|·················|················|···············

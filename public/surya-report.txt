@@ -65,6 +65,8 @@
        - modifiers: onlyOwner
     - [34m[Ext][39m setTreasury[31m #[39m
        - modifiers: onlyOwner
+    - [34m[Ext][39m setLiquidityManager[31m #[39m
+       - modifiers: onlyOwner
     - [34m[Ext][39m setWhitelistEnabled[31m #[39m
        - modifiers: onlyOwner
     - [34m[Ext][39m addToWhitelist[31m #[39m

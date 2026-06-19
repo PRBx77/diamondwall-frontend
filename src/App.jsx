@@ -8,6 +8,7 @@ import Staking from "./pages/Staking";
 import Airdrop from "./pages/Airdrop";
 import Admin from "./pages/Admin";
 import Info from "./pages/Info";
+import Pools from "./pages/Pools";
 import "./App.css";
 
 function AppContent() {
@@ -95,6 +96,7 @@ function AppContent() {
           <NavLink to="/presale">{t("nav_presale")}</NavLink>
           <NavLink to="/airdrop">Airdrop</NavLink>
           <NavLink to="/staking">{t("nav_staking")}</NavLink>
+          <NavLink to="/pools">Pools</NavLink>
           <NavLink to="/info">{t("nav_info")}</NavLink>
           {isOwner && <NavLink to="/admin">{t("nav_admin")}</NavLink>}
           <button onClick={toggleLang} className="lang-btn">{t("lang_switch")}</button>
@@ -130,6 +132,7 @@ function AppContent() {
           <Route path="/presale" element={<Presale account={account} signer={signer} onUpdate={() => loadBalances(account)} />} />
           <Route path="/airdrop" element={<Airdrop account={account} signer={signer} onUpdate={() => loadBalances(account)} />} />
           <Route path="/staking" element={<Staking account={account} signer={signer} onUpdate={() => loadBalances(account)} />} />
+          <Route path="/pools" element={<Pools account={account} signer={signer} />} />
           <Route path="/info" element={<Info />} />
           {isOwner && <Route path="/admin" element={<Admin account={account} signer={signer} />} />}
         </Routes>
