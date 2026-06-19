@@ -63,9 +63,9 @@ export default function Home({ account }) {
           color:'white'
         }}>
           
-          <h1 style={{fontSize:'3.5rem',fontWeight:800,color:'#f59e0b',textShadow:'0 2px 20px rgba(0,0,0,0.8)',margin:'0 0 1rem'}}>DiamondWall</h1>
-          <p style={{fontSize:'1.5rem',fontWeight:600,color:'#fff',textShadow:'0 2px 10px rgba(0,0,0,0.8)',margin:'0 0 1rem'}}>{t("home_tagline")}</p>
-          <p style={{fontSize:'1.1rem',color:'rgba(255,255,255,0.85)',textShadow:'0 1px 8px rgba(0,0,0,0.8)',maxWidth:'600px',margin:'0 auto'}}>{t("home_description")}</p>
+          <h1 className="hero-title-responsive" style={{fontWeight:800,color:'#f59e0b',textShadow:'0 2px 20px rgba(0,0,0,0.8)',margin:'0 0 1rem'}}>DiamondWall</h1>
+          <p className="hero-tagline-responsive" style={{fontWeight:600,color:'#fff',textShadow:'0 2px 10px rgba(0,0,0,0.8)',margin:'0 0 1rem'}}>{t("home_tagline")}</p>
+          <p className="hero-desc-responsive" style={{color:'rgba(255,255,255,0.85)',textShadow:'0 1px 8px rgba(0,0,0,0.8)',maxWidth:'600px',margin:'0 auto'}}>{t("home_description")}</p>
         </div>
       </div>
       <div className="card how-it-works">

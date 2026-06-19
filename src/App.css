@@ -95,3 +95,61 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 /* Disconnect button */
 .btn-disconnect { background: #ef4444; color: #fff; border: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; }
 .btn-disconnect:hover { background: #dc2626; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.8rem; }
+  .hero-tagline { font-size: 1rem; }
+  .hero-description { font-size: 0.9rem; padding: 0 0.5rem; }
+  .hero { padding: 1.5rem 0.5rem; }
+  .navbar { flex-wrap: wrap; padding: 0.5rem; }
+  .nav-links { flex-wrap: wrap; justify-content: center; gap: 0.5rem; font-size: 0.85rem; }
+  .nav-brand span { font-size: 1rem; }
+  .nav-wallet { font-size: 0.8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  main.main-content { padding: 0.5rem !important; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.4rem; }
+  .hero-logo { width: 90px; height: 90px; }
+  .stats-grid { grid-template-columns: 1fr !important; }
+  .nav-links { font-size: 0.75rem; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.8rem; }
+  .hero-tagline { font-size: 1rem; }
+  .hero-description { font-size: 0.9rem; padding: 0 0.5rem; }
+  .hero { padding: 1.5rem 0.5rem; }
+  .navbar { flex-wrap: wrap; padding: 0.5rem; }
+  .nav-links { flex-wrap: wrap; justify-content: center; gap: 0.5rem; font-size: 0.85rem; }
+  .nav-brand span { font-size: 1rem; }
+  .nav-wallet { font-size: 0.8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  main.main-content { padding: 0.5rem !important; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.4rem; }
+  .hero-logo { width: 90px; height: 90px; }
+  .stats-grid { grid-template-columns: 1fr !important; }
+  .nav-links { font-size: 0.75rem; }
+}
+
+.hero-title-responsive { font-size: 3.5rem; }
+.hero-tagline-responsive { font-size: 1.5rem; }
+.hero-desc-responsive { font-size: 1.1rem; padding: 0 1rem; }
+
+@media (max-width: 768px) {
+  .hero-title-responsive { font-size: 2.2rem !important; }
+  .hero-tagline-responsive { font-size: 1.1rem !important; }
+  .hero-desc-responsive { font-size: 0.9rem !important; }
+}
+
+@media (max-width: 480px) {
+  .hero-title-responsive { font-size: 1.6rem !important; }
+  .hero-tagline-responsive { font-size: 0.95rem !important; }
+  .hero-desc-responsive { font-size: 0.8rem !important; }
+}
