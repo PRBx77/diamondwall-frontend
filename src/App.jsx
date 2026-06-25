@@ -9,10 +9,12 @@ import Airdrop from "./pages/Airdrop";
 import Admin from "./pages/Admin";
 import Info from "./pages/Info";
 import Pools from "./pages/Pools";
+import SplashScreen from "./SplashScreen";
 import "./App.css";
 
 function AppContent() {
   const { t, toggleLang } = useLang();
+  const [splash, setSplash] = useState(true);
   const [account, setAccount] = useState(null);
   const [signer, setSigner] = useState(null);
   const [balance, setBalance] = useState("0");
@@ -66,25 +68,16 @@ function AppContent() {
     }
   }, []);
 
+  if (splash) return <SplashScreen onEnter={() => setSplash(false)} />;
+
   return (
-    <div className="app" style={{
-      position:'relative',
-      minHeight:'100vh'
-    }}>
+    <div className="app" style={{ position:'relative', minHeight:'100vh' }}>
       <div style={{
-        position:'fixed',
-        top:0, left:0,
-        width:'100%',
-        height:'100%',
-        backgroundImage:'url(/hero.jpg)',
-        backgroundSize:'cover',
-        backgroundPosition:'center',
-        backgroundRepeat:'no-repeat',
-        transform:'scaleX(2.4)',
-        mixBlendMode:'lighten',
-        opacity:0.15,
-        zIndex:0,
-        pointerEvents:'none'
+        position:'fixed', top:0, left:0, width:'100%', height:'100%',
+        backgroundImage:'url(/hero.jpg)', backgroundSize:'cover',
+        backgroundPosition:'center', backgroundRepeat:'no-repeat',
+        transform:'scaleX(2.4)', mixBlendMode:'lighten',
+        opacity:0.15, zIndex:0, pointerEvents:'none'
       }} />
       <nav className="navbar">
         <div className="nav-brand">
@@ -115,14 +108,9 @@ function AppContent() {
         </div>
       </nav>
       <div style={{
-        background:'#f59e0b',
-        color:'#000',
-        textAlign:'center',
-        padding:'0.6rem 1rem',
-        fontWeight:600,
-        fontSize:'0.9rem',
-        position:'relative',
-        zIndex:10
+        background:'#f59e0b', color:'#000', textAlign:'center',
+        padding:'0.6rem 1rem', fontWeight:600, fontSize:'0.9rem',
+        position:'relative', zIndex:10
       }}>
         ⚠️ {t("testnet_banner")}
       </div>
