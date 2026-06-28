@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { connectWallet, getProvider, getContracts, formatTokens, formatETH } from "./utils/web3";
@@ -126,6 +127,7 @@ function AppContent() {
         </Routes>
       </main>
       <footer className="footer"><p>{t("footer_text")}</p></footer>
+ <Analytics />
     </div>
   );
 }
