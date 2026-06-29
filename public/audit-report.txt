@@ -1,0 +1,48 @@
+'npx hardhat clean' running (wd: /home/prb/Escritorio/CROTALUS_INVEST)
+'npx hardhat clean --global' running (wd: /home/prb/Escritorio/CROTALUS_INVEST)
+Problem deserializing hardhat configuration, using defaults: Expecting value: line 1 column 1 (char 0)
+'npx hardhat compile --force' running (wd: /home/prb/Escritorio/CROTALUS_INVEST)
+INFO:Printers:
+Compiled with Builder
+Total number of contracts in source files: 14
+Number of contracts in dependencies: 11
+Number of contracts in tests       : 7
+Source lines of code (SLOC) in source files: 1453
+Source lines of code (SLOC) in dependencies: 365
+Source lines of code (SLOC) in tests       : 192
+Number of  assembly lines: 0
+Number of optimization issues: 9
+Number of informational issues: 97
+Number of low issues: 43
+Number of medium issues: 14
+Number of high issues: 5
+
+Use: Openzeppelin-Ownable, Openzeppelin-ERC20
+ERCs: ERC20
+
++-------------------------+-------------+-------+--------------------+--------------+--------------------+
+| Name                    | # functions | ERCS  | ERC20 info         | Complex code | Features           |
++-------------------------+-------------+-------+--------------------+--------------+--------------------+
+| DiamondWallAirdrop      | 33          |       |                    | Yes          | Tokens interaction |
+| PostPresaleDistributor  | 22          |       |                    | No           | Tokens interaction |
+| LiquidityManager        | 32          |       |                    | Yes          | Receive ETH        |
+|                         |             |       |                    |              | Send ETH           |
+|                         |             |       |                    |              | Tokens interaction |
+| MarketingTreasury       | 25          |       |                    | No           | Tokens interaction |
+| IPostPresaleDistributor | 1           |       |                    | No           |                    |
+| DiamondWallPresale      | 40          |       |                    | Yes          | Receive ETH        |
+|                         |             |       |                    |              | Send ETH           |
+|                         |             |       |                    |              | Tokens interaction |
+| DiamondWallCoin         | 56          | ERC20 | Pausable           | No           |                    |
+|                         |             |       | No Minting         |              |                    |
+|                         |             |       | Approve Race Cond. |              |                    |
+|                         |             |       |                    |              |                    |
+| DiamondWallTreasuryV4   | 43          |       |                    | Yes          | Receive ETH        |
+|                         |             |       |                    |              | Send ETH           |
+| IPancakeRouter          | 5           |       |                    | No           | Receive ETH        |
+| IPancakeFactory         | 2           |       |                    | No           |                    |
+| IPancakePair            | 7           |       |                    | No           |                    |
+| IVenusBNB               | 7           |       |                    | No           | Receive ETH        |
+| DiamondWallStaking      | 35          |       |                    | No           | Tokens interaction |
++-------------------------+-------------+-------+--------------------+--------------+--------------------+
+INFO:Slither:. analyzed (32 contracts)

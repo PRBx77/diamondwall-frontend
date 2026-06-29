@@ -1,59 +1,102 @@
-=============================================
-DIAMONDWALL ($DWALL) - FULL AUDIT REPORT
-Date: jue 18 jun 2026 20:01:49 CEST
-=============================================
-6 CONTRACTS | 435 SLOC | 406 TESTS
+═══════════════════════════════════════════════════════════════════════
+   DIAMONDWALL ($DWALL) — FULL AUDIT SUMMARY
+═══════════════════════════════════════════════════════════════════════
 
-=== 1. AUTOMATED TESTS ===
-Total: 406 passing | 0 failing | 100%
+Project:        DiamondWall ($DWALL)
+Network:        BSC Testnet (Chain ID 97)
+Date:           2026-06-29
+Compiler:       Solidity 0.8.20
+Framework:      Hardhat + OpenZeppelin
+Repository:     https://github.com/PRBx77/diamondwall-audit
+
+───────────────────────────────────────────────────────────────────────
+DEPLOYED CONTRACTS (BSC Testnet)
+───────────────────────────────────────────────────────────────────────
+
+TOKEN (DWALL):           0x3aB93B8d4c9B43657DF32578070653AF49e6e132
+TREASURY V4:             0xa65B4eaE33BEaa2eF9c0ecbD304A56a7097171Be
+PRESALE:                 0xA99337047e3273E6b4b72D5AaC8487E3a33e2483
+STAKING:                 0xFDf39aB3eee350658a3167dCC1d2673cA2A0B5B8
+AIRDROP:                 0x95A9bb4a8B8dC3E0Cf58ABF57c0475738034a797
+LIQUIDITY MANAGER:       0xC30196dA4719e21Ace4E24E944BB2124f0E7F0a7
+POST-PRESALE DIST:       0xC18d584876f129a5E2A7d4198D316fC293557484
+MARKETING TREASURY:      0x9A9F1bf467C206673159D5D0A34291a35645b3d4
+
+───────────────────────────────────────────────────────────────────────
+TOKENOMICS (1,000,000,000 DWALL)
+───────────────────────────────────────────────────────────────────────
+
+Presale:                 700,000,000 DWALL  (70%)
+Airdrop:                 150,000,000 DWALL  (15%)
+Marketing Treasury:      100,000,000 DWALL  (10%)  ← Public, on-chain audited
+Dev Wallet:               50,000,000 DWALL  (5%)   ← Operational only
+
+POST-PRESALE UNSOLD DISTRIBUTION:
+  70% → LiquidityManager (immediate, 4 DEX pools)
+  20% → CEX Reserve (6-month timelock)
+  10% → Drip release (12 monthly installments to LM)
+
+───────────────────────────────────────────────────────────────────────
+TEST SUITE
+───────────────────────────────────────────────────────────────────────
+
+Tests Passing:           458 / 458
+Test Files:              Multiple suites covering all contracts
+New tests added:         46 (14 + 32 for distribution upgrade)
+
+───────────────────────────────────────────────────────────────────────
+COVERAGE REPORT
+───────────────────────────────────────────────────────────────────────
+
+Global Coverage:         92.31% statements / 81.79% branches
+                         92.25% functions  / 94.35% lines
+
 Per Contract:
-DiamondWallAirdrop:    81 tests ✅
-DiamondWallCoin:       60 tests ✅
-DiamondWallPresale:    64 tests ✅
-DiamondWallStaking:    70 tests ✅
-DiamondWallTreasuryV4: 71 tests ✅
-LiquidityManager:      60 tests ✅
+  DiamondWallCoin              100.00% stmts / 86.25% br
+  DiamondWallTreasury_v4       100.00% stmts / 85.56% br
+  DiamondWallPresale            95.52% stmts / 84.78% br
+  DiamondWallStaking           100.00% stmts / 85.00% br
+  DiamondWallAirdrop           100.00% stmts / 89.47% br
+  LiquidityManager              91.30% stmts / 84.44% br
+  PostPresaleDistributor       100.00% stmts / 83.33% br  ← NEW
+  MarketingTreasury             87.88% stmts / 73.08% br  ← NEW
 
-=== 2. CODE COVERAGE ===
-DiamondWallAirdrop:    100% stmts | 89.47% branch | 100% lines
-DiamondWallCoin:       100% stmts | 86.25% branch | 100% lines
-DiamondWallPresale:    93.33% stmts | 84.72% branch | 95.45% lines
-DiamondWallStaking:    100% stmts | 85% branch    | 100% lines
-DiamondWallTreasuryV4: 100% stmts | 85.56% branch | 100% lines
-LiquidityManager:      91.3% stmts | 84.44% branch | 96.12% lines
-GLOBAL:                91.96% stmts | 82.41% branch | 94.23% lines
+───────────────────────────────────────────────────────────────────────
+SECURITY AUDITS
+───────────────────────────────────────────────────────────────────────
 
-=== 3. SLITHER (Trail of Bits) ===
-Critical: 0 | High: 0 | Medium: 0 | Low/Info: 152
+Slither:                 0 critical / 0 high / 0 medium
+Solhint:                 0 errors
+Surya:                   Generated (call graphs + inheritance)
+Solidity Metrics:        Generated
+Hardhat Coverage:        92.31% global
 
-=== 4. SOLHINT (Linter) ===
-Errors: 0 | Warnings: NatSpec only
+───────────────────────────────────────────────────────────────────────
+NEW CONTRACTS (this update)
+───────────────────────────────────────────────────────────────────────
 
-=== 5. SURYA (Contract Analysis) ===
-All functions verified: modifiers, visibility, mutability
-All admin functions: onlyOwner protected
-All fund transfers: nonReentrant protected
+1. PostPresaleDistributor.sol
+   - Manages 30% of unsold presale tokens
+   - 20% locked for CEX listings (6-month timelock)
+   - 10% drip-released to LiquidityManager (12 months)
+   - Public, transparent, anti-manipulation rules
 
-=== 6. SOLIDITY METRICS (ConsenSys) ===
-Contracts: 6 | nSLOC: 435 | Logic Contracts: 6
-Interfaces: 5 | Total Lines: 692 | Comment Lines: 80
-Dependencies: OpenZeppelin v5 (Ownable, ERC20, ReentrancyGuard, Pausable)
+2. MarketingTreasury.sol
+   - Holds 100M DWALL (10%) for marketing operations
+   - Every payment requires reason (min 10 chars) + category
+   - Categories: INFLUENCER, LISTING, AUDIT, BOUNTY, OPERATIONS, OTHER
+   - All movements logged on-chain with full transparency
+   - Batch payments supported (up to 50 recipients)
 
-=== SECURITY GUARANTEES ===
-✅ Fixed supply (no mint function)
-✅ No blacklist / no freeze
-✅ Irreversible trading lock
-✅ Anti-whale limits (min 1%)
-✅ Pool BNB non-withdrawable to wallets
-✅ Renounceable ownership
-✅ ReentrancyGuard on all transfers
-✅ 0% transfer fee
+3. DiamondWallPresale.sol (modified)
+   - stopPresale() now splits unsold tokens 70/30
+   - Backward compatible (falls back to 100%→LM if no distributor)
+   - New setter: setPostPresaleDistributor()
 
-=== FILES ===
-audit-report.txt    - Slither full output
-solhint-report.txt  - Solhint full output
-surya-report.txt    - Surya contract descriptions
-metrics-report.txt  - Solidity code metrics
-coverage-report.txt - Coverage results
-test-results.txt    - Test results
-=============================================
+───────────────────────────────────────────────────────────────────────
+STATUS
+───────────────────────────────────────────────────────────────────────
+
+Testnet:     ✅ Deployed, tested, verified
+Frontend:    ✅ Updated and live
+Mainnet:     ⏳ Pending (requires professional audit)

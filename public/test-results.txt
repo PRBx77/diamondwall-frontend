@@ -1,9 +1,10 @@
-◇ injected env (1) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+◇ injected env (1) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+Compiled 24 Solidity files successfully (evm target: paris).
 
 
   DiamondWallAirdrop
     Deployment
-      ✔ Claim amount 100 DWALL (184ms)
+      ✔ Claim amount 100 DWALL (359ms)
       ✔ Max 250 claims
       ✔ Stats en 0
       ✔ 150M disponibles
@@ -37,7 +38,7 @@
       ✔ getUserAirdropInfo sin actividad
 
   DiamondWallAirdrop - Escenarios Reales
-    ✔ 5 usuarios reclaman airdrop en secuencia (60ms)
+    ✔ 5 usuarios reclaman airdrop en secuencia (115ms)
     ✔ Usuario con claim público puede recibir campaña admin
     ✔ Campaña a 5 usuarios a la vez
     ✔ Cambiar claimAmount afecta nuevos claims
@@ -82,19 +83,19 @@
     ✔ claimAirdrop segundo intento falla
     ✔ setClaimConfig actualiza valores correctamente
     Branch coverage - transfer failures
-      ✔ claimAirdrop falla si transfer retorna false
-      ✔ claimAirdrop falla si balance insuficiente
-      ✔ executeAirdrop falla si transfer retorna false
-      ✔ executeAirdrop receptor ya recibió no incrementa totalRecipients (69ms)
-      ✔ singleAirdrop falla si transfer retorna false
-      ✔ singleAirdrop falla si balance insuficiente
-      ✔ withdrawTokens falla si transfer retorna false
-      ✔ burnTokens falla si balance insuficiente
-      ✔ burnTokens falla si transfer retorna false
+      ✔ claimAirdrop falla si transfer retorna false (65ms)
+      ✔ claimAirdrop falla si balance insuficiente (98ms)
+      ✔ executeAirdrop falla si transfer retorna false (84ms)
+      ✔ executeAirdrop receptor ya recibió no incrementa totalRecipients (85ms)
+      ✔ singleAirdrop falla si transfer retorna false (49ms)
+      ✔ singleAirdrop falla si balance insuficiente (48ms)
+      ✔ withdrawTokens falla si transfer retorna false (44ms)
+      ✔ burnTokens falla si balance insuficiente (44ms)
+      ✔ burnTokens falla si transfer retorna false (49ms)
 
   DiamondWallCoin
     Deployment
-      ✔ Debe tener nombre DiamondWallCoin y símbolo DWALL
+      ✔ Debe tener nombre DiamondWallCoin y símbolo DWALL (41ms)
       ✔ Debe mintear 1B tokens al owner
       ✔ Debe tener 18 decimales
       ✔ Debe configurar límites anti-ballena al 5%
@@ -133,7 +134,7 @@
       ✔ getTokenInfo devuelve datos correctos
 
   DiamondWallCoin - Coverage Extra
-    ✔ lockTrading habilita y bloquea permanentemente
+    ✔ lockTrading habilita y bloquea permanentemente (38ms)
     ✔ No puede deshabilitar trading tras lock
     ✔ No puede lockTrading dos veces
     ✔ setTransferLimits no permite < 1% del supply
@@ -145,7 +146,7 @@
     ✔ excludeFromLimits no permite address(0)
 
   DiamondWallCoin - Escenarios Reales
-    ✔ Usuario puede enviar tokens al staking sin trading
+    ✔ Usuario puede enviar tokens al staking sin trading (49ms)
     ✔ Transferencia hacia treasury permitida sin trading
     ✔ Transferencia hacia airdrop permitida sin trading
     ✔ setTradingEnabled(true) tras lock funciona
@@ -165,7 +166,7 @@
 
   DiamondWallPresale V2
     Deployment
-      ✔ Precio configurado a 620000 DWALL/BNB (63ms)
+      ✔ Precio configurado a 620000 DWALL/BNB (122ms)
       ✔ Límites de compra correctos
       ✔ Presale inactiva por defecto
       ✔ Whitelist deshabilitada por defecto
@@ -205,7 +206,7 @@
       ✔ getPresaleInfo devuelve datos completos
 
   DiamondWallPresale - Coverage Extra
-    ✔ setTreasury funciona (62ms)
+    ✔ setTreasury funciona (121ms)
     ✔ setTreasury no permite address(0)
     ✔ updatePrice no permite 0
     ✔ withdrawUnsoldTokens falla con balance insuficiente
@@ -220,7 +221,7 @@
     ✔ No-owner no puede addToWhitelist
 
   DiamondWallPresale - Escenarios Reales
-    ✔ Compra mínima 0.01 BNB (62ms)
+    ✔ Compra mínima 0.01 BNB (112ms)
     ✔ Compra máxima 10 BNB
     ✔ 4 compradores secuenciales
     ✔ BNB split: 50% Venus, 45% pools, 5% admin
@@ -248,7 +249,7 @@
 
   DiamondWallStaking
     Deployment
-      ✔ Min stake es 100 DWALL (42ms)
+      ✔ Min stake es 100 DWALL (78ms)
       ✔ Total staked es 0
       ✔ Reward rate es 0 inicialmente
       ✔ Owner correcto
@@ -283,7 +284,7 @@
       ✔ getStakingInfo devuelve stats globales
 
   DiamondWallStaking - Escenarios Reales
-    ✔ Stakear exactamente el mínimo (100 DWALL) (48ms)
+    ✔ Stakear exactamente el mínimo (100 DWALL) (83ms)
     ✔ Stakear 99 DWALL falla
     ✔ 4 usuarios stake/unstake simultáneo
     ✔ Rewards acumulan con múltiples stakes del mismo usuario
@@ -322,14 +323,14 @@
     ✔ rewardPerToken con totalStaked > 0
     ✔ depositRewards aumenta pool de recompensas
     Transfer failure branches
-      ✔ stake falla si transferFrom retorna false
-      ✔ unstake falla si transfer retorna false
-      ✔ depositRewards falla si transferFrom retorna false
-      ✔ emergencyWithdrawAll falla si transfer retorna false
+      ✔ stake falla si transferFrom retorna false (44ms)
+      ✔ unstake falla si transfer retorna false (48ms)
+      ✔ depositRewards falla si transferFrom retorna false (42ms)
+      ✔ emergencyWithdrawAll falla si transfer retorna false (54ms)
 
   DiamondWallTreasury V4 - Venus + Split
     Deployment
-      ✔ Split configurado 50/45/5 (42ms)
+      ✔ Split configurado 50/45/5 (71ms)
       ✔ Stats iniciales en 0
       ✔ Deposits habilitados
     Split Automático
@@ -360,7 +361,7 @@
 
   DiamondWallTreasury V4 - Coverage Extra
     Venus Deposits Disabled
-      ✔ BNB queda en contrato si deposits disabled (48ms)
+      ✔ BNB queda en contrato si deposits disabled (98ms)
     LiquidityManager Integration
       ✔ 45% se envía automáticamente al LiquidityManager
       ✔ Sin LM, pool reserve queda en contrato
@@ -390,7 +391,7 @@
       ✔ Suma yields de todos los holders
 
   DiamondWallTreasuryV4 - Escenarios Reales
-    ✔ 10 ventas secuenciales acumulan yields (86ms)
+    ✔ 10 ventas secuenciales acumulan yields (153ms)
     ✔ Yields proporcionales a inversión
     ✔ Compra adicional tras claim funciona
     ✔ Admin fees van al adminWallet
@@ -423,9 +424,69 @@
       ✔ emergencyWithdraw sin balance falla
       ✔ recordSaleRevenue no-authorized falla
 
+  Distribution Upgrade — Extended Coverage (30+ tests)
+    PostPresaleDistributor — constructor & initialize
+      ✔ [01] constructor revierte con token = address(0)
+      ✔ [02] constructor revierte con liquidityManager = address(0) (136ms)
+      ✔ [03] constructor revierte con presale = address(0)
+      ✔ [04] initialize() no puede llamarse dos veces
+      ✔ [05] initialize() rechaza caller no autorizado
+      ✔ [06] initialize() revierte si no hay tokens
+    PostPresaleDistributor — CEX withdrawal
+      ✔ [07] withdrawForCEX revierte con wallet zero
+      ✔ [08] withdrawForCEX revierte con amount zero
+      ✔ [09] withdrawForCEX revierte si excede la reserva
+      ✔ [10] withdrawForCEX rechaza no-owner
+      ✔ [11] soporta múltiples retiradas a distintos CEX
+      ✔ [12] cexUnlockTime = block.timestamp + 180 días tras initialize
+    PostPresaleDistributor — drip release
+      ✔ [13] releaseMonthlyDrip revierte si no inicializado
+      ✔ [14] releaseMonthlyDrip emite DripReleased
+      ✔ [15] releaseMonthlyDrip revierte si demasiado pronto entre liberaciones
+      ✔ [16] dripStartTime = block.timestamp + 30 días
+    PostPresaleDistributor — view functions
+      ✔ [17] getCEXReserveStatus refleja correctamente locked/unlocked
+      ✔ [18] getDripStatus devuelve valores correctos iniciales
+    MarketingTreasury — constructor & validations
+      ✔ [19] constructor revierte con token = address(0)
+      ✔ [20] makePayment revierte con recipient = address(0)
+      ✔ [21] makePayment revierte con amount zero
+      ✔ [22] makePayment revierte con balance insuficiente
+      ✔ [23] todas las categorías válidas se aceptan
+    MarketingTreasury — tracking & views
+      ✔ [24] getPaymentCount se incrementa correctamente
+      ✔ [25] getRecentPayments devuelve orden inverso
+      ✔ [26] totalSpentByCategory rastrea por categoría
+      ✔ [27] getTreasuryStats devuelve valores correctos
+      ✔ [28] makeBatchPayments rechaza arrays con longitud distinta
+    Presale — setters & events
+      ✔ [29] setPostPresaleDistributor rechaza zero address
+      ✔ [30] setPostPresaleDistributor rechaza no-owner
+      ✔ [31] setPostPresaleDistributor emite PostPresaleDistributorUpdated
+      ✔ [32] constantes LIQUIDITY_SHARE + DISTRIBUTOR_SHARE = 100
+
+  Distribution Upgrade — PostPresaleDistributor + MarketingTreasury + Presale split
+    stopPresale split
+      ✔ envía 70% al LiquidityManager y 30% al PostPresaleDistributor (128ms)
+      ✔ inicializa el distributor automáticamente
+      ✔ si no hay distributor configurado, envía 100% al LM (legacy)
+    PostPresaleDistributor
+      ✔ guarda 2/3 para CEX y 1/3 para drip
+      ✔ bloquea CEX withdraw antes del timelock
+      ✔ permite CEX withdraw tras el timelock
+      ✔ bloquea drip antes del intervalo
+      ✔ libera 1/12 cada 30 días
+      ✔ completa los 12 meses sin overflow (55ms)
+    MarketingTreasury
+      ✔ ejecuta pago con razón y categoría válidas
+      ✔ rechaza pago con razón corta
+      ✔ rechaza categoría inválida
+      ✔ rechaza pagos de no-owner
+      ✔ permite pago en lote
+
   LiquidityManager
     Deployment
-      ✔ 4 DEXs con pesos 40/30/20/10 (75ms)
+      ✔ 4 DEXs con pesos 40/30/20/10 (108ms)
       ✔ Stats en 0
       ✔ Auto-distribute habilitado
     Create Pool
@@ -452,7 +513,7 @@
       ✔ getStats
 
   LiquidityManager - Coverage Extra
-    ✔ receive() de no-treasury no añade pendingBNB (58ms)
+    ✔ receive() de no-treasury no añade pendingBNB (108ms)
     ✔ receive() de treasury añade pendingBNB
     ✔ setAutoDistribute cambia config
     ✔ setTreasury no permite address(0)
@@ -470,7 +531,7 @@
     ✔ No-owner no puede depositTokens
 
   LiquidityManager - Coverage 90%+
-    ✔ getPoolInfo devuelve datos correctos tras crear pool (94ms)
+    ✔ getPoolInfo devuelve datos correctos tras crear pool (106ms)
     ✔ getPoolCount devuelve cantidad correcta
     ✔ receive() de treasury con pools activos auto-distribuye
     ✔ getAllDEXs devuelve pesos correctos
@@ -479,7 +540,7 @@
     ✔ setDEXWeight con id inválido falla
 
   LiquidityManager - Escenarios Reales
-    ✔ Múltiples envíos del treasury acumulan y distribuyen (62ms)
+    ✔ Múltiples envíos del treasury acumulan y distribuyen (117ms)
     ✔ Crear pool con balance grande de tokens
     ✔ DEX deshabilitado no recibe distribución
     ✔ Cambiar pesos afecta distribución
@@ -497,198 +558,224 @@
     ✔ No-owner no puede createPool
 
 
-  412 passing (3s)
+  458 passing (7s)
 
-······················································································································
-|  [32m[1mSolidity and Network Configuration[22m[39m                                                                                │
-·································|·················|···············|·················|································
-|  [36mSolidity: 0.8.20[39m              ·  [36mOptim: true[39m    ·  [36mRuns: 200[39m    ·  [36mviaIR: false[39m   ·     [36mBlock: 60,000,000 gas[39m     │
-·································|·················|···············|·················|································
-|  [32m[1mMethods[22m[39m                                                                                                           │
-·································|·················|···············|·················|················|···············
-|  [32m[1mContracts / Methods[22m[39m           ·  [1mMin[22m            ·  [1mMax[22m          ·  [1mAvg[22m            ·  [1m# calls[22m       ·  [1musd (avg)[22m   │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallAirdrop[22m            ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      burnTokens                ·         [36m61,088[39m  ·       [31m61,100[39m  ·         61,091  ·             4  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      claimAirdrop              ·        [36m115,207[39m  ·      [31m208,882[39m  ·        189,530  ·            34  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      executeAirdrop            ·        [36m182,723[39m  ·      [31m605,768[39m  ·        321,322  ·            10  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,758  ·             8  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setClaimConfig            ·         [36m32,518[39m  ·       [31m35,330[39m  ·         34,176  ·             5  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      singleAirdrop             ·         [36m69,361[39m  ·      [31m163,055[39m  ·        131,824  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             4  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      withdrawTokens            ·         [36m39,695[39m  ·       [31m45,008[39m  ·         42,352  ·             4  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallCoin[22m               ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      approve                   ·         [36m29,329[39m  ·       [31m46,729[39m  ·         39,272  ·            21  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      excludeFromLimits         ·         [36m26,011[39m  ·       [31m47,923[39m  ·         44,793  ·             7  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      lockTrading               ·         [36m29,387[39m  ·       [31m46,487[39m  ·         43,637  ·             6  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,737  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      renounceOwnership         ·              [90m-[39m  ·            [90m-[39m  ·         23,294  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setAirdropContract        ·              [90m-[39m  ·            [90m-[39m  ·         69,473  ·             6  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setPresale                ·         [36m69,460[39m  ·       [31m69,472[39m  ·         69,470  ·             7  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setPresaleEnabled         ·         [36m25,096[39m  ·       [31m47,008[39m  ·         40,773  ·             9  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setStakingPlatform        ·              [90m-[39m  ·            [90m-[39m  ·         69,561  ·             6  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setTradingEnabled         ·         [36m27,301[39m  ·       [31m47,193[39m  ·         41,183  ·            18  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setTransferLimits         ·              [90m-[39m  ·            [90m-[39m  ·         35,601  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setTreasury               ·              [90m-[39m  ·            [90m-[39m  ·         69,516  ·             7  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      transfer                  ·         [36m48,972[39m  ·       [31m72,657[39m  ·         55,661  ·            61  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallPresale[22m            ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      addToWhitelist            ·         [36m48,575[39m  ·       [31m73,116[39m  ·         53,483  ·             5  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      buyTokens                 ·        [36m190,211[39m  ·      [31m534,008[39m  ·        453,190  ·            31  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,792  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      removeFromWhitelist       ·              [90m-[39m  ·            [90m-[39m  ·         26,697  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setLiquidityManager       ·              [90m-[39m  ·            [90m-[39m  ·         47,252  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setTreasury               ·              [90m-[39m  ·            [90m-[39m  ·         30,216  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setWhitelistEnabled       ·              [90m-[39m  ·            [90m-[39m  ·         46,920  ·             4  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      startPresale              ·              [90m-[39m  ·            [90m-[39m  ·         46,743  ·            18  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      stopPresale               ·         [36m27,020[39m  ·       [31m62,773[39m  ·         38,021  ·             7  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,742  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      updateLimits              ·              [90m-[39m  ·            [90m-[39m  ·         35,403  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      updatePrice               ·              [90m-[39m  ·            [90m-[39m  ·         30,101  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      withdrawUnsoldTokens      ·         [36m47,199[39m  ·       [31m47,211[39m  ·         47,205  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallStaking[22m            ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      claimRewards              ·              [90m-[39m  ·            [90m-[39m  ·        108,521  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      depositRewards            ·         [36m45,641[39m  ·       [31m62,741[39m  ·         61,297  ·            13  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      emergencyWithdrawAll      ·              [90m-[39m  ·            [90m-[39m  ·         39,925  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      pause                     ·              [90m-[39m  ·            [90m-[39m  ·         27,758  ·             4  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setMinStakeAmount         ·              [90m-[39m  ·            [90m-[39m  ·         29,818  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setRewardRate             ·         [36m54,714[39m  ·       [31m56,726[39m  ·         56,196  ·            13  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      stake                     ·         [36m84,667[39m  ·      [31m181,830[39m  ·        163,211  ·            51  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      unpause                   ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      unstake                   ·         [36m66,543[39m  ·      [31m134,995[39m  ·         76,952  ·            10  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallTreasuryV4[22m         ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      authorizeSeller           ·         [36m47,920[39m  ·       [31m47,932[39m  ·         47,930  ·             6  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      claimYields               ·         [36m88,022[39m  ·      [31m122,222[39m  ·        113,672  ·             8  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      depositIdleBNBToVenus     ·              [90m-[39m  ·            [90m-[39m  ·        109,982  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      emergencyRedeemFromVenus  ·              [90m-[39m  ·            [90m-[39m  ·         54,517  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      emergencyWithdraw         ·              [90m-[39m  ·            [90m-[39m  ·         34,590  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      recordSaleAndDeposit      ·        [36m116,820[39m  ·      [31m340,166[39m  ·        249,446  ·            42  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      recordSaleRevenue         ·              [90m-[39m  ·            [90m-[39m  ·         46,038  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setAdminWallet            ·         [36m30,263[39m  ·       [31m30,275[39m  ·         30,271  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setDepositsEnabled        ·              [90m-[39m  ·            [90m-[39m  ·         24,022  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setLiquidityManager       ·              [90m-[39m  ·            [90m-[39m  ·         30,209  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setSplit                  ·              [90m-[39m  ·            [90m-[39m  ·         40,780  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setVenus                  ·              [90m-[39m  ·            [90m-[39m  ·         29,078  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      withdrawPoolReserve       ·              [90m-[39m  ·            [90m-[39m  ·         41,928  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mLiquidityManager[22m              ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      createPool                ·        [36m803,364[39m  ·      [31m831,952[39m  ·        821,292  ·            38  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      depositTokens             ·              [90m-[39m  ·            [90m-[39m  ·         44,606  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      forceDistribute           ·              [90m-[39m  ·            [90m-[39m  ·        151,110  ·             2  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      receiveBNBFromTreasury    ·         [36m40,233[39m  ·      [31m414,036[39m  ·        145,251  ·            19  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setAutoDistribute         ·         [36m29,149[39m  ·       [31m34,021[39m  ·         30,955  ·             5  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setDEXWeight              ·         [36m30,344[39m  ·       [31m30,356[39m  ·         30,348  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setTreasury               ·         [36m29,050[39m  ·       [31m29,062[39m  ·         29,055  ·             5  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      toggleDEX                 ·         [36m29,080[39m  ·       [31m29,092[39m  ·         29,088  ·             3  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      updateDEXRouter           ·              [90m-[39m  ·            [90m-[39m  ·         29,318  ·             1  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mMockFailToken[22m                 ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      approve                   ·         [36m46,384[39m  ·       [31m46,729[39m  ·         46,453  ·             5  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      setShouldFail             ·              [90m-[39m  ·            [90m-[39m  ·         43,652  ·             9  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|      transfer                  ·         [36m31,032[39m  ·       [31m54,170[39m  ·         52,221  ·            14  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mMockVenusBNB[22m                  ·                                                                                   │
-·································|·················|···············|·················|················|···············
-|      simulateYields            ·         [36m34,075[39m  ·       [31m34,087[39m  ·         34,081  ·            10  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [32m[1mDeployments[22m[39m                                     ·                                 ·  [1m% of limit[22m    ·              │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallAirdrop[22m            ·      [36m1,760,981[39m  ·    [31m1,760,993[39m  ·      1,760,991  ·         2.9 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallCoin[22m               ·              [90m-[39m  ·            [90m-[39m  ·      1,532,992  ·         2.6 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallPresale[22m            ·              [90m-[39m  ·            [90m-[39m  ·      1,630,577  ·         2.7 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallStaking[22m            ·              [90m-[39m  ·            [90m-[39m  ·      1,183,917  ·           2 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mDiamondWallTreasuryV4[22m         ·      [36m2,050,314[39m  ·    [31m2,050,326[39m  ·      2,050,322  ·         3.4 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mLiquidityManager[22m              ·              [90m-[39m  ·            [90m-[39m  ·      2,548,702  ·         4.2 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mMockFailToken[22m                 ·              [90m-[39m  ·            [90m-[39m  ·        590,254  ·           1 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mMockPancakeRouter[22m             ·              [90m-[39m  ·            [90m-[39m  ·      1,000,940  ·         1.7 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [1mMockVenusBNB[22m                  ·              [90m-[39m  ·            [90m-[39m  ·        492,801  ·         0.8 %  ·           [32m[90m-[39m[32m[39m  │
-·································|·················|···············|·················|················|···············
-|  [32m[1mKey[22m[39m                                                                                                               │
-······················································································································
-|  [35m[1m◯[22m[39m  Execution gas for this method does not include intrinsic gas overhead                                          │
-······················································································································
-|  [35m[1m△[22m[39m  Cost was non-zero but below the precision setting for the currency display (see options)                       │
-······················································································································
-|  [35mToolchain:[39m  hardhat                                                                                               │
-······················································································································
+·······················································································································
+|  [32m[1mSolidity and Network Configuration[22m[39m                                                                                 │
+··································|·················|···············|·················|································
+|  [36mSolidity: 0.8.20[39m               ·  [36mOptim: true[39m    ·  [36mRuns: 200[39m    ·  [36mviaIR: false[39m   ·     [36mBlock: 60,000,000 gas[39m     │
+··································|·················|···············|·················|································
+|  [32m[1mMethods[22m[39m                                                                                                            │
+··································|·················|···············|·················|················|···············
+|  [32m[1mContracts / Methods[22m[39m            ·  [1mMin[22m            ·  [1mMax[22m          ·  [1mAvg[22m            ·  [1m# calls[22m       ·  [1musd (avg)[22m   │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallAirdrop[22m             ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      burnTokens                 ·         [36m61,088[39m  ·       [31m61,100[39m  ·         61,091  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      claimAirdrop               ·        [36m115,207[39m  ·      [31m208,882[39m  ·        189,530  ·            34  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      executeAirdrop             ·        [36m182,723[39m  ·      [31m605,768[39m  ·        321,322  ·            10  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      pause                      ·              [90m-[39m  ·            [90m-[39m  ·         27,758  ·             8  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setClaimConfig             ·         [36m32,518[39m  ·       [31m35,330[39m  ·         34,176  ·             5  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      singleAirdrop              ·         [36m69,361[39m  ·      [31m163,055[39m  ·        131,824  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      unpause                    ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      withdrawTokens             ·         [36m39,695[39m  ·       [31m45,008[39m  ·         42,352  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallCoin[22m                ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      approve                    ·         [36m29,329[39m  ·       [31m46,729[39m  ·         39,611  ·            22  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      excludeFromLimits          ·         [36m26,011[39m  ·       [31m47,923[39m  ·         44,793  ·             7  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      lockTrading                ·         [36m29,387[39m  ·       [31m46,487[39m  ·         43,637  ·             6  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      pause                      ·              [90m-[39m  ·            [90m-[39m  ·         27,737  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      renounceOwnership          ·              [90m-[39m  ·            [90m-[39m  ·         23,294  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setAirdropContract         ·              [90m-[39m  ·            [90m-[39m  ·         69,473  ·             6  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setPresale                 ·         [36m69,460[39m  ·       [31m69,472[39m  ·         69,470  ·             7  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setPresaleEnabled          ·         [36m25,096[39m  ·       [31m47,008[39m  ·         40,773  ·             9  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setStakingPlatform         ·              [90m-[39m  ·            [90m-[39m  ·         69,561  ·             6  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setTradingEnabled          ·         [36m27,301[39m  ·       [31m47,193[39m  ·         41,183  ·            18  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setTransferLimits          ·              [90m-[39m  ·            [90m-[39m  ·         35,601  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setTreasury                ·              [90m-[39m  ·            [90m-[39m  ·         69,516  ·             7  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      transfer                   ·         [36m48,972[39m  ·       [31m72,657[39m  ·         55,513  ·            64  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      unpause                    ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallPresale[22m             ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      addToWhitelist             ·         [36m48,575[39m  ·       [31m73,116[39m  ·         53,483  ·             5  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      buyTokens                  ·        [36m190,189[39m  ·      [31m533,986[39m  ·        453,168  ·            31  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      pause                      ·              [90m-[39m  ·            [90m-[39m  ·         27,792  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      removeFromWhitelist        ·              [90m-[39m  ·            [90m-[39m  ·         26,719  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setLiquidityManager        ·              [90m-[39m  ·            [90m-[39m  ·         47,252  ·             5  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setPostPresaleDistributor  ·         [36m27,374[39m  ·       [31m47,274[39m  ·         37,324  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setTreasury                ·              [90m-[39m  ·            [90m-[39m  ·         30,194  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setWhitelistEnabled        ·              [90m-[39m  ·            [90m-[39m  ·         46,920  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      startPresale               ·              [90m-[39m  ·            [90m-[39m  ·         46,743  ·            20  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      stopPresale                ·         [36m27,020[39m  ·      [31m229,050[39m  ·        181,446  ·            28  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      unpause                    ·              [90m-[39m  ·            [90m-[39m  ·         27,764  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      updateLimits               ·              [90m-[39m  ·            [90m-[39m  ·         35,403  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      updatePrice                ·              [90m-[39m  ·            [90m-[39m  ·         30,101  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      withdrawUnsoldTokens       ·         [36m47,243[39m  ·       [31m47,255[39m  ·         47,249  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallStaking[22m             ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      claimRewards               ·              [90m-[39m  ·            [90m-[39m  ·        108,521  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      depositRewards             ·         [36m45,641[39m  ·       [31m62,741[39m  ·         61,297  ·            13  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      emergencyWithdrawAll       ·              [90m-[39m  ·            [90m-[39m  ·         39,925  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      pause                      ·              [90m-[39m  ·            [90m-[39m  ·         27,758  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setMinStakeAmount          ·              [90m-[39m  ·            [90m-[39m  ·         29,818  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setRewardRate              ·         [36m54,714[39m  ·       [31m56,726[39m  ·         56,196  ·            13  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      stake                      ·         [36m84,667[39m  ·      [31m181,830[39m  ·        163,211  ·            51  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      unpause                    ·              [90m-[39m  ·            [90m-[39m  ·         27,752  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      unstake                    ·         [36m66,543[39m  ·      [31m134,995[39m  ·         76,952  ·            10  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallTreasuryV4[22m          ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      authorizeSeller            ·         [36m47,920[39m  ·       [31m47,932[39m  ·         47,930  ·             6  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      claimYields                ·         [36m88,022[39m  ·      [31m122,222[39m  ·        113,672  ·             8  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      depositIdleBNBToVenus      ·              [90m-[39m  ·            [90m-[39m  ·        109,982  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      emergencyRedeemFromVenus   ·              [90m-[39m  ·            [90m-[39m  ·         54,517  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      emergencyWithdraw          ·              [90m-[39m  ·            [90m-[39m  ·         34,590  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      recordSaleAndDeposit       ·        [36m116,820[39m  ·      [31m340,166[39m  ·        249,446  ·            42  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      recordSaleRevenue          ·              [90m-[39m  ·            [90m-[39m  ·         46,038  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setAdminWallet             ·         [36m30,263[39m  ·       [31m30,275[39m  ·         30,271  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setDepositsEnabled         ·              [90m-[39m  ·            [90m-[39m  ·         24,022  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setLiquidityManager        ·              [90m-[39m  ·            [90m-[39m  ·         30,209  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setSplit                   ·              [90m-[39m  ·            [90m-[39m  ·         40,780  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setVenus                   ·              [90m-[39m  ·            [90m-[39m  ·         29,078  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      withdrawPoolReserve        ·              [90m-[39m  ·            [90m-[39m  ·         41,928  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mLiquidityManager[22m               ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      createPool                 ·        [36m803,364[39m  ·      [31m831,952[39m  ·        821,292  ·            38  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      depositTokens              ·              [90m-[39m  ·            [90m-[39m  ·         44,606  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      forceDistribute            ·              [90m-[39m  ·            [90m-[39m  ·        151,110  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      receiveBNBFromTreasury     ·         [36m40,233[39m  ·      [31m414,036[39m  ·        145,251  ·            19  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setAutoDistribute          ·         [36m29,149[39m  ·       [31m34,021[39m  ·         30,955  ·             5  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setDEXWeight               ·         [36m30,344[39m  ·       [31m30,356[39m  ·         30,348  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setTreasury                ·         [36m29,050[39m  ·       [31m29,062[39m  ·         29,055  ·             5  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      toggleDEX                  ·         [36m29,080[39m  ·       [31m29,092[39m  ·         29,088  ·             3  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      updateDEXRouter            ·              [90m-[39m  ·            [90m-[39m  ·         29,318  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMarketingTreasury[22m              ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      makeBatchPayments          ·              [90m-[39m  ·            [90m-[39m  ·        606,332  ·             1  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      makePayment                ·        [36m197,518[39m  ·      [31m310,961[39m  ·        236,307  ·            16  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockERC20[22m                      ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      transfer                   ·         [36m51,644[39m  ·       [31m51,656[39m  ·         51,650  ·             2  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockFailToken[22m                  ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      approve                    ·              [90m-[39m  ·            [90m-[39m  ·         46,384  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      setShouldFail              ·              [90m-[39m  ·            [90m-[39m  ·         43,652  ·             9  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      transfer                   ·         [36m31,032[39m  ·       [31m53,828[39m  ·         52,071  ·            13  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockVenusBNB[22m                   ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      simulateYields             ·         [36m34,075[39m  ·       [31m34,087[39m  ·         34,081  ·            10  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mPostPresaleDistributor[22m         ·                                                                                   │
+··································|·················|···············|·················|················|···············
+|      releaseMonthlyDrip         ·         [36m59,390[39m  ·       [31m76,490[39m  ·         64,734  ·            16  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|      withdrawForCEX             ·         [36m73,028[39m  ·       [31m90,116[39m  ·         85,844  ·             4  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [32m[1mDeployments[22m[39m                                      ·                                 ·  [1m% of limit[22m    ·              │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallAirdrop[22m             ·      [36m1,760,981[39m  ·    [31m1,760,993[39m  ·      1,760,991  ·         2.9 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallCoin[22m                ·              [90m-[39m  ·            [90m-[39m  ·      1,532,992  ·         2.6 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallPresale[22m             ·              [90m-[39m  ·            [90m-[39m  ·      1,842,438  ·         3.1 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallStaking[22m             ·              [90m-[39m  ·            [90m-[39m  ·      1,183,917  ·           2 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mDiamondWallTreasuryV4[22m          ·      [36m2,050,314[39m  ·    [31m2,050,326[39m  ·      2,050,322  ·         3.4 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mLiquidityManager[22m               ·              [90m-[39m  ·            [90m-[39m  ·      2,548,702  ·         4.2 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMarketingTreasury[22m              ·              [90m-[39m  ·            [90m-[39m  ·      1,700,612  ·         2.8 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockERC20[22m                      ·              [90m-[39m  ·            [90m-[39m  ·        580,486  ·           1 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockFailToken[22m                  ·              [90m-[39m  ·            [90m-[39m  ·        590,254  ·           1 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockPancakeRouter[22m              ·              [90m-[39m  ·            [90m-[39m  ·      1,000,940  ·         1.7 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockReceiver[22m                   ·              [90m-[39m  ·            [90m-[39m  ·         67,711  ·         0.1 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mMockVenusBNB[22m                   ·              [90m-[39m  ·            [90m-[39m  ·        492,801  ·         0.8 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [1mPostPresaleDistributor[22m         ·              [90m-[39m  ·            [90m-[39m  ·        908,151  ·         1.5 %  ·           [32m[90m-[39m[32m[39m  │
+··································|·················|···············|·················|················|···············
+|  [32m[1mKey[22m[39m                                                                                                                │
+·······················································································································
+|  [35m[1m◯[22m[39m  Execution gas for this method does not include intrinsic gas overhead                                           │
+·······················································································································
+|  [35m[1m△[22m[39m  Cost was non-zero but below the precision setting for the currency display (see options)                        │
+·······················································································································
+|  [35mToolchain:[39m  hardhat                                                                                                │
+·······················································································································
