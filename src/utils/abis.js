@@ -20,6 +20,16 @@ export const TOKEN_ABI = [
   "function owner() view returns (address)",
   "function setPresale(address) external",
   "function setTreasury(address) external",
+  "function setLiquidityManager(address) external",
+  "function setPostPresaleDistributor(address) external",
+  "function liquidityManager() view returns (address)",
+  "function postPresaleDistributor() view returns (address)",
+  "function LIQUIDITY_SHARE() view returns (uint256)",
+  "function DISTRIBUTOR_SHARE() view returns (uint256)",
+  "event PostPresaleDistributorUpdated(address indexed distributor)",
+  "event LiquidityManagerUpdated(address indexed liquidityManager)",
+  "event UnsoldTokensAutoTransferred(address indexed liquidityManager, uint256 amount)",
+  "event UnsoldTokensDistributed(uint256 toLiquidity, uint256 toDistributor)",
   "function setStakingPlatform(address) external",
   "function setAirdropContract(address) external",
   "function setPresaleEnabled(bool) external",
@@ -38,6 +48,16 @@ export const PRESALE_ABI = [
   "function updatePrice(uint256) external",
   "function updateLimits(uint256, uint256) external",
   "function setTreasury(address) external",
+  "function setLiquidityManager(address) external",
+  "function setPostPresaleDistributor(address) external",
+  "function liquidityManager() view returns (address)",
+  "function postPresaleDistributor() view returns (address)",
+  "function LIQUIDITY_SHARE() view returns (uint256)",
+  "function DISTRIBUTOR_SHARE() view returns (uint256)",
+  "event PostPresaleDistributorUpdated(address indexed distributor)",
+  "event LiquidityManagerUpdated(address indexed liquidityManager)",
+  "event UnsoldTokensAutoTransferred(address indexed liquidityManager, uint256 amount)",
+  "event UnsoldTokensDistributed(uint256 toLiquidity, uint256 toDistributor)",
   "function setWhitelistEnabled(bool) external",
   "function addToWhitelist(address[]) external",
   "function removeFromWhitelist(address[]) external",
@@ -156,4 +176,62 @@ export const TREASURY_V4_ABI = [
   "function getUserYieldInfo(address) view returns (uint256, uint256, uint256, uint256)",
   "function getHoldersCount() view returns (uint256)",
   "function getAllPoolsStats() view returns (uint256[], uint256[], uint256[], uint256[], uint256[])"
+];
+
+// ====================================================================
+// NUEVOS CONTRATOS — añadidos en deployment v2
+// ====================================================================
+
+export const POST_PRESALE_DISTRIBUTOR_ABI = [
+  // Reads
+  "function dwallToken() view returns (address)",
+  "function liquidityManager() view returns (address)",
+  "function presaleContract() view returns (address)",
+  "function cexReserveTotal() view returns (uint256)",
+  "function cexWithdrawn() view returns (uint256)",
+  "function cexUnlockTime() view returns (uint256)",
+  "function CEX_TIMELOCK() view returns (uint256)",
+  "function dripTotal() view returns (uint256)",
+  "function dripReleased() view returns (uint256)",
+  "function dripStartTime() view returns (uint256)",
+  "function lastDripTime() view returns (uint256)",
+  "function DRIP_INTERVAL() view returns (uint256)",
+  "function DRIP_INSTALLMENTS() view returns (uint256)",
+  "function initialized() view returns (bool)",
+  "function owner() view returns (address)",
+  "function getCEXReserveStatus() view returns (uint256 total, uint256 withdrawn, uint256 available, uint256 unlockTime, bool isLocked)",
+  "function getDripStatus() view returns (uint256 total, uint256 released, uint256 remaining, uint256 nextReleaseTime, uint256 installmentSize, uint256 installmentsRemaining)",
+  // Writes
+  "function initialize() external",
+  "function withdrawForCEX(address cexWallet, uint256 amount) external",
+  "function releaseMonthlyDrip() external",
+  // Events
+  "event Initialized(uint256 totalAmount, uint256 cexReserve, uint256 dripAmount)",
+  "event CEXWithdrawn(address indexed cexWallet, uint256 amount, uint256 timestamp)",
+  "event DripReleased(uint256 installment, uint256 amount, uint256 timestamp)"
+];
+
+export const MARKETING_TREASURY_ABI = [
+  // Reads
+  "function dwallToken() view returns (address)",
+  "function owner() view returns (address)",
+  "function totalSpent() view returns (uint256)",
+  "function totalReceivedBy(address) view returns (uint256)",
+  "function totalSpentByCategory(bytes32) view returns (uint256)",
+  "function CAT_INFLUENCER() view returns (bytes32)",
+  "function CAT_LISTING() view returns (bytes32)",
+  "function CAT_AUDIT() view returns (bytes32)",
+  "function CAT_BOUNTY() view returns (bytes32)",
+  "function CAT_OPERATIONS() view returns (bytes32)",
+  "function CAT_OTHER() view returns (bytes32)",
+  "function getPaymentCount() view returns (uint256)",
+  "function getPayment(uint256 paymentId) view returns (address recipient, uint256 amount, string memory reason, bytes32 category, uint256 timestamp)",
+  "function getRecentPayments(uint256 limit) view returns (tuple(address recipient, uint256 amount, string reason, bytes32 category, uint256 timestamp)[])",
+  "function getBalance() view returns (uint256)",
+  "function getTreasuryStats() view returns (uint256 currentBalance, uint256 totalSpentSoFar, uint256 totalPaymentsCount)",
+  // Writes
+  "function makePayment(address recipient, uint256 amount, string calldata reason, bytes32 category) external",
+  "function makeBatchPayments(address[] calldata recipients, uint256[] calldata amounts, string[] calldata reasons, bytes32 category) external",
+  // Events
+  "event PaymentExecuted(uint256 indexed paymentId, address indexed recipient, uint256 amount, bytes32 indexed category, string reason, uint256 timestamp)"
 ];
