@@ -4,50 +4,56 @@ import { useLang } from "../i18n/LanguageContext";
 
 const WP_ES = [
   { title: "1. Introducción", content: "DiamondWall es una plataforma DeFi automatizada en Binance Smart Chain (BSC) que genera yields reales para sus holders. A diferencia de proyectos que prometen rendimientos insostenibles, $DWALL integra directamente con Venus Protocol para generar rendimientos verificables on-chain.\n\nEl objetivo es simple: que cada BNB invertido en $DWALL trabaje automáticamente generando rendimientos pasivos sin intervención humana." },
-  { title: "2. Tokenomics", content: "Token: DiamondWallCoin ($DWALL)\nRed: Binance Smart Chain (BSC)\nSupply Total: 1,000,000,000 DWALL (fijo, sin mint adicional)\n\nDistribución:\n• Presale: 700,000,000 DWALL (70%)\n• Airdrop/Marketing: 150,000,000 DWALL (15%)\n• Equipo/Desarrollo: 150,000,000 DWALL (15%)\n\nPrecio Presale: 620,000 DWALL por 1 BNB" },
+  { title: "2. Tokenomics", content: "Token: DiamondWallCoin ($DWALL)\nRed: Binance Smart Chain (BSC)\nSupply Total: 1,000,000,000 DWALL (fijo, sin mint adicional)\n\nDistribución:\n• Presale: 700,000,000 DWALL (70%)\n• Airdrop: 150,000,000 DWALL (15%)\n• Marketing Treasury (público on-chain): 100,000,000 DWALL (10%)\n• Wallet operativa del equipo: 50,000,000 DWALL (5%)\n\nPrecio Presale: 620,000 DWALL por 1 BNB" },
   { title: "3. Sistema de Yields", content: "Cuando un usuario compra $DWALL, el BNB se divide automáticamente:\n\n• 50% → Venus Protocol: Genera yields reales. Los holders reclaman su parte en cualquier momento.\n• 45% → Pools de Liquidez: Se distribuye automáticamente a PancakeSwap, BiSwap, ApeSwap y BabySwap.\n• 5% → Operaciones: Gas, mantenimiento y desarrollo." },
-  { title: "4. Protecciones", content: "✅ Supply Fijo: 1B tokens. No existe función mint().\n✅ Sin Blacklist ni Freeze.\n✅ Sin Fee Oculto: 0% comisión.\n✅ Trading Lock irreversible.\n✅ Anti-Ballena: Máximo 5%, mínimo 1%.\n✅ Ownership Renunciable." },
-  { title: "5. Arquitectura", content: "6 smart contracts:\n1. DiamondWallCoin — Token ERC20\n2. DiamondWallPresale — Venta instantánea\n3. DiamondWallTreasuryV4 — Venus + split 50/45/5\n4. DiamondWallStaking — Staking autónomo\n5. DiamondWallAirdrop — Campañas\n6. LiquidityManager — Auto-distribución 4 DEXs" }
+  { title: "4. Distribución Post-Presale", content: "Al cerrar la preventa, los tokens no vendidos se reparten automáticamente:\n\n• 70% → LiquidityManager (inmediato, 4 pools DEX)\n• 20% → Reserva CEX (timelock 6 meses, para futuros listados)\n• 10% → Drip mensual al LiquidityManager (12 meses lineales)\n\nReglas fijas, sin manipulación de precio: el calendario es público y verificable on-chain." },
+  { title: "5. Protecciones", content: "✅ Supply Fijo: 1B tokens. No existe función mint().\n✅ Sin Blacklist ni Freeze.\n✅ Sin Fee Oculto: 0% comisión.\n✅ Trading Lock irreversible.\n✅ Anti-Ballena: Máximo 5%, mínimo 1%.\n✅ Ownership Renunciable.\n✅ Marketing Treasury público: cada pago lleva razón y categoría on-chain." },
+  { title: "6. Arquitectura", content: "8 smart contracts:\n1. DiamondWallCoin — Token ERC20\n2. DiamondWallPresale — Venta instantánea + split 70/30 al cerrar\n3. DiamondWallTreasuryV4 — Venus + split 50/45/5\n4. DiamondWallStaking — Staking autónomo\n5. DiamondWallAirdrop — Campañas\n6. LiquidityManager — Auto-distribución 4 DEXs\n7. PostPresaleDistributor — 20% CEX (timelock) + 10% drip mensual\n8. MarketingTreasury — Fondo público de marketing con trazabilidad" }
 ];
 
 const WP_EN = [
   { title: "1. Introduction", content: "DiamondWall is an automated DeFi platform on Binance Smart Chain (BSC) generating real yields for holders. Unlike projects promising unsustainable returns, $DWALL integrates directly with Venus Protocol for verifiable on-chain yields.\n\nThe goal: every BNB invested works automatically generating passive returns without human intervention." },
-  { title: "2. Tokenomics", content: "Token: DiamondWallCoin ($DWALL)\nNetwork: Binance Smart Chain (BSC)\nTotal Supply: 1,000,000,000 DWALL (fixed, no minting)\n\nDistribution:\n• Presale: 700,000,000 DWALL (70%)\n• Airdrop/Marketing: 150,000,000 DWALL (15%)\n• Team/Development: 150,000,000 DWALL (15%)\n\nPresale Price: 620,000 DWALL per 1 BNB" },
+  { title: "2. Tokenomics", content: "Token: DiamondWallCoin ($DWALL)\nNetwork: Binance Smart Chain (BSC)\nTotal Supply: 1,000,000,000 DWALL (fixed, no minting)\n\nDistribution:\n• Presale: 700,000,000 DWALL (70%)\n• Airdrop: 150,000,000 DWALL (15%)\n• Marketing Treasury (public on-chain): 100,000,000 DWALL (10%)\n• Team operational wallet: 50,000,000 DWALL (5%)\n\nPresale Price: 620,000 DWALL per 1 BNB" },
   { title: "3. Yield System", content: "When buying $DWALL, BNB is automatically split:\n\n• 50% → Venus Protocol: Real yields. Holders claim anytime.\n• 45% → Liquidity Pools: Auto-distributed to PancakeSwap, BiSwap, ApeSwap, BabySwap.\n• 5% → Operations: Gas, maintenance, development." },
-  { title: "4. Protections", content: "✅ Fixed Supply: 1B tokens. No mint() function.\n✅ No Blacklist or Freeze.\n✅ No Hidden Fee: 0% transfer fee.\n✅ Irreversible Trading Lock.\n✅ Anti-Whale: Max 5%, min 1%.\n✅ Renounceable Ownership." },
-  { title: "5. Architecture", content: "6 smart contracts:\n1. DiamondWallCoin — ERC20 Token\n2. DiamondWallPresale — Instant delivery\n3. DiamondWallTreasuryV4 — Venus + 50/45/5 split\n4. DiamondWallStaking — Autonomous staking\n5. DiamondWallAirdrop — Campaigns\n6. LiquidityManager — Auto-distribution 4 DEXs" }
+  { title: "4. Post-Presale Distribution", content: "When presale closes, unsold tokens are split automatically:\n\n• 70% → LiquidityManager (immediate, 4 DEX pools)\n• 20% → CEX Reserve (6-month timelock, for future listings)\n• 10% → Monthly drip to LiquidityManager (12 linear months)\n\nFixed rules, no price manipulation: schedule is public and verifiable on-chain." },
+  { title: "5. Protections", content: "✅ Fixed Supply: 1B tokens. No mint() function.\n✅ No Blacklist or Freeze.\n✅ No Hidden Fee: 0% transfer fee.\n✅ Irreversible Trading Lock.\n✅ Anti-Whale: Max 5%, min 1%.\n✅ Renounceable Ownership.\n✅ Public Marketing Treasury: every payment has reason + category on-chain." },
+  { title: "6. Architecture", content: "8 smart contracts:\n1. DiamondWallCoin — ERC20 Token\n2. DiamondWallPresale — Instant delivery + 70/30 split on close\n3. DiamondWallTreasuryV4 — Venus + 50/45/5 split\n4. DiamondWallStaking — Autonomous staking\n5. DiamondWallAirdrop — Campaigns\n6. LiquidityManager — Auto-distribution 4 DEXs\n7. PostPresaleDistributor — 20% CEX (timelock) + 10% monthly drip\n8. MarketingTreasury — Public marketing fund with full traceability" }
 ];
 
 const RM_ES = [
-  { phase: "Fase 1 — Fundación", status: "completed", items: ["6 smart contracts desarrollados", "406 tests automatizados (100% pass)", "91.96% code coverage", "6 auditorías de seguridad", "Frontend multi-idioma (ES/EN)", "Split automático 50/45/5"] },
-  { phase: "Fase 2 — Lanzamiento", status: "current", items: ["BSC Testnet deployment", "Testing con usuarios reales", "Verificación en BSCScan", "Apertura de presale"] },
+  { phase: "Fase 1 — Fundación", status: "completed", items: ["8 smart contracts desarrollados", "458 tests automatizados (100% pass)", "92.31% code coverage", "6 herramientas de auditoría aplicadas", "Frontend multi-idioma (ES/EN)", "Split automático 50/45/5"] },
+  { phase: "Fase 2 — Lanzamiento", status: "current", items: ["BSC Testnet deployment v2", "Testing con usuarios reales", "Verificación en BSCScan", "Apertura de presale"] },
   { phase: "Fase 3 — Crecimiento", status: "upcoming", items: ["BSC Mainnet", "Pools en 4 DEXs", "Staking con rewards", "CoinGecko / CoinMarketCap"] },
-  { phase: "Fase 4 — Expansión", status: "upcoming", items: ["Auditoría externa (CertiK/Hacken)", "Multi-sig wallet", "lockTrading() + renounceOwnership()", "Partnerships DeFi"] }
+  { phase: "Fase 4 — Expansión", status: "upcoming", items: ["Auditoría externa (CertiK/Hacken)", "Multi-sig wallet", "Listado en CEX (reserva 20%)", "lockTrading() + renounceOwnership()", "Partnerships DeFi"] }
 ];
 
 const RM_EN = [
-  { phase: "Phase 1 — Foundation", status: "completed", items: ["6 smart contracts developed", "406 automated tests (100% pass)", "91.96% code coverage", "6 security audits", "Multi-language frontend (ES/EN)", "Automatic 50/45/5 split"] },
-  { phase: "Phase 2 — Launch", status: "current", items: ["BSC Testnet deployment", "Real user testing", "BSCScan verification", "Presale opening"] },
+  { phase: "Phase 1 — Foundation", status: "completed", items: ["8 smart contracts developed", "458 automated tests (100% pass)", "92.31% code coverage", "6 security audit tools applied", "Multi-language frontend (ES/EN)", "Automatic 50/45/5 split"] },
+  { phase: "Phase 2 — Launch", status: "current", items: ["BSC Testnet deployment v2", "Real user testing", "BSCScan verification", "Presale opening"] },
   { phase: "Phase 3 — Growth", status: "upcoming", items: ["BSC Mainnet", "Pools on 4 DEXs", "Staking with rewards", "CoinGecko / CoinMarketCap"] },
-  { phase: "Phase 4 — Expansion", status: "upcoming", items: ["External audit (CertiK/Hacken)", "Multi-sig wallet", "lockTrading() + renounceOwnership()", "DeFi partnerships"] }
+  { phase: "Phase 4 — Expansion", status: "upcoming", items: ["External audit (CertiK/Hacken)", "Multi-sig wallet", "CEX listing (20% reserve)", "lockTrading() + renounceOwnership()", "DeFi partnerships"] }
 ];
 
 const SOURCES = [
   { name: "DiamondWallCoin.sol", desc_es: "Token ERC20 — Supply fijo, anti-ballena, lockTrading", desc_en: "ERC20 Token — Fixed supply, anti-whale, lockTrading" },
   { name: "DiamondWallTreasuryV4.sol", desc_es: "Treasury — Venus automático, split 50/45/5", desc_en: "Treasury — Auto Venus, 50/45/5 split" },
-  { name: "DiamondWallPresale.sol", desc_es: "Presale — Entrega instantánea, whitelist", desc_en: "Presale — Instant delivery, whitelist" },
+  { name: "DiamondWallPresale.sol", desc_es: "Presale — Entrega instantánea, split 70/30 al cerrar", desc_en: "Presale — Instant delivery, 70/30 split on close" },
   { name: "DiamondWallStaking.sol", desc_es: "Staking — Rewards autónomos", desc_en: "Staking — Autonomous rewards" },
   { name: "DiamondWallAirdrop.sol", desc_es: "Airdrop — Campañas por lotes", desc_en: "Airdrop — Batch campaigns" },
-  { name: "LiquidityManager.sol", desc_es: "Liquidez — Auto-distribución 4 DEXs", desc_en: "Liquidity — Auto-distribution 4 DEXs" }
+  { name: "LiquidityManager.sol", desc_es: "Liquidez — Auto-distribución 4 DEXs", desc_en: "Liquidity — Auto-distribution 4 DEXs" },
+  { name: "PostPresaleDistributor.sol", desc_es: "20% CEX (timelock 6m) + 10% drip mensual 12 meses", desc_en: "20% CEX (6m timelock) + 10% 12-month monthly drip" },
+  { name: "MarketingTreasury.sol", desc_es: "Fondo público — pagos con razón + categoría on-chain", desc_en: "Public fund — payments with reason + category on-chain" }
 ];
 
 const COVERAGE = [
   { name: "DiamondWallCoin", stmts: 100, branch: 86.25, funcs: 100, lines: 100 },
   { name: "DiamondWallTreasuryV4", stmts: 100, branch: 85.56, funcs: 100, lines: 100 },
-  { name: "DiamondWallPresale", stmts: 93.33, branch: 84.72, funcs: 100, lines: 95.45 },
+  { name: "DiamondWallPresale", stmts: 95.52, branch: 84.78, funcs: 100, lines: 95.51 },
   { name: "DiamondWallStaking", stmts: 100, branch: 85, funcs: 100, lines: 100 },
   { name: "DiamondWallAirdrop", stmts: 100, branch: 89.47, funcs: 100, lines: 100 },
-  { name: "LiquidityManager", stmts: 91.3, branch: 84.44, funcs: 100, lines: 96.12 }
+  { name: "LiquidityManager", stmts: 91.3, branch: 84.44, funcs: 100, lines: 96.12 },
+  { name: "PostPresaleDistributor", stmts: 100, branch: 83.33, funcs: 100, lines: 100 },
+  { name: "MarketingTreasury", stmts: 87.88, branch: 73.08, funcs: 77.78, lines: 90.91 }
 ];
 
 const TESTS_BY_CONTRACT = [
@@ -56,7 +62,9 @@ const TESTS_BY_CONTRACT = [
   { name: "DiamondWallPresale", count: 64 },
   { name: "DiamondWallStaking", count: 70 },
   { name: "DiamondWallAirdrop", count: 81 },
-  { name: "LiquidityManager", count: 60 }
+  { name: "LiquidityManager", count: 60 },
+  { name: "Distribution Upgrade (suite)", count: 46 },
+  { name: "Otros / Misc", count: 6 }
 ];
 
 const SEC_ES = [
@@ -73,7 +81,10 @@ const SEC_ES = [
   "0% fee en transferencias — sin comisiones ocultas",
   "Pausa igualitaria — afecta a todos incluido admin",
   "Sin assembly, sin delegatecall, sin selfdestruct",
-  "Dependencias exclusivas de OpenZeppelin v5 (auditado)"
+  "Dependencias exclusivas de OpenZeppelin v5 (auditado)",
+  "Timelock de 6 meses en la reserva CEX",
+  "Drip mensual con reglas fijas (anti-manipulación)",
+  "Marketing Treasury: cada pago lleva razón ≥10 chars + categoría"
 ];
 
 const SEC_EN = [
@@ -90,16 +101,19 @@ const SEC_EN = [
   "0% transfer fee — no hidden commissions",
   "Equal pause — affects everyone including admin",
   "No assembly, no delegatecall, no selfdestruct",
-  "OpenZeppelin v5 only dependencies (audited)"
+  "OpenZeppelin v5 only dependencies (audited)",
+  "6-month timelock on CEX reserve",
+  "Monthly drip with fixed rules (anti-manipulation)",
+  "Marketing Treasury: every payment requires ≥10 char reason + category"
 ];
 
 const AUDIT_TOOLS = [
   { name: "Slither", by: "Trail of Bits", desc_es: "Análisis estático de vulnerabilidades", desc_en: "Static vulnerability analysis", result_es: "0 Critical | 0 High | 0 Medium", result_en: "0 Critical | 0 High | 0 Medium", file: "audit-report.txt", color: "#10b981" },
   { name: "Solhint", by: "Protofire", desc_es: "Linter de buenas prácticas Solidity", desc_en: "Solidity best practices linter", result_es: "0 Errores | Solo warnings NatSpec", result_en: "0 Errors | NatSpec warnings only", file: "solhint-report.txt", color: "#10b981" },
   { name: "Surya", by: "ConsenSys", desc_es: "Análisis de funciones y modificadores", desc_en: "Function and modifier analysis", result_es: "Todas las funciones admin protegidas", result_en: "All admin functions protected", file: "surya-report.txt", color: "#10b981" },
-  { name: "Solidity Metrics", by: "ConsenSys Diligence", desc_es: "Métricas de complejidad de código", desc_en: "Code complexity metrics", result_es: "6 contratos | 435 nSLOC | 0 errores", result_en: "6 contracts | 435 nSLOC | 0 errors", file: "metrics-report.txt", color: "#10b981" },
-  { name: "Hardhat Coverage", by: "Solidity Coverage", desc_es: "Cobertura de código por tests", desc_en: "Test code coverage", result_es: "91.96% global | 100% en contratos clave", result_en: "91.96% global | 100% on key contracts", file: "coverage-report.txt", color: "#10b981" },
-  { name: "Hardhat Tests", by: "Mocha + Chai", desc_es: "Tests automatizados exhaustivos", desc_en: "Exhaustive automated tests", result_es: "406 passing | 0 failing | 100%", result_en: "406 passing | 0 failing | 100%", file: "test-results.txt", color: "#10b981" }
+  { name: "Solidity Metrics", by: "ConsenSys Diligence", desc_es: "Métricas de complejidad de código", desc_en: "Code complexity metrics", result_es: "8 contratos | 0 errores", result_en: "8 contracts | 0 errors", file: "metrics-report.txt", color: "#10b981" },
+  { name: "Hardhat Coverage", by: "Solidity Coverage", desc_es: "Cobertura de código por tests", desc_en: "Test code coverage", result_es: "92.31% global | 100% en 4 contratos", result_en: "92.31% global | 100% on 4 contracts", file: "coverage-report.txt", color: "#10b981" },
+  { name: "Hardhat Tests", by: "Mocha + Chai", desc_es: "Tests automatizados exhaustivos", desc_en: "Exhaustive automated tests", result_es: "458 passing | 0 failing | 100%", result_en: "458 passing | 0 failing | 100%", file: "test-results.txt", color: "#10b981" }
 ];
 
 function ProgressBar({ value, label, color }) {
@@ -133,7 +147,7 @@ export default function Info() {
       </div>
 
       {tab === "whitepaper" && <div className="info-section">
-        <h2 className="section-title">DiamondWall ($DWALL) — Whitepaper v1.0</h2>
+        <h2 className="section-title">DiamondWall ($DWALL) — Whitepaper v1.1</h2>
         {wp.map((s,i) => <div key={i} className="card" style={{marginBottom:'1rem'}}><div className="card-title">{s.title}</div><p className="info-text">{s.content}</p></div>)}
       </div>}
 
@@ -168,7 +182,7 @@ export default function Info() {
         {/* Resumen visual */}
         <div className="stats-grid" style={{marginBottom:'1.5rem'}}>
           <div className="stat-card" style={{borderTop:'3px solid #10b981'}}>
-            <div className="stat-value" style={{color:'#10b981',fontSize:'2.2rem'}}>406</div>
+            <div className="stat-value" style={{color:'#10b981',fontSize:'2.2rem'}}>458</div>
             <div className="stat-label">{lang==='es'?'Tests Passing':'Tests Passing'}</div>
           </div>
           <div className="stat-card" style={{borderTop:'3px solid #10b981'}}>
@@ -176,12 +190,12 @@ export default function Info() {
             <div className="stat-label">{lang==='es'?'Vulnerabilidades':'Vulnerabilities'}</div>
           </div>
           <div className="stat-card" style={{borderTop:'3px solid #10b981'}}>
-            <div className="stat-value" style={{color:'#10b981',fontSize:'2.2rem'}}>91.96%</div>
+            <div className="stat-value" style={{color:'#10b981',fontSize:'2.2rem'}}>92.31%</div>
             <div className="stat-label">Code Coverage</div>
           </div>
           <div className="stat-card" style={{borderTop:'3px solid #f59e0b'}}>
-            <div className="stat-value" style={{color:'#f59e0b',fontSize:'2.2rem'}}>6</div>
-            <div className="stat-label">{lang==='es'?'Auditorías Realizadas':'Audits Performed'}</div>
+            <div className="stat-value" style={{color:'#f59e0b',fontSize:'2.2rem'}}>8</div>
+            <div className="stat-label">{lang==='es'?'Smart Contracts':'Smart Contracts'}</div>
           </div>
         </div>
 
@@ -235,7 +249,7 @@ export default function Info() {
             ))}
             <div style={{display:'flex',justifyContent:'space-between',padding:'0.6rem 0.8rem',borderTop:'1px solid #334155',marginTop:'0.5rem'}}>
               <span style={{color:'#f59e0b',fontWeight:700}}>TOTAL</span>
-              <span style={{color:'#f59e0b',fontWeight:700}}>406 tests</span>
+              <span style={{color:'#f59e0b',fontWeight:700}}>458 tests</span>
             </div>
           </div>
         </div>
@@ -252,16 +266,16 @@ export default function Info() {
         <div className="card" style={{marginBottom:'1.5rem'}}>
           <div className="card-title">📐 {lang==='es'?'Métricas de Código':'Code Metrics'}</div>
           <div className="stats-grid" style={{marginTop:'1rem'}}>
-            <div className="stat-card"><div className="stat-value">6</div><div className="stat-label">{lang==='es'?'Contratos':'Contracts'}</div></div>
-            <div className="stat-card"><div className="stat-value">435</div><div className="stat-label">SLOC</div></div>
-            <div className="stat-card"><div className="stat-value">67</div><div className="stat-label">{lang==='es'?'Funciones Públicas':'Public Functions'}</div></div>
-            <div className="stat-card"><div className="stat-value">55</div><div className="stat-label">{lang==='es'?'Variables de Estado':'State Variables'}</div></div>
+            <div className="stat-card"><div className="stat-value">8</div><div className="stat-label">{lang==='es'?'Contratos':'Contracts'}</div></div>
+            <div className="stat-card"><div className="stat-value">92.31%</div><div className="stat-label">Coverage</div></div>
+            <div className="stat-card"><div className="stat-value">458</div><div className="stat-label">Tests</div></div>
+            <div className="stat-card"><div className="stat-value">0</div><div className="stat-label">{lang==='es'?'Vulnerabilidades':'Vulnerabilities'}</div></div>
           </div>
           <div className="stats-grid" style={{marginTop:'0.5rem'}}>
-            <div className="stat-card"><div className="stat-value">7</div><div className="stat-label">Payable</div></div>
-            <div className="stat-card"><div className="stat-value">26</div><div className="stat-label">View</div></div>
             <div className="stat-card"><div className="stat-value">0</div><div className="stat-label">Assembly</div></div>
             <div className="stat-card"><div className="stat-value">0</div><div className="stat-label">Selfdestruct</div></div>
+            <div className="stat-card"><div className="stat-value">0</div><div className="stat-label">Delegatecall</div></div>
+            <div className="stat-card"><div className="stat-value">0</div><div className="stat-label">Mint()</div></div>
           </div>
         </div>
 
