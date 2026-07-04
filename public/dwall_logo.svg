@@ -1,0 +1,133 @@
+<svg width="680" height="680" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>DiamondWall $DWALL token logo</title>
+<desc>Gold coin with brick wall, full symmetric diamond, large gold $DWALL text, full gold border</desc>
+<defs>
+  <clipPath id="coinclip">
+    <circle cx="340" cy="340" r="258"/>
+  </clipPath>
+  <style>
+    .rim-text { fill: #4A3000; font-family: Georgia, serif; font-size: 13px; font-weight: bold; }
+    .dwall-text { font-family: Georgia, serif; font-size: 48px; font-weight: bold; letter-spacing: 4px; fill: #FFD700; }
+  </style>
+</defs>
+
+<circle cx="340" cy="340" r="275" fill="#FFD700"/>
+<circle cx="340" cy="340" r="258" fill="#DAA520"/>
+
+<g clip-path="url(#coinclip)">
+  <rect x="82" y="82" width="516" height="516" fill="#8B4513"/>
+  <rect x="82" y="86" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="176" y="86" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="270" y="86" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="364" y="86" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="458" y="86" width="140" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="122" width="44" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="130" y="122" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="224" y="122" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="318" y="122" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="412" y="122" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="506" y="122" width="92" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="158" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="176" y="158" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="270" y="158" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="364" y="158" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="458" y="158" width="140" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="194" width="44" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="130" y="194" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="224" y="194" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="318" y="194" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="412" y="194" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="506" y="194" width="92" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="230" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="176" y="230" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="270" y="230" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="364" y="230" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="458" y="230" width="140" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="266" width="44" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="130" y="266" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="224" y="266" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="318" y="266" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="412" y="266" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="506" y="266" width="92" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="302" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="176" y="302" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="270" y="302" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="364" y="302" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="458" y="302" width="140" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="338" width="44" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="130" y="338" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="224" y="338" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="318" y="338" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="412" y="338" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="506" y="338" width="92" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="374" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="176" y="374" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="270" y="374" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="364" y="374" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="458" y="374" width="140" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="410" width="44" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="130" y="410" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="224" y="410" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="318" y="410" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="412" y="410" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="506" y="410" width="92" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="446" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="176" y="446" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="270" y="446" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="364" y="446" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="458" y="446" width="140" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="482" width="44" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="130" y="482" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="224" y="482" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="318" y="482" width="90" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="412" y="482" width="90" height="34" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="506" y="482" width="92" height="34" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="82" y="518" width="90" height="80" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="176" y="518" width="90" height="80" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="270" y="518" width="90" height="80" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+  <rect x="364" y="518" width="90" height="80" fill="#B85A24" stroke="#6B3010" stroke-width="2"/>
+  <rect x="458" y="518" width="140" height="80" fill="#C0622A" stroke="#6B3010" stroke-width="2"/>
+</g>
+
+<circle cx="340" cy="340" r="258" fill="none" stroke="#FFD700" stroke-width="17"/>
+
+<text text-anchor="middle" class="rim-text" transform="rotate(-80 340 340) translate(340 103)">D</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(-65 340 340) translate(340 103)">I</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(-50 340 340) translate(340 103)">A</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(-35 340 340) translate(340 103)">M</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(-20 340 340) translate(340 103)">O</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(-5 340 340) translate(340 103)">N</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(10 340 340) translate(340 103)">D</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(25 340 340) translate(340 103)">W</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(40 340 340) translate(340 103)">A</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(55 340 340) translate(340 103)">L</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(70 340 340) translate(340 103)">L</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(90 340 340) translate(340 103)">◆</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(110 340 340) translate(340 103)">S</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(125 340 340) translate(340 103)">T</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(140 340 340) translate(340 103)">R</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(155 340 340) translate(340 103)">O</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(170 340 340) translate(340 103)">N</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(185 340 340) translate(340 103)">G</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(205 340 340) translate(340 103)">H</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(220 340 340) translate(340 103)">A</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(235 340 340) translate(340 103)">N</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(250 340 340) translate(340 103)">D</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(265 340 340) translate(340 103)">S</text>
+<text text-anchor="middle" class="rim-text" transform="rotate(-95 340 340) translate(340 103)">◆</text>
+
+<polygon points="340,105 575,340 340,340" fill="#E879A8" opacity="0.92"/>
+<polygon points="340,105 105,340 340,340" fill="#F4A0CC" opacity="0.92"/>
+<polygon points="105,340 340,340 340,575" fill="#D0509A" opacity="0.92"/>
+<polygon points="575,340 340,575 340,340" fill="#B83080" opacity="0.92"/>
+<line x1="340" y1="105" x2="340" y2="575" stroke="#FFD700" stroke-width="1.5" opacity="0.5"/>
+<line x1="105" y1="340" x2="575" y2="340" stroke="#FFD700" stroke-width="1.5" opacity="0.5"/>
+<line x1="340" y1="105" x2="105" y2="340" stroke="#FFD700" stroke-width="1" opacity="0.35"/>
+<line x1="340" y1="105" x2="575" y2="340" stroke="#FFD700" stroke-width="1" opacity="0.35"/>
+<line x1="105" y1="340" x2="340" y2="575" stroke="#FFD700" stroke-width="1" opacity="0.35"/>
+<line x1="575" y1="340" x2="340" y2="575" stroke="#FFD700" stroke-width="1" opacity="0.35"/>
+<polygon points="340,105 575,340 340,575 105,340" fill="none" stroke="#FFD700" stroke-width="3"/>
+<polygon points="340,110 420,250 340,230 260,250" fill="white" opacity="0.25"/>
+
+<text x="340" y="362" text-anchor="middle" class="dwall-text">$DWALL</text>
+</svg>
