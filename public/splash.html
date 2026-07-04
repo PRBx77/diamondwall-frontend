@@ -272,5 +272,36 @@ document.addEventListener('DOMContentLoaded', async function() {
 })();
 </script>
 
+<!-- DW-MAINNET-BANNER -->
+<style>
+@keyframes dwBlink { 0%,100% { opacity:1; box-shadow:0 0 30px rgba(16,185,129,0.85), 0 0 60px rgba(16,185,129,0.55); } 50% { opacity:0.75; box-shadow:0 0 15px rgba(16,185,129,0.45); } }
+@keyframes dwPulse { 0%,100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.03); } }
+#dw-mainnet-banner { animation: dwBlink 1.4s ease-in-out infinite, dwPulse 2.8s ease-in-out infinite; }
+#dw-mainnet-banner .dot { display:inline-block; width:12px; height:12px; background:#fff; border-radius:50%; margin-right:10px; box-shadow:0 0 12px #fff; animation: dwBlink 0.8s ease-in-out infinite; vertical-align:middle; }
+</style>
+<script>
+(function(){
+  function buildBanner(){
+    if (document.getElementById('dw-mainnet-banner')) return;
+    const b = document.createElement('div');
+    b.id = 'dw-mainnet-banner';
+    b.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:999998;padding:12px 28px;background:linear-gradient(90deg,#10b981,#059669);color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-weight:800;font-size:15px;letter-spacing:1px;border-radius:12px;border:2px solid rgba(255,255,255,0.35);text-shadow:0 1px 3px rgba(0,0,0,0.4);white-space:nowrap;';
+    b.innerHTML = '<span class="dot"></span>BSC MAINNET ACTIVE &mdash; SYSTEM 100% OPERATIONAL';
+    document.body.appendChild(b);
+
+    if (window.matchMedia && window.matchMedia('(max-width: 600px)').matches) {
+      b.style.fontSize = '11px';
+      b.style.padding = '8px 14px';
+      b.style.letterSpacing = '0.5px';
+    }
+  }
+  window.addEventListener('load', buildBanner);
+  setTimeout(buildBanner, 800);
+  setTimeout(buildBanner, 2000);
+  setTimeout(buildBanner, 4000);
+  setInterval(buildBanner, 3000);
+})();
+</script>
+
 </body>
 </html>

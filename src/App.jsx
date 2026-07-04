@@ -108,13 +108,6 @@ function AppContent() {
           )}
         </div>
       </nav>
-      <div style={{
-        background:'#f59e0b', color:'#000', textAlign:'center',
-        padding:'0.6rem 1rem', fontWeight:600, fontSize:'0.9rem',
-        position:'relative', zIndex:10
-      }}>
-        ⚠️ {t("testnet_banner")}
-      </div>
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home account={account} />} />
