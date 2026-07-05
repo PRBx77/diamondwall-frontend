@@ -40,7 +40,7 @@ export default function Airdrop({ account, signer, onUpdate }) {
   };
 
   const buildTweetText = () => {
-    const text = `🚀 Just joined the @diamondwallcoin airdrop! Claim 100 $DWALL free on BSC → diamondwall.vercel.app/airdrop\n\n#DWALL #DeFi #BSC #Airdrop\n\nwallet: ${account}`;
+    const text = `🚀 Just joined the @diamondwallcoin airdrop! Claim 100 $DWALL free on BSC → diamondwallcoin.vercel.app/airdrop\n\n#DWALL #DeFi #BSC #Airdrop\n\nwallet: ${account}`;
     return encodeURIComponent(text);
   };
 
