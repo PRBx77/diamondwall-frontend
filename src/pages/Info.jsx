@@ -307,6 +307,13 @@ export default function Info() {
             </a>
           </div>
         {/* Nota */}
+
+        <div className="card" style={{marginBottom:'1.5rem'}}>
+          <div className="card-title">📧 {lang==='es'?'Contacto Oficial':'Official Contact'}</div>
+          <div style={{marginTop:'0.8rem'}}>
+            <a href="mailto:diamondwallcoin@proton.me" style={{color:'#f59e0b',textDecoration:'none',fontWeight:600}}>diamondwallcoin@proton.me</a>
+          </div>
+        </div>
         <div className="card">
           <div className="card-title">⚠️ {t("info_audit_note")}</div>
           <p className="info-text">{t("info_audit_note_desc")}</p>
