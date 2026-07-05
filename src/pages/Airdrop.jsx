@@ -15,7 +15,7 @@ export default function Airdrop({ account, signer, onUpdate }) {
   const [tweetVerified, setTweetVerified] = useState(false);
   const [verifying, setVerifying] = useState(false);
 
-  useEffect(() => { if (account) loadStats(); }, [account]);
+  useEffect(() => { loadStats(); }, [account]);
 
   const loadStats = async () => {
     try {
