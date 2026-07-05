@@ -15,7 +15,7 @@ import "./App.css";
 
 function AppContent() {
   const { t, toggleLang } = useLang();
-  const [splash, setSplash] = useState(true);
+  const [splash, setSplash] = useState(window.location.pathname === '/' || window.location.pathname === '');
   const [account, setAccount] = useState(null);
   const [signer, setSigner] = useState(null);
   const [balance, setBalance] = useState("0");
