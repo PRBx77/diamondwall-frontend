@@ -313,6 +313,12 @@ export default function Info() {
           <div style={{marginTop:'0.8rem'}}>
             <a href="mailto:diamondwallcoin@proton.me" style={{color:'#f59e0b',textDecoration:'none',fontWeight:600}}>diamondwallcoin@proton.me</a>
           </div>
+          <div style={{marginTop:'0.8rem'}}>
+            <strong style={{color:'#fff'}}>{lang==='es'?'Fundador y Desarrollador Principal:':'Founder & Lead Developer:'}</strong> PRB Ramos Benlloch
+          </div>
+          <div style={{marginTop:'0.4rem'}}>
+            <a href="https://www.linkedin.com/in/prb-ramos-benlloch-8a8506420" target="_blank" rel="noopener noreferrer" style={{color:'#f59e0b',textDecoration:'none',fontWeight:600}}>LinkedIn Profile ↗</a>
+          </div>
         </div>
         <div className="card">
           <div className="card-title">⚠️ {t("info_audit_note")}</div>
