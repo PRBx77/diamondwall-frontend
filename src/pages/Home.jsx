@@ -29,7 +29,7 @@ export default function Home({ account }) {
   if (loading) return <div className="loading">{t("loading")}</div>;
 
   return (
-    <div className="home-page">
+    <div className="home-page" style={{backgroundImage:'url(/DWALL-Fondo-1080.png)',backgroundSize:'cover',backgroundRepeat:'repeat',backgroundPosition:'center',minHeight:'100vh'}}>
       <div style={{
         position:'relative',
         width:'100%',
