@@ -16,7 +16,7 @@ export default function SplashScreen({ onEnter }) {
       position: "fixed",
       inset: 0,
       zIndex: 9999,
-      background: "#08020c"
+      background: "#08020c url(/DWALL-Fondo-1080.png) repeat center", backgroundSize: "500px auto"
     }}>
       <iframe
         ref={iframeRef}
