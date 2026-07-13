@@ -322,6 +322,9 @@ export default function Info() {
           <div style={{marginTop:'1rem'}} dangerouslySetInnerHTML={{__html:'<div class="badge-base LI-profile-badge" data-locale="es_ES" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="prb-r-b-8a8506420" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://es.linkedin.com/in/prb-r-b-8a8506420/es?trk=profile-badge">PRB RAMOS BENLLOCH</a></div><script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"><\/script>'}}></div>
           <div style={{display:'none'}}>
           </div>
+          <div style={{marginTop:'1rem'}} dangerouslySetInnerHTML={{__html:'<div class="badge-base LI-profile-badge" data-locale="es_ES" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="prb-r-b-8a8506420" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://es.linkedin.com/in/prb-r-b-8a8506420/es?trk=profile-badge">PRB RAMOS BENLLOCH</a></div><script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"><\/script>'}}></div>
+          <div style={{display:'none'}}>
+          </div>
         </div>
         <div className="card">
           <div className="card-title">⚠️ {t("info_audit_note")}</div>

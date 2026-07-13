@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import Info from "./pages/Info";
 import Pools from "./pages/Pools";
 import Calculator from "./pages/Calculator";
+import Roadmap from "./pages/Roadmap";
 import SplashScreen from "./SplashScreen";
 import "./App.css";
 
@@ -94,6 +95,7 @@ function AppContent() {
           <NavLink to="/pools">Pools</NavLink>
           <NavLink to="/info">{t("nav_info")}</NavLink>
           <NavLink to="/calculator">Calculator</NavLink>
+          <NavLink to="/roadmap">Roadmap</NavLink>
           {isOwner && <NavLink to="/admin">{t("nav_admin")}</NavLink>}
           <button onClick={toggleLang} className="lang-btn">{t("lang_switch")}</button>
         </div>
@@ -119,6 +121,7 @@ function AppContent() {
           <Route path="/pools" element={<Pools account={account} signer={signer} />} />
           <Route path="/info" element={<Info />} />
             <Route path="/calculator" element={<Calculator />} />
+            <Route path="/roadmap" element={<Roadmap />} />
           {isOwner && <Route path="/admin" element={<Admin account={account} signer={signer} />} />}
         </Routes>
       </main>
