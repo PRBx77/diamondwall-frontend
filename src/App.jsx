@@ -10,6 +10,7 @@ import Airdrop from "./pages/Airdrop";
 import Admin from "./pages/Admin";
 import Info from "./pages/Info";
 import Pools from "./pages/Pools";
+import Calculator from "./pages/Calculator";
 import SplashScreen from "./SplashScreen";
 import "./App.css";
 
@@ -116,6 +117,7 @@ function AppContent() {
           <Route path="/staking" element={<Staking account={account} signer={signer} onUpdate={() => loadBalances(account)} />} />
           <Route path="/pools" element={<Pools account={account} signer={signer} />} />
           <Route path="/info" element={<Info />} />
+            <Route path="/calculator" element={<Calculator />} />
           {isOwner && <Route path="/admin" element={<Admin account={account} signer={signer} />} />}
         </Routes>
       </main>
