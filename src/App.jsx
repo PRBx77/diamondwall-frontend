@@ -93,6 +93,7 @@ function AppContent() {
           <NavLink to="/staking">{t("nav_staking")}</NavLink>
           <NavLink to="/pools">Pools</NavLink>
           <NavLink to="/info">{t("nav_info")}</NavLink>
+          <NavLink to="/calculator">Calculator</NavLink>
           {isOwner && <NavLink to="/admin">{t("nav_admin")}</NavLink>}
           <button onClick={toggleLang} className="lang-btn">{t("lang_switch")}</button>
         </div>
