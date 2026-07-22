@@ -294,7 +294,7 @@ export default function DiamondChess() {
         {!account ? (
           <button onClick={connect} style={{background:'#fbbf24',color:'#000',border:'none',padding:'14px 32px',borderRadius:'10px',fontWeight:700,cursor:'pointer',fontSize:'16px'}}>Connect Wallet</button>
         ) : (
-          <div style={{display:'inline-block',background:'rgba(74,222,128,0.15)',border:'1px solid #4ade80',padding:'8px 16px',borderRadius:'10px',color:'#4ade80',fontSize:'13px',fontWeight:600}}>
+          <div style={{display:'inline-block',background:'#4ade80',border:'1px solid #4ade80',padding:'8px 16px',borderRadius:'10px',color:'#000',fontSize:'13px',fontWeight:600,background:'#4ade80'}}>
             ✓ Connected: {account.slice(0,6)}...{account.slice(-4)}
           </div>
         )}
