@@ -271,7 +271,7 @@ export default function DiamondChess() {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(CHESS_CONTRACT, CHESS_ABI, signer);
-      const tx = await contract.claimReward(level, data.nonce, data.signature);
+      const tx = await contract.claimReward(level, BigInt(data.nonce), data.signature);
       setMessage("Transaction sent: " + tx.hash);
       await tx.wait();
       setMessage(`Reward claimed! +${LEVELS[level].reward} DWALL`);
