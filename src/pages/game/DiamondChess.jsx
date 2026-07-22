@@ -198,6 +198,18 @@ export default function DiamondChess() {
         setMoveCount(m => m + 1);
         setSelected(null);
         setValidMoves([]);
+        if (countPieces(nb, "black") === 0) {
+          setGameStatus("won");
+          setMessage("Victory! You beat DIAMOND.");
+          return;
+        }
+        const aiMoves = getAllMoves(nb, "black");
+        if (aiMoves.length === 0) {
+          setGameStatus("won");
+          setMessage("Victory! DIAMOND has no moves left.");
+          return;
+        }
+        setTurn("black");
         setTimeout(() => aiTurn(nb), 500);
         return;
       }
