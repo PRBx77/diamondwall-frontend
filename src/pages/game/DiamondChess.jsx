@@ -290,11 +290,15 @@ export default function DiamondChess() {
         <p style={{color:'#fbbf24',fontSize:'14px',marginTop:'8px'}}>Pool: {Number(poolBal).toLocaleString()} DWALL</p>
       </div>
 
-      {!account && (
-        <div style={{textAlign:'center',marginBottom:'2rem'}}>
+      <div style={{textAlign:'center',marginBottom:'2rem'}}>
+        {!account ? (
           <button onClick={connect} style={{background:'#fbbf24',color:'#000',border:'none',padding:'14px 32px',borderRadius:'10px',fontWeight:700,cursor:'pointer',fontSize:'16px'}}>Connect Wallet</button>
-        </div>
-      )}
+        ) : (
+          <div style={{display:'inline-block',background:'rgba(74,222,128,0.15)',border:'1px solid #4ade80',padding:'8px 16px',borderRadius:'10px',color:'#4ade80',fontSize:'13px',fontWeight:600}}>
+            ✓ Connected: {account.slice(0,6)}...{account.slice(-4)}
+          </div>
+        )}
+      </div>
 
       <div style={{display:'flex',gap:'10px',justifyContent:'center',marginBottom:'1.5rem',flexWrap:'wrap'}}>
         {LEVELS.map(l => (
