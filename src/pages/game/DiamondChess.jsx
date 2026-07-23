@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import { getContracts } from "../../utils/web3";
 
-const CHESS_CONTRACT = "0x3b3933432baC6E98F2DcCF5e372569644703Fe05";
+const AIRDROP_CONTRACT = "0xe18D2605bb2AEf257173AA0CcD60Bec036579F74";
 const CHESS_ABI = [
   "function claimReward(uint8 level, uint256 nonce, bytes signature) external",
   "function getPlayerStatus(address player) view returns (bool[5])",
@@ -152,7 +153,7 @@ export default function DiamondChess() {
   const [moveCount, setMoveCount] = useState(0);
   const [gameStatus, setGameStatus] = useState("playing");
   const [account, setAccount] = useState(null);
-  const [claimed, setClaimed] = useState([false, false, false, false, false]);
+  const [alreadyClaimedAirdrop, setAlreadyClaimedAirdrop] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [message, setMessage] = useState("");
   const [poolBal, setPoolBal] = useState("0");
@@ -168,11 +169,12 @@ export default function DiamondChess() {
   const loadStatus = async (addr) => {
     try {
       const provider = new ethers.BrowserProvider(window.ethereum);
-      const contract = new ethers.Contract(CHESS_CONTRACT, CHESS_ABI, provider);
-      const status = await contract.getPlayerStatus(addr);
-      setClaimed(status);
-      const bal = await contract.poolBalance();
-      setPoolBal(ethers.formatUnits(bal, 18));
+      const signer = await provider.getSigner();
+      const c = await getContracts(signer);
+      const info = await c.airdrop.getUserAirdropInfo(addr);
+      setAlreadyClaimedAirdrop(info.hasClaimed);
+      const stats = await c.airdrop.getPublicClaimStats();
+      setPoolBal(stats.remaining.toString());
     } catch (e) { console.error(e); }
   };
 
@@ -253,28 +255,16 @@ export default function DiamondChess() {
   };
 
   const claimReward = async () => {
-    if (!account || gameStatus !== "won" || claimed[level]) return;
+    if (!account || gameStatus !== "won" || alreadyClaimedAirdrop) return;
     setClaiming(true);
     try {
-      const res = await fetch("/api/sign-chess-win", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          player: account,
-          level,
-          gameState: { won: true, moves: moveCount }
-        })
-      });
-      const data = await res.json();
-      if (!data.signature) throw new Error(data.error || "Sign failed");
-
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-      const contract = new ethers.Contract(CHESS_CONTRACT, CHESS_ABI, signer);
-      const tx = await contract.claimReward(level, BigInt(data.nonce), data.signature, { gasLimit: 500000 });
+      const c = await getContracts(signer);
+      const tx = await c.airdrop.claimAirdrop();
       setMessage("Transaction sent: " + tx.hash);
       await tx.wait();
-      setMessage(`Reward claimed! +${LEVELS[level].reward} DWALL`);
+      setMessage("Reward claimed! +100 DWALL");
       loadStatus(account);
     } catch (e) {
       setMessage("Claim error: " + (e.reason || e.message));
@@ -305,7 +295,7 @@ export default function DiamondChess() {
           <button key={l.id} onClick={() => startGame(l.id)}
             style={{background: level === l.id ? l.color : 'rgba(0,0,0,0.4)', color: level === l.id ? '#000' : '#fff', border:`2px solid ${l.color}`, padding:'10px 20px', borderRadius:'8px', cursor:'pointer', fontWeight:600, position:'relative'}}>
             {l.name} · {l.reward} DWALL
-            {claimed[l.id] && <span style={{position:'absolute',top:'-8px',right:'-8px',background:'#4ade80',color:'#000',borderRadius:'50%',width:'20px',height:'20px',fontSize:'12px',display:'flex',alignItems:'center',justifyContent:'center'}}>✓</span>}
+            {alreadyClaimedAirdrop && <span style={{position:'absolute',top:'-8px',right:'-8px',background:'#4ade80',color:'#000',borderRadius:'50%',width:'20px',height:'20px',fontSize:'12px',display:'flex',alignItems:'center',justifyContent:'center'}}>✓</span>}
           </button>
         ))}
       </div>
@@ -332,10 +322,10 @@ export default function DiamondChess() {
         <p style={{fontSize:'14px',color:'rgba(255,255,255,0.7)'}}>Turn: <b style={{color: turn === 'white' ? '#fbbf24' : '#22d3ee'}}>{turn === 'white' ? 'YOU' : 'DIAMOND'}</b> · Moves: {moveCount}</p>
         {message && <p style={{color: gameStatus === 'won' ? '#4ade80' : '#f87171',fontWeight:600,marginTop:'10px'}}>{message}</p>}
 
-        {gameStatus === 'won' && !claimed[level] && account && (
+        {gameStatus === 'won' && !alreadyClaimedAirdrop && account && (
           <button onClick={claimReward} disabled={claiming}
             style={{background:'#4ade80',color:'#000',border:'none',padding:'14px 32px',borderRadius:'10px',fontWeight:700,cursor:'pointer',fontSize:'16px',marginTop:'15px'}}>
-            {claiming ? "Claiming..." : `Claim ${LEVELS[level].reward} DWALL`}
+            {claiming ? "Claiming..." : "Claim 100 DWALL"}
           </button>
         )}
 
