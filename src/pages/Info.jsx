@@ -311,7 +311,7 @@ export default function Info() {
         <div className="card" style={{marginBottom:'1.5rem'}}>
           <div className="card-title">📧 {lang==='es'?'Contacto Oficial':'Official Contact'}</div>
           <div style={{marginTop:'0.8rem'}}>
-            <a href="mailto:diamondwallcoin@proton.me" style={{color:'#f59e0b',textDecoration:'none',fontWeight:600}}>diamondwallcoin@proton.me</a>
+            <a href="mailto:contact@diamondwallcoin.com" style={{color:'#f59e0b',textDecoration:'none',fontWeight:600}}>contact@diamondwallcoin.com</a>
           </div>
           <div style={{marginTop:'0.8rem'}}>
             <strong style={{color:'#fff'}}>{lang==='es'?'Fundador y Desarrollador Principal:':'Founder & Lead Developer:'}</strong> PRB Ramos Benlloch
