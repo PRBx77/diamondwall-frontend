@@ -14,6 +14,7 @@ import Calculator from "./pages/Calculator";
 import Roadmap from "./pages/Roadmap";
 import DiamondChess from "./pages/game/DiamondChess";
 import Quiz from "./pages/game/Quiz";
+import Snake from "./pages/game/Snake";
 import SplashScreen from "./SplashScreen";
 import "./App.css";
 
@@ -100,6 +101,7 @@ function AppContent() {
           <NavLink to="/roadmap">Roadmap</NavLink>
           <NavLink to="/chess">Chess</NavLink>
           <NavLink to="/quiz">Quiz</NavLink>
+          <NavLink to="/snake">Snake</NavLink>
           {isOwner && <NavLink to="/admin">{t("nav_admin")}</NavLink>}
           <button onClick={toggleLang} className="lang-btn">{t("lang_switch")}</button>
         </div>
@@ -128,6 +130,7 @@ function AppContent() {
             <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/chess" element={<DiamondChess />} />
             <Route path="/quiz" element={<Quiz />} />
+            <Route path="/snake" element={<Snake />} />
           {isOwner && <Route path="/admin" element={<Admin account={account} signer={signer} />} />}
         </Routes>
       </main>
