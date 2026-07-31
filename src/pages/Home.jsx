@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getProvider, getContracts, formatTokens, formatETH } from "../utils/web3";
+import CertikBadge from "../components/CertikBadge";
 import { useLang } from "../i18n/LanguageContext";
 
 export default function Home({ account }) {
@@ -68,6 +69,7 @@ export default function Home({ account }) {
           <p className="hero-desc-responsive" style={{color:'rgba(255,255,255,0.85)',textShadow:'0 1px 8px rgba(0,0,0,0.8)',maxWidth:'600px',margin:'0 auto'}}>{t("home_description")}</p>
         </div>
       </div>
+      <div style={{maxWidth:"900px",margin:"2rem auto",padding:"0 1rem"}}><CertikBadge /></div>
       <div className="card how-it-works">
         <div className="card-title">{t("home_how")}</div>
         <div className="steps-grid">

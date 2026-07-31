@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CONTRACTS } from "../utils/contracts";
 import { useLang } from "../i18n/LanguageContext";
+import CertikBadge from "../components/CertikBadge";
 
 const WP_ES = [
   { title: "1. Introducción", content: "DiamondWall es una plataforma DeFi automatizada en Binance Smart Chain (BSC) que genera yields reales para sus holders. A diferencia de proyectos que prometen rendimientos insostenibles, $DWALL integra directamente con Venus Protocol para generar rendimientos verificables on-chain.\n\nEl objetivo es simple: que cada BNB invertido en $DWALL trabaje automáticamente generando rendimientos pasivos sin intervención humana." },
@@ -277,6 +278,28 @@ export default function Info() {
             <div className="stat-card"><div className="stat-value">0</div><div className="stat-label">Delegatecall</div></div>
             <div className="stat-card"><div className="stat-value">0</div><div className="stat-label">Mint()</div></div>
           </div>
+        </div>
+        {/* CertiK Skynet */}
+        <div className="card" style={{marginBottom:'1.5rem',background:'linear-gradient(135deg, rgba(6,78,59,0.35), rgba(19,78,74,0.25))',border:'1px solid rgba(52,211,153,0.45)'}}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'1rem',marginBottom:'1rem'}}>
+            <div>
+              <div style={{color:'#6ee7b7',fontSize:'0.75rem',textTransform:'uppercase',letterSpacing:'0.1em'}}>{lang==='es'?'Auditoría independiente':'Independent Audit'}</div>
+              <div style={{color:'#fff',fontSize:'1.5rem',fontWeight:800}}>🛡️ CertiK Skynet</div>
+            </div>
+            <div style={{textAlign:'right'}}>
+              <div style={{fontSize:'2.5rem',fontWeight:900,color:'#fff',lineHeight:1}}>86.27<span style={{color:'#6ee7b7',fontSize:'1rem'}}>/100</span></div>
+              <div style={{fontSize:'0.75rem',color:'#a7f3d0'}}>Token Scan Score</div>
+            </div>
+          </div>
+          <div className="stats-grid" style={{marginBottom:'1rem'}}>
+            <div className="stat-card"><div className="stat-value" style={{color:'#6ee7b7'}}>0</div><div className="stat-label">{lang==='es'?'Alertas Críticas':'Critical Alerts'}</div></div>
+            <div className="stat-card"><div className="stat-value" style={{color:'#fbbf24'}}>6</div><div className="stat-label">Attentions</div></div>
+            <div className="stat-card"><div className="stat-value" style={{color:'#6ee7b7'}}>17</div><div className="stat-label">{lang==='es'?'Checks Superados':'Checks Passed'}</div></div>
+          </div>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(220px, 1fr))',gap:'0.5rem',marginBottom:'1rem'}}>
+            {(lang==='es'?['Sin función mint','Sin honeypot','Sin owner oculto','Sin self-destruct','No es proxy','0% Buy/Sell Tax','Código open source','Sin blacklist','Sin external calls','Sin backdoor ownership','Sin transfer cooldown','Sin restricción de retiro']:['Not mintable','No honeypot','No hidden owner','No self-destruct','Not a proxy','0% Buy/Sell Tax','Fully open source','No blacklist','No external calls','No regain ownership','No transfer cooldown','No withdrawal restriction']).map((c,i)=>(<div key={i} style={{fontSize:'0.85rem',color:'#a7f3d0'}}><span style={{color:'#6ee7b7',marginRight:'0.4rem'}}>✓</span>{c}</div>))}
+          </div>
+          <a href="https://skynet.certik.com/tools/token-scan/bsc/0xd8Dbf478436A5770A274658ab424c66139142839" target="_blank" rel="noopener noreferrer" style={{display:'inline-block',background:'#10b981',color:'#000',fontWeight:700,padding:'0.7rem 1.3rem',borderRadius:'0.6rem',textDecoration:'none'}}>{lang==='es'?'Ver informe completo en CertiK →':'View full report on CertiK →'}</a>
         </div>
 
         {/* Descargas */}
