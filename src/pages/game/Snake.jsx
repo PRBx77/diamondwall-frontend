@@ -58,7 +58,7 @@ export default function Snake() {
     ctx.fillStyle = "#0a0f1e";
     ctx.fillRect(0, 0, CANVAS, CANVAS);
 
-    ctx.strokeStyle = "rgba(34,211,238,0.08)";
+    ctx.strokeStyle = "rgba(74,222,128,0.18)";
     for (let i = 0; i <= GRID; i++) {
       ctx.beginPath();
       ctx.moveTo(i * CELL, 0);
@@ -83,7 +83,7 @@ export default function Snake() {
     ctx.fill();
 
     gameRef.current.snake.forEach((seg, i) => {
-      ctx.fillStyle = i === 0 ? "#22d3ee" : `rgba(34,211,238,${Math.max(0.4, 1 - i * 0.05)})`;
+      ctx.fillStyle = i === 0 ? "#00ff41" : `rgba(0,255,65,${Math.max(0.4, 1 - i * 0.05)})`;
       ctx.fillRect(seg.x * CELL + 1, seg.y * CELL + 1, CELL - 2, CELL - 2);
     });
   };
