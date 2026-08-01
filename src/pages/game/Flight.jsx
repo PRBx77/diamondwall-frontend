@@ -43,6 +43,9 @@ const T = {
   claiming: { es: "Reclamando...", en: "Claiming..." },
   success: { es: "¡Reclamado con éxito!", en: "Successfully claimed!" },
   extraLife: { es: "¡+1 VIDA EXTRA!", en: "+1 EXTRA LIFE!" },
+  pause: { es: "PAUSA", en: "PAUSE" },
+  resume: { es: "REANUDAR", en: "RESUME" },
+  changeWeapon: { es: "Cambiar arma", en: "Change weapon" },
   weaponUnlocked: { es: "¡ARMA DESBLOQUEADA!", en: "WEAPON UNLOCKED!" },
   instructions: {
     es: "Joystick: pilotar. Boton rojo: disparar. WASD/flechas + espacio en PC",
@@ -65,6 +68,7 @@ export default function Flight() {
   const [selectedWeapon, setSelectedWeapon] = useState(0);
   const [walletAddr, setWalletAddr] = useState("");
   const [notification, setNotification] = useState("");
+  const [paused, setPaused] = useState(false);
   const [unlockedWeapons, setUnlockedWeapons] = useState(() => {
     try {
       const saved = localStorage.getItem("dwall_flight_weapons");
@@ -158,6 +162,26 @@ export default function Flight() {
     } finally {
       setClaiming(false);
     }
+  };
+
+  const togglePause = () => {
+    if (!gameRef.current) return;
+    const newPaused = !gameRef.current.paused;
+    gameRef.current.paused = newPaused;
+    setPaused(newPaused);
+    if (newPaused && audioRef.current.ambient) {
+      audioRef.current.ambient.pause();
+    } else if (!newPaused && soundOn && audioRef.current.ambient) {
+      audioRef.current.ambient.play().catch(() => {});
+    }
+  };
+
+  const changeWeaponInGame = (weaponId) => {
+    if (!gameRef.current) return;
+    const w = WEAPONS[weaponId];
+    gameRef.current.weapon = w;
+    setSelectedWeapon(weaponId);
+    setHud(prev => ({ ...prev, weapon: w.name }));
   };
 
   const startGame = () => {
@@ -258,7 +282,7 @@ export default function Flight() {
       shipVel: { x: 0, y: 0 },
       joyX: 0, joyY: 0,
       firing: false, fireCooldown: 0,
-      running: true, hitFlash: 0
+      running: true, hitFlash: 0, paused: false
     };
     gameRef.current = state;
 
@@ -346,6 +370,7 @@ export default function Flight() {
     const animate = () => {
       if (!state.running) return;
       animId = requestAnimationFrame(animate);
+      if (state.paused) return;
       const dt = clock.getDelta();
       const cfg = LEVEL_CONFIG[state.level - 1];
 
@@ -617,6 +642,42 @@ export default function Flight() {
 
       {gameState === "playing" && (
         <>
+          {hud.level <= 2 && (
+            <button onClick={togglePause} style={styles.pauseBtn}>
+              {paused ? "▶" : "⏸"}
+            </button>
+          )}
+          {paused && (
+            <div style={styles.pauseOverlay}>
+              <h2 style={{ color: "#22d3ee", fontSize: 28 }}>{t("pause")}</h2>
+              <p style={{ color: "#22d3ee", fontSize: 14, marginTop: 12 }}>{t("changeWeapon")}</p>
+              <div style={styles.weaponsGrid}>
+                {WEAPONS.map(w => {
+                  const isUnlocked = unlockedWeapons.includes(w.id);
+                  const isSelected = selectedWeapon === w.id;
+                  return (
+                    <button
+                      key={w.id}
+                      onClick={() => isUnlocked && changeWeaponInGame(w.id)}
+                      disabled={!isUnlocked}
+                      style={{
+                        ...styles.weaponBtn,
+                        ...(isSelected && isUnlocked ? styles.weaponBtnActive : {}),
+                        opacity: isUnlocked ? 1 : 0.4,
+                        cursor: isUnlocked ? "pointer" : "not-allowed"
+                      }}
+                    >
+                      <div style={{ fontSize: 13, fontWeight: "bold" }}>{w.name}</div>
+                      <div style={{ fontSize: 10, marginTop: 2 }}>
+                        {isUnlocked ? "✓" : `🔒 ${t("unlockAt")} ${w.unlockLevel}`}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+              <button onClick={togglePause} style={styles.btnPrimary}>{t("resume")}</button>
+            </div>
+          )}
           <div style={styles.hud}>
             <span>{t("level")}: {hud.level}/{TOTAL_LEVELS}</span>
             <span>{t("score")}: {hud.score} / {hud.targetScore}</span>
@@ -686,6 +747,19 @@ const styles = {
     position: "relative"
   },
   title: { fontSize: 32, color: "#22d3ee", textShadow: "0 0 20px #22d3ee", margin: "8px 0" },
+  pauseBtn: {
+    position: "absolute", top: 12, left: 12, zIndex: 50,
+    background: "rgba(34,211,238,0.15)", border: "2px solid #22d3ee",
+    color: "#22d3ee", borderRadius: "50%", width: 48, height: 48,
+    cursor: "pointer", fontSize: 22, fontWeight: "bold"
+  },
+  pauseOverlay: {
+    position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
+    background: "rgba(0,0,0,0.9)", zIndex: 200,
+    display: "flex", flexDirection: "column",
+    alignItems: "center", justifyContent: "center",
+    padding: 20, gap: 16
+  },
   soundBtn: {
     position: "absolute", top: 12, right: 12,
     background: "transparent", border: "1px solid #22d3ee",
