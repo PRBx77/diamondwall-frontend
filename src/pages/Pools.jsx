@@ -14,10 +14,10 @@ export default function Pools({ account, signer }) {
 
   return (
     <div style={{maxWidth:'900px',margin:'0 auto',padding:'1rem'}}>
-      <h1 style={{fontSize:'2rem',marginBottom:'0.5rem'}}>
+      <h1 style={{fontSize:'2rem',marginBottom:'0.5rem',color:'#000',fontWeight:800,textShadow:'0 0 8px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.4)'}}>
         💎 {lang==='es'?'Pools de Liquidez':'Liquidity Pools'}
       </h1>
-      <p style={{color:'#94a3b8',marginBottom:'1.5rem'}}>
+      <p style={{color:'#111',fontWeight:600,marginBottom:'1.5rem',textShadow:'0 0 6px rgba(255,255,255,0.6)'}}>
         {lang==='es'
           ?'Compra $DWALL directamente en cualquier DEX. Los precios se actualizan en tiempo real según las reservas de cada pool.'
           :'Buy $DWALL directly on any DEX. Prices update in real-time based on each pool reserves.'}
