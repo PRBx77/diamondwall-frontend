@@ -13,7 +13,7 @@ export default function Pools({ account, signer }) {
   const [buyAmount, setBuyAmount] = useState("");
 
   return (
-    <div style={{maxWidth:'1200px',margin:'0 auto',padding:'0.6rem'}}>
+    <div style={{maxWidth:'1200px',margin:'0 auto',padding:'0.6rem 0.3rem'}}>
       <h1 style={{fontSize:'1.4rem',marginBottom:'0.3rem',color:'#000',fontWeight:800,textShadow:'0 0 8px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.4)'}}>
         💎 {lang==='es'?'Pools de Liquidez':'Liquidity Pools'}
       </h1>
