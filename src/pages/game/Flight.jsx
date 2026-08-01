@@ -57,7 +57,7 @@ export default function Flight() {
   const gameRef = useRef(null);
   const audioRef = useRef({ correct: null, wrong: null, ambient: null });
   const [gameState, setGameState] = useState("menu");
-  const [hud, setHud] = useState({ level: 1, score: 0, hp: 3, kills: 0, target: 8, weapon: "Basic Laser" });
+  const [hud, setHud] = useState({ level: 1, score: 0, hp: 3, kills: 0, target: 8, weapon: "Basic Laser", targetScore: 800 });
   const [claimStatus, setClaimStatus] = useState("");
   const [claiming, setClaiming] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
@@ -168,7 +168,8 @@ export default function Flight() {
       hp: 3,
       kills: 0,
       target: LEVEL_CONFIG[selectedLevel - 1].enemies,
-      weapon: WEAPONS[selectedWeapon].name
+      weapon: WEAPONS[selectedWeapon].name,
+      targetScore: 100 * selectedLevel * LEVEL_CONFIG[selectedLevel - 1].enemies
     });
     setClaimStatus("");
     if (soundOn && audioRef.current.ambient) {
@@ -418,16 +419,20 @@ export default function Flight() {
         }
 
         if (e.position.z > 15) {
-          state.hp--;
-          state.hitFlash = 10;
-          playSound("wrong");
+          const dxE = Math.abs(e.position.x - shipGroup.position.x);
+          const dyE = Math.abs(e.position.y - shipGroup.position.y);
+          if (dxE < 3 && dyE < 3) {
+            state.hp--;
+            state.hitFlash = 10;
+            playSound("wrong");
+            if (state.hp <= 0) {
+              state.running = false;
+              if (audioRef.current.ambient) audioRef.current.ambient.pause();
+              setGameState("gameover");
+            }
+          }
           scene.remove(e);
           state.enemies.splice(i, 1);
-          if (state.hp <= 0) {
-            state.running = false;
-            if (audioRef.current.ambient) audioRef.current.ambient.pause();
-            setGameState("gameover");
-          }
           continue;
         }
 
@@ -487,7 +492,8 @@ export default function Flight() {
         setHud({
           level: state.level, score: state.score, hp: state.hp,
           kills: state.kills, target: state.target,
-          weapon: state.weapon.name
+          weapon: state.weapon.name,
+          targetScore: 100 * state.level * state.target
         });
       }
 
@@ -614,7 +620,7 @@ export default function Flight() {
         <>
           <div style={styles.hud}>
             <span>{t("level")}: {hud.level}/{TOTAL_LEVELS}</span>
-            <span>{t("score")}: {hud.score}</span>
+            <span>{t("score")}: {hud.score} / {hud.targetScore}</span>
             <span>{t("hp")}: {"❤".repeat(hud.hp)}</span>
             <span>{t("enemies")}: {hud.kills}/{hud.target}</span>
             <span>{t("weapon")}: {hud.weapon}</span>
