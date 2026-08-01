@@ -29,10 +29,10 @@ export default function Pools({ account, signer }) {
           :'Pools in preparation — will be activated after presale close and BSC Mainnet deployment.'}
       </div>
 
-      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(380px, 1fr))',gap:'1.2rem'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(260px, 1fr))',gap:'0.8rem'}}>
         {POOLS_DATA.map(pool => (
           <div key={pool.id} className="card" style={{border:`1px solid ${pool.color}33`}}>
-            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'1rem'}}>
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'0.6rem'}}>
               <div>
                 <span style={{fontSize:'1.5rem',marginRight:'0.5rem'}}>{pool.icon}</span>
                 <span style={{fontSize:'1.2rem',fontWeight:700,color:pool.color}}>{pool.dex}</span>
@@ -42,12 +42,12 @@ export default function Pools({ account, signer }) {
               </span>
             </div>
 
-            <div className="stats-grid" style={{gridTemplateColumns:'1fr 1fr',marginBottom:'1rem'}}>
-              <div className="stat-card" style={{padding:'0.8rem'}}>
+            <div className="stats-grid" style={{gridTemplateColumns:'1fr 1fr',marginBottom:'0.6rem',gap:'0.4rem'}}>
+              <div className="stat-card" style={{padding:'0.5rem'}}>
                 <div className="stat-value" style={{fontSize:'1.1rem',color:'#f59e0b'}}>--</div>
                 <div className="stat-label" style={{fontSize:'0.75rem'}}>{lang==='es'?'Precio DWALL/BNB':'Price DWALL/BNB'}</div>
               </div>
-              <div className="stat-card" style={{padding:'0.8rem'}}>
+              <div className="stat-card" style={{padding:'0.5rem'}}>
                 <div className="stat-value" style={{fontSize:'1.1rem',color:'#10b981'}}>--</div>
                 <div className="stat-label" style={{fontSize:'0.75rem'}}>{lang==='es'?'Liquidez Total':'Total Liquidity'}</div>
               </div>
