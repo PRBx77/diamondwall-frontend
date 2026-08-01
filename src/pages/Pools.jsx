@@ -13,23 +13,23 @@ export default function Pools({ account, signer }) {
   const [buyAmount, setBuyAmount] = useState("");
 
   return (
-    <div style={{maxWidth:'900px',margin:'0 auto',padding:'1rem'}}>
-      <h1 style={{fontSize:'2rem',marginBottom:'0.5rem',color:'#000',fontWeight:800,textShadow:'0 0 8px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.4)'}}>
+    <div style={{maxWidth:'1200px',margin:'0 auto',padding:'0.6rem'}}>
+      <h1 style={{fontSize:'1.4rem',marginBottom:'0.3rem',color:'#000',fontWeight:800,textShadow:'0 0 8px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.4)'}}>
         💎 {lang==='es'?'Pools de Liquidez':'Liquidity Pools'}
       </h1>
-      <p style={{color:'#111',fontWeight:600,marginBottom:'1.5rem',textShadow:'0 0 6px rgba(255,255,255,0.6)'}}>
+      <p style={{color:'#111',fontWeight:600,marginBottom:'0.6rem',fontSize:'0.85rem',textShadow:'0 0 6px rgba(255,255,255,0.6)'}}>
         {lang==='es'
           ?'Compra $DWALL directamente en cualquier DEX. Los precios se actualizan en tiempo real según las reservas de cada pool.'
           :'Buy $DWALL directly on any DEX. Prices update in real-time based on each pool reserves.'}
       </p>
 
-      <div className="alert alert-info" style={{marginBottom:'1.5rem'}}>
+      <div className="alert alert-info" style={{marginBottom:'0.6rem',padding:'0.5rem 0.8rem',fontSize:'0.85rem'}}>
         ⚠️ {lang==='es'
           ?'Pools en preparación — se activarán tras el cierre de la preventa y deployment en BSC Mainnet.'
           :'Pools in preparation — will be activated after presale close and BSC Mainnet deployment.'}
       </div>
 
-      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(260px, 1fr))',gap:'0.8rem'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))',gap:'0.8rem'}}>
         {POOLS_DATA.map(pool => (
           <div key={pool.id} className="card" style={{border:`1px solid ${pool.color}33`}}>
             <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'0.6rem'}}>
@@ -57,7 +57,7 @@ export default function Pools({ account, signer }) {
               <input
                 type="number"
                 placeholder={lang==='es'?'BNB a invertir':'BNB to invest'}
-                style={{flex:1,padding:'0.6rem',borderRadius:'8px',border:'1px solid #334155',background:'#0f172a',color:'#fff',fontSize:'0.9rem'}}
+                style={{flex:1,padding:'0.4rem',borderRadius:'6px',border:'1px solid #334155',background:'#0f172a',color:'#fff',fontSize:'0.8rem'}}
                 value={buyAmount}
                 onChange={e => setBuyAmount(e.target.value)}
               />
@@ -66,7 +66,7 @@ export default function Pools({ account, signer }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  padding:'0.6rem 1.2rem',
+                  padding:'0.4rem 0.9rem',
                   background:pool.color,
                   color:'#000',
                   borderRadius:'8px',
@@ -83,9 +83,9 @@ export default function Pools({ account, signer }) {
         ))}
       </div>
 
-      <div className="card" style={{marginTop:'1.5rem'}}>
+      <div className="card" style={{marginTop:'0.6rem',padding:'0.7rem'}}>
         <div className="card-title">📊 {lang==='es'?'Capitalización Global':'Global Market Cap'}</div>
-        <div className="stats-grid" style={{gridTemplateColumns:'repeat(auto-fit, minmax(180px, 1fr))'}}>
+        <div className="stats-grid" style={{gridTemplateColumns:'repeat(4, 1fr)',gap:'0.4rem'}}>
           <div className="stat-card">
             <div className="stat-value" style={{color:'#f59e0b'}}>--</div>
             <div className="stat-label">{lang==='es'?'Precio Promedio':'Average Price'}</div>
