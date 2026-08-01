@@ -463,6 +463,13 @@ export default function Quiz() {
     }
   };
 
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth < 500);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 500);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const bgStyle = {
     minHeight: '100vh',
     background: 'linear-gradient(135deg, #0a0f1e 0%, #1a1a3e 50%, #0a0f1e 100%)',
@@ -470,7 +477,7 @@ export default function Quiz() {
     backgroundSize: '500px auto',
     backgroundRepeat: 'repeat',
     backgroundBlendMode: 'overlay',
-    padding: '2rem 1rem',
+    padding: isMobile ? '1rem 0.5rem' : '2rem 1rem',
     color: '#fff'
   };
 
@@ -478,9 +485,9 @@ export default function Quiz() {
     maxWidth: '760px',
     margin: '0 auto',
     background: 'rgba(15, 20, 45, 0.88)',
-    borderRadius: '20px',
+    borderRadius: isMobile ? '14px' : '20px',
     border: '1px solid rgba(251, 191, 36, 0.25)',
-    padding: '2rem',
+    padding: isMobile ? '1.2rem' : '2rem',
     backdropFilter: 'blur(12px)',
     boxShadow: '0 12px 48px rgba(0,0,0,0.6)'
   };

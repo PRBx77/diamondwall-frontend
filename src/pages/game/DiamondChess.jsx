@@ -272,8 +272,16 @@ export default function DiamondChess() {
     setClaiming(false);
   };
 
+  const [boardSize, setBoardSize] = useState(typeof window !== "undefined" && window.innerWidth < 500 ? Math.min(window.innerWidth - 40, 360) : 480);
+  useEffect(() => {
+    const onResize = () => setBoardSize(window.innerWidth < 500 ? Math.min(window.innerWidth - 40, 360) : 480);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  const cellPx = Math.floor(boardSize / 8);
+
   return (
-    <div style={{maxWidth:'900px',margin:'2rem auto',padding:'2rem',color:'#fff'}}>
+    <div style={{maxWidth:'900px',margin:'2rem auto',padding:'2rem 1rem',color:'#fff'}}>
       <div style={{textAlign:'center',marginBottom:'1.5rem'}}>
         <h2 style={{fontSize:'36px',fontWeight:700,margin:0,background:'linear-gradient(135deg,#22d3ee,#a78bfa)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',letterSpacing:'3px'}}>DIAMONDCHESS</h2>
         <p style={{color:'rgba(255,255,255,0.6)',letterSpacing:'4px',textTransform:'uppercase',fontSize:'13px'}}>Beat DIAMOND · Earn $DWALL</p>
@@ -300,16 +308,16 @@ export default function DiamondChess() {
         ))}
       </div>
 
-      <div style={{display:'grid',gridTemplateColumns:'repeat(8,60px)',gap:0,margin:'0 auto',width:'480px',border:'4px solid #fbbf24',borderRadius:'8px',overflow:'hidden'}}>
+      <div style={{display:'grid',gridTemplateColumns:`repeat(8,${cellPx}px)`,gap:0,margin:'0 auto',width:`${boardSize}px`,maxWidth:'100%',border:'4px solid #fbbf24',borderRadius:'8px',overflow:'hidden'}}>
         {board.map((row, r) => row.map((cell, c) => {
           const dark = (r + c) % 2 === 1;
           const isSel = selected && selected[0] === r && selected[1] === c;
           const isMove = validMoves.some(m => m.to[0] === r && m.to[1] === c);
           return (
             <div key={`${r}-${c}`} onClick={() => handleClick(r, c)}
-              style={{width:'60px',height:'60px',background: isSel ? '#fbbf24' : (isMove ? '#4ade8080' : (dark ? '#1a1a2e' : '#3a3a5e')),display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
+              style={{width:`${cellPx}px`,height:`${cellPx}px`,background: isSel ? '#fbbf24' : (isMove ? '#4ade8080' : (dark ? '#1a1a2e' : '#3a3a5e')),display:'flex',alignItems:'center',justifyContent:'center',cursor:'pointer'}}>
               {cell && (
-                <div style={{width:'44px',height:'44px',borderRadius:'50%',background: cell.color === 'white' ? 'radial-gradient(circle at 30% 30%, #ffffff, #cbd5e1)' : 'radial-gradient(circle at 30% 30%, #22d3ee, #0e7490)',border:'2px solid #000',boxShadow:'0 4px 8px rgba(0,0,0,0.6)',display:'flex',alignItems:'center',justifyContent:'center',color: cell.color === 'white' ? '#000' : '#fff',fontWeight:900,fontSize:'20px'}}>
+                <div style={{width:`${Math.floor(cellPx*0.73)}px`,height:`${Math.floor(cellPx*0.73)}px`,borderRadius:'50%',background: cell.color === 'white' ? 'radial-gradient(circle at 30% 30%, #ffffff, #cbd5e1)' : 'radial-gradient(circle at 30% 30%, #22d3ee, #0e7490)',border:'2px solid #000',boxShadow:'0 4px 8px rgba(0,0,0,0.6)',display:'flex',alignItems:'center',justifyContent:'center',color: cell.color === 'white' ? '#000' : '#fff',fontWeight:900,fontSize:'20px'}}>
                   {cell.king ? '♛' : ''}
                 </div>
               )}
