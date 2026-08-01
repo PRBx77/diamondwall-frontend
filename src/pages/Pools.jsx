@@ -13,7 +13,7 @@ export default function Pools({ account, signer }) {
   const [buyAmount, setBuyAmount] = useState("");
 
   return (
-    <div style={{maxWidth:'1200px',margin:'0 auto',padding:'0.6rem 0.3rem'}}>
+    <div style={{maxWidth:'1100px',margin:'0 auto',padding:'0.6rem 0.3rem'}}>
       <h1 style={{fontSize:'1.4rem',marginBottom:'0.3rem',color:'#000',fontWeight:800,textShadow:'0 0 8px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.4)'}}>
         💎 {lang==='es'?'Pools de Liquidez':'Liquidity Pools'}
       </h1>
@@ -83,7 +83,7 @@ export default function Pools({ account, signer }) {
         ))}
       </div>
 
-      <div className="card" style={{marginTop:'0.6rem',padding:'0.7rem'}}>
+      <div className="card pools-mcap-container" style={{marginTop:'0.6rem',padding:'0.7rem'}}>
         <div className="card-title">📊 {lang==='es'?'Capitalización Global':'Global Market Cap'}</div>
         <div className="stats-grid pools-mcap-grid" style={{gridTemplateColumns:'repeat(4, 1fr)',gap:'0.4rem'}}>
           <div className="stat-card">
