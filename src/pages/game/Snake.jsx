@@ -28,7 +28,7 @@ export default function Snake() {
     playing: false
   });
 
-  const [cell, setCell] = useState(typeof window !== "undefined" && window.innerWidth < 500 ? 16 : 22);
+  const [cell, setCell] = useState(typeof window !== "undefined" && window.innerWidth < 500 ? 16 : (window.innerWidth >= 1400 ? 32 : (window.innerWidth >= 1024 ? 28 : 22)));
   const CANVAS = GRID * cell;
   const [difficulty, setDifficulty] = useState(1);
   const [status, setStatus] = useState("idle");
@@ -43,7 +43,7 @@ export default function Snake() {
   useEffect(() => {
     const s = localStorage.getItem("dwall_snake_high");
     if (s) setHighScore(parseInt(s));
-    const onResize = () => setCell(window.innerWidth < 500 ? 16 : 22);
+    const onResize = () => setCell(window.innerWidth < 500 ? 16 : (window.innerWidth >= 1400 ? 32 : (window.innerWidth >= 1024 ? 28 : 22)));
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
