@@ -29,7 +29,7 @@ export default function Pools({ account, signer }) {
           :'Pools in preparation — will be activated after presale close and BSC Mainnet deployment.'}
       </div>
 
-      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))',gap:'0.8rem'}}>
+      <div className="pools-grid" style={{display:'grid',gridTemplateColumns:'repeat(4, 1fr)',gap:'0.5rem'}}>
         {POOLS_DATA.map(pool => (
           <div key={pool.id} className="card" style={{border:`1px solid ${pool.color}33`}}>
             <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'0.6rem'}}>
@@ -85,7 +85,7 @@ export default function Pools({ account, signer }) {
 
       <div className="card" style={{marginTop:'0.6rem',padding:'0.7rem'}}>
         <div className="card-title">📊 {lang==='es'?'Capitalización Global':'Global Market Cap'}</div>
-        <div className="stats-grid" style={{gridTemplateColumns:'repeat(4, 1fr)',gap:'0.4rem'}}>
+        <div className="stats-grid pools-mcap-grid" style={{gridTemplateColumns:'repeat(4, 1fr)',gap:'0.4rem'}}>
           <div className="stat-card">
             <div className="stat-value" style={{color:'#f59e0b'}}>--</div>
             <div className="stat-label">{lang==='es'?'Precio Promedio':'Average Price'}</div>
