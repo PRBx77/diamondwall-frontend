@@ -385,12 +385,10 @@ export default function Flight() {
         }
       }
 
-      if (state.spawned < state.target) {
-        state.spawnCounter++;
-        if (state.spawnCounter >= cfg.spawnRate) {
-          spawnEnemy();
-          state.spawnCounter = 0;
-        }
+      state.spawnCounter++;
+      if (state.spawnCounter >= cfg.spawnRate) {
+        spawnEnemy();
+        state.spawnCounter = 0;
       }
 
       for (let i = state.enemies.length - 1; i >= 0; i--) {
@@ -453,7 +451,8 @@ export default function Flight() {
         }
       }
 
-      if (state.kills >= state.target && state.enemies.length === 0) {
+      const targetScore = 100 * state.level * state.target;
+      if (state.score >= targetScore) {
         if (state.level >= TOTAL_LEVELS) {
           state.running = false;
           if (audioRef.current.ambient) audioRef.current.ambient.pause();
