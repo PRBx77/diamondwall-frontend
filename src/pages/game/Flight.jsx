@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ethers } from "ethers";
 import * as THREE from "three";
 import { useLang } from "../../i18n/LanguageContext";
 import { getContracts } from "../../utils/web3";
@@ -110,15 +111,11 @@ export default function Flight() {
     setConnectError("");
     try {
       if (!window.ethereum) {
-        setConnectError("MetaMask/Trust Wallet no detectado. Abre esta web dentro del navegador de tu wallet.");
+        setConnectError(lang === "es" ? "Instala MetaMask/Trust Wallet" : "Install MetaMask/Trust Wallet");
         return;
       }
-      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      if (!accounts || accounts.length === 0) {
-        setConnectError("No se aprobó la conexión");
-        return;
-      }
-      // Comprobar y forzar red BSC Mainnet
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const accounts = await provider.send("eth_requestAccounts", []);
       const chainId = await window.ethereum.request({ method: "eth_chainId" });
       if (chainId !== "0x38") {
         try {
@@ -138,55 +135,36 @@ export default function Flight() {
                 blockExplorerUrls: ["https://bscscan.com/"]
               }]
             });
-          } else {
-            setConnectError("Cambia manualmente a BSC Mainnet en tu wallet");
-            return;
           }
         }
       }
-      const ctr = await getContracts();
-      if (ctr && ctr.signer) {
-        const addr = await ctr.signer.getAddress();
-        setWalletAddr(addr);
-      } else {
-        setConnectError("Wallet conectada pero getContracts() falló. Recarga la pagina.");
-      }
+      setWalletAddr(accounts[0]);
     } catch (e) {
       setConnectError(e.message || String(e));
       console.error("Connect error:", e);
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const c = await getContracts();
-        if (c && c.signer) {
-          const addr = await c.signer.getAddress();
-          setWalletAddr(addr);
-        }
-      } catch (e) {}
-    })();
-  }, []);
-
   const handleClaim = async () => {
     try {
       setClaiming(true);
       setClaimStatus(t("claiming"));
-      const c = await getContracts();
-      if (!c || !c.airdrop || !c.signer) {
+      if (!window.ethereum) {
         setClaimStatus(t("connect"));
         setClaiming(false);
         return;
       }
-      const addr = await c.signer.getAddress();
-      const info = await c.airdrop.getUserAirdropInfo(addr);
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const ctr = getContracts(signer);
+      const addr = await signer.getAddress();
+      const info = await ctr.airdrop.getUserAirdropInfo(addr);
       if (info.hasClaimed) {
         setClaimStatus(t("claimed"));
         setClaiming(false);
         return;
       }
-      const tx = await c.airdrop.claimAirdrop({ gasLimit: 500000n });
+      const tx = await ctr.airdrop.claimAirdrop();
       await tx.wait();
       setClaimStatus(t("success"));
     } catch (e) {
