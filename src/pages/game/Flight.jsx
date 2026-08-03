@@ -70,17 +70,7 @@ export default function Flight() {
   const [notification, setNotification] = useState("");
   const [gameKey, setGameKey] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [unlockedWeapons, setUnlockedWeapons] = useState(() => {
-    try {
-      const saved = localStorage.getItem("dwall_flight_weapons");
-      const parsed = saved ? JSON.parse(saved) : [0];
-      console.log("[Flight] Armas cargadas de localStorage:", parsed);
-      return parsed;
-    } catch (e) {
-      console.error("[Flight] Error cargando armas:", e);
-      return [0];
-    }
-  });
+  const [unlockedWeapons, setUnlockedWeapons] = useState([0]);
 
   useEffect(() => {
     audioRef.current.correct = new Audio("/sounds/correct.mp3");
@@ -103,12 +93,6 @@ export default function Flight() {
     } catch (e) {}
   };
 
-  useEffect(() => {
-    try {
-      localStorage.setItem("dwall_flight_weapons", JSON.stringify(unlockedWeapons));
-    } catch {}
-  }, [unlockedWeapons]);
-
   const showNotif = (msg) => {
     setNotification(msg);
     setTimeout(() => setNotification(""), 2500);
@@ -117,9 +101,7 @@ export default function Flight() {
   const unlockWeapon = (weaponId) => {
     setUnlockedWeapons(prev => {
       if (prev.includes(weaponId)) return prev;
-      const next = [...prev, weaponId];
-      try { localStorage.setItem("dwall_flight_weapons", JSON.stringify(next)); } catch {}
-      return next;
+      return [...prev, weaponId];
     });
   };
 
@@ -235,6 +217,8 @@ export default function Flight() {
   };
 
   const startGame = () => {
+    setUnlockedWeapons([0]);
+    setSelectedWeapon(0);
     setGameKey(k => k + 1);
     setGameState("playing");
     setHud({
