@@ -99,6 +99,12 @@ export default function Flight() {
     } catch (e) {}
   };
 
+  useEffect(() => {
+    try {
+      localStorage.setItem("dwall_flight_weapons", JSON.stringify(unlockedWeapons));
+    } catch {}
+  }, [unlockedWeapons]);
+
   const showNotif = (msg) => {
     setNotification(msg);
     setTimeout(() => setNotification(""), 2500);
@@ -115,6 +121,9 @@ export default function Flight() {
 
   const handleConnect = async () => {
     try {
+      if (window.ethereum) {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+      }
       const c = await getContracts();
       if (c && c.signer) {
         const addr = await c.signer.getAddress();
@@ -720,7 +729,7 @@ export default function Flight() {
             {t("claim")}
           </button>
           {claimStatus && <p style={{ color: "#fbbf24", marginTop: 12 }}>{claimStatus}</p>}
-          <button onClick={() => setGameState("menu")} style={styles.btnSecondary}>{t("retry")}</button>
+          <button onClick={() => { setGameState("menu"); setTimeout(startGame, 100); }} style={styles.btnSecondary}>{t("retry")}</button>
         </div>
       )}
 
@@ -728,7 +737,8 @@ export default function Flight() {
         <div style={styles.menu}>
           <h2 style={{ color: "#ff3333", fontSize: 32 }}>{t("gameover")}</h2>
           <p style={{ color: "#fff", fontSize: 20 }}>{t("score")}: {hud.score}</p>
-          <button onClick={() => setGameState("menu")} style={styles.btnPrimary}>{t("retry")}</button>
+          <button onClick={() => { setGameState("menu"); setTimeout(startGame, 100); }} style={styles.btnPrimary}>{t("retry")}</button>
+          <button onClick={() => setGameState("menu")} style={styles.btnSecondary}>Menu</button>
         </div>
       )}
     </div>
