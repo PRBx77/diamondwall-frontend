@@ -136,12 +136,38 @@ export default function Flight() {
         setConnectError("No se aprobó la conexión");
         return;
       }
+      // Comprobar y forzar red BSC Mainnet
+      const chainId = await window.ethereum.request({ method: "eth_chainId" });
+      if (chainId !== "0x38") {
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0x38" }]
+          });
+        } catch (switchErr) {
+          if (switchErr.code === 4902) {
+            await window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [{
+                chainId: "0x38",
+                chainName: "BNB Smart Chain",
+                nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
+                rpcUrls: ["https://bsc-dataseed.binance.org/"],
+                blockExplorerUrls: ["https://bscscan.com/"]
+              }]
+            });
+          } else {
+            setConnectError("Cambia manualmente a BSC Mainnet en tu wallet");
+            return;
+          }
+        }
+      }
       const ctr = await getContracts();
       if (ctr && ctr.signer) {
         const addr = await ctr.signer.getAddress();
         setWalletAddr(addr);
       } else {
-        setConnectError("getContracts() no devolvió signer. Revisa la red BSC.");
+        setConnectError("Wallet conectada pero getContracts() falló. Recarga la pagina.");
       }
     } catch (e) {
       setConnectError(e.message || String(e));
