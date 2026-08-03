@@ -68,12 +68,16 @@ export default function Flight() {
   const [selectedWeapon, setSelectedWeapon] = useState(0);
   const [walletAddr, setWalletAddr] = useState("");
   const [notification, setNotification] = useState("");
+  const [gameKey, setGameKey] = useState(0);
   const [paused, setPaused] = useState(false);
   const [unlockedWeapons, setUnlockedWeapons] = useState(() => {
     try {
       const saved = localStorage.getItem("dwall_flight_weapons");
-      return saved ? JSON.parse(saved) : [0];
-    } catch {
+      const parsed = saved ? JSON.parse(saved) : [0];
+      console.log("[Flight] Armas cargadas de localStorage:", parsed);
+      return parsed;
+    } catch (e) {
+      console.error("[Flight] Error cargando armas:", e);
       return [0];
     }
   });
@@ -119,18 +123,29 @@ export default function Flight() {
     });
   };
 
+  const [connectError, setConnectError] = useState("");
   const handleConnect = async () => {
+    setConnectError("");
     try {
-      if (window.ethereum) {
-        await window.ethereum.request({ method: "eth_requestAccounts" });
+      if (!window.ethereum) {
+        setConnectError("MetaMask/Trust Wallet no detectado. Abre esta web dentro del navegador de tu wallet.");
+        return;
       }
-      const c = await getContracts();
-      if (c && c.signer) {
-        const addr = await c.signer.getAddress();
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      if (!accounts || accounts.length === 0) {
+        setConnectError("No se aprobó la conexión");
+        return;
+      }
+      const ctr = await getContracts();
+      if (ctr && ctr.signer) {
+        const addr = await ctr.signer.getAddress();
         setWalletAddr(addr);
+      } else {
+        setConnectError("getContracts() no devolvió signer. Revisa la red BSC.");
       }
     } catch (e) {
-      console.error(e);
+      setConnectError(e.message || String(e));
+      console.error("Connect error:", e);
     }
   };
 
@@ -194,6 +209,7 @@ export default function Flight() {
   };
 
   const startGame = () => {
+    setGameKey(k => k + 1);
     setGameState("playing");
     setHud({
       level: selectedLevel,
@@ -592,9 +608,16 @@ export default function Flight() {
               </span>
             </div>
           ) : (
-            <button onClick={handleConnect} style={styles.btnConnect}>
-              {t("connectWallet")}
-            </button>
+            <>
+              <button onClick={handleConnect} style={styles.btnConnect}>
+                {t("connectWallet")}
+              </button>
+              {connectError && (
+                <p style={{ color: "#ff6666", fontSize: 12, maxWidth: 400, textAlign: "center" }}>
+                  {connectError}
+                </p>
+              )}
+            </>
           )}
           <p style={styles.instructions}>{t("instructions")}</p>
 
@@ -694,7 +717,7 @@ export default function Flight() {
             <span>{t("enemies")}: {hud.kills}/{hud.target}</span>
             <span>{t("weapon")}: {hud.weapon}</span>
           </div>
-          <div ref={mountRef} style={styles.canvas} />
+          <div key={gameKey} ref={mountRef} style={styles.canvas} />
           <div style={styles.touchControls}>
             <div
               ref={joystickRef}
@@ -729,7 +752,7 @@ export default function Flight() {
             {t("claim")}
           </button>
           {claimStatus && <p style={{ color: "#fbbf24", marginTop: 12 }}>{claimStatus}</p>}
-          <button onClick={() => { setGameState("menu"); setTimeout(startGame, 100); }} style={styles.btnSecondary}>{t("retry")}</button>
+          <button onClick={startGame} style={styles.btnSecondary}>{t("retry")}</button>
         </div>
       )}
 
@@ -737,7 +760,7 @@ export default function Flight() {
         <div style={styles.menu}>
           <h2 style={{ color: "#ff3333", fontSize: 32 }}>{t("gameover")}</h2>
           <p style={{ color: "#fff", fontSize: 20 }}>{t("score")}: {hud.score}</p>
-          <button onClick={() => { setGameState("menu"); setTimeout(startGame, 100); }} style={styles.btnPrimary}>{t("retry")}</button>
+          <button onClick={startGame} style={styles.btnPrimary}>{t("retry")}</button>
           <button onClick={() => setGameState("menu")} style={styles.btnSecondary}>Menu</button>
         </div>
       )}
