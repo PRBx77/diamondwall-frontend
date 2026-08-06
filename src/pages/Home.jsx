@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProvider, getContracts, formatTokens, formatETH } from "../utils/web3";
 import CertikBadge from "../components/CertikBadge";
+import SocialLinks from "../components/SocialLinks";
 import { useLang } from "../i18n/LanguageContext";
 
 export default function Home({ account }) {
@@ -70,6 +71,10 @@ export default function Home({ account }) {
         </div>
       </div>
       <div style={{maxWidth:"900px",margin:"2rem auto",padding:"0 1rem"}}><CertikBadge /></div>
+      <div style={{maxWidth:"900px",margin:"2rem auto",padding:"0 1rem"}}>
+        <h3 style={{color:"#000",textAlign:"center",marginBottom:"1rem",fontWeight:800,textShadow:"0 0 8px rgba(255,255,255,0.6)"}}>Join our Community · Únete a la Comunidad</h3>
+        <SocialLinks />
+      </div>
       <div className="card how-it-works">
         <div className="card-title">{t("home_how")}</div>
         <div className="steps-grid">
