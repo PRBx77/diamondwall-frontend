@@ -10,6 +10,13 @@ export default function Presale({ account, signer, onUpdate }) {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState(null);
+  const [refCode, setRefCode] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) setRefCode(ref.toUpperCase());
+  }, []);
 
   useEffect(() => { loadInfo(); }, [account]);
 
@@ -31,7 +38,9 @@ export default function Presale({ account, signer, onUpdate }) {
     setLoading(true); setMsg(null);
     try {
       const c = getContracts(signer);
-      const tx = await c.presale.buyTokens({ value: ethers.parseEther(amount) });
+      const tx = refCode
+        ? await c.presale.buyTokensWithReferral(refCode, { value: ethers.parseEther(amount) })
+        : await c.presale.buyTokens({ value: ethers.parseEther(amount) });
       await tx.wait();
       setMsg({ type: "success", text: `${t("presale_success")} ${(parseFloat(amount) * 620000).toLocaleString()} DWALL` });
       setAmount(""); await loadInfo(); onUpdate?.();
@@ -56,6 +65,11 @@ export default function Presale({ account, signer, onUpdate }) {
         {!account ? <div className="alert alert-info">{t("presale_connect")}</div>
         : !info?.active ? <div className="alert alert-error">{t("presale_not_active")}</div>
         : <>
+          <div className="input-group">
+            <label>Referral Code (optional / opcional)</label>
+            <input type="text" value={refCode} onChange={e => setRefCode(e.target.value.toUpperCase())} placeholder="DIAMONDWALLREF001" style={{textTransform:'uppercase'}} />
+            {refCode && <p style={{margin:'0.3rem 0 0',fontSize:'0.8rem',color:'#10b981'}}>✓ Using code: {refCode}</p>}
+          </div>
           <div className="input-group">
             <label>{t("presale_amount")} (min: {info?.minBuy} | max: {info?.maxBuy})</label>
             <input type="number" step="0.01" value={amount} onChange={e => setAmount(e.target.value)} placeholder="0.1" />

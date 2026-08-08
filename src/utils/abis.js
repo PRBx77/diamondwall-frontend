@@ -43,6 +43,9 @@ export const TOKEN_ABI = [
 
 export const PRESALE_ABI = [
   "function buyTokens() external payable",
+  "function buyTokensWithReferral(string) external payable",
+  "function setReferralRegistry(address) external",
+  "function referralRegistry() view returns (address)",
   "function startPresale() external",
   "function stopPresale() external",
   "function updatePrice(uint256) external",
