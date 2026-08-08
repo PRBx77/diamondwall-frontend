@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { CONTRACTS, NETWORK } from "./contracts";
-import { TOKEN_ABI, PRESALE_ABI, TREASURY_V4_ABI, STAKING_ABI, AIRDROP_ABI, LIQUIDITY_ABI } from "./abis";
+import { TOKEN_ABI, PRESALE_ABI, TREASURY_V4_ABI, STAKING_ABI, AIRDROP_ABI, LIQUIDITY_ABI, REFERRAL_REGISTRY_ABI } from "./abis";
 
 export async function connectWallet() {
   if (!window.ethereum) throw new Error("MetaMask no detectado");
@@ -41,6 +41,7 @@ export function getContracts(signerOrProvider) {
   return {
     token: new ethers.Contract(CONTRACTS.TOKEN, TOKEN_ABI, signerOrProvider),
     presale: new ethers.Contract(CONTRACTS.PRESALE, PRESALE_ABI, signerOrProvider),
+    referralRegistry: new ethers.Contract(CONTRACTS.REFERRAL_REGISTRY, REFERRAL_REGISTRY_ABI, signerOrProvider),
     treasury: new ethers.Contract(CONTRACTS.TREASURY, TREASURY_V4_ABI, signerOrProvider),
     liquidity: new ethers.Contract(CONTRACTS.LIQUIDITY, LIQUIDITY_ABI, signerOrProvider),
     staking: new ethers.Contract(CONTRACTS.STAKING, STAKING_ABI, signerOrProvider),

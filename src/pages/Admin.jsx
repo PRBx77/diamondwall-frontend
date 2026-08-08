@@ -158,6 +158,10 @@ export default function Admin({ account, signer }) {
           </div>
           <AirdropForm signer={signer} exec={exec} loading={loading} />
         </div>
+        <div className="card">
+          <div className="card-title">🎁 Referral Registry</div>
+          <ReferralAdminSection signer={signer} exec={exec} loading={loading} />
+        </div>
       </div>
     </div>
   );
@@ -276,3 +280,143 @@ function LiquidityPoolsSection({ signer, exec, loading }) {
     </div>
   );
 }
+
+function ReferralAdminSection({ signer, exec, loading }) {
+  const [stats, setStats] = useState(null);
+  const [startNum, setStartNum] = useState("");
+  const [endNum, setEndNum] = useState("");
+  const [prefix, setPrefix] = useState("DIAMONDWALLREF");
+  const [padZeros, setPadZeros] = useState("3");
+  const [codeToDisable, setCodeToDisable] = useState("");
+  const [pricePerBnb, setPricePerBnb] = useState("620000");
+  const [fundAmount, setFundAmount] = useState("");
+
+  const load = async () => {
+    try {
+      const c = getContracts(signer);
+      const total = await c.referralRegistry.totalCodesCreated();
+      const claimed = await c.referralRegistry.getClaimedCodesCount();
+      const vestingStart = await c.referralRegistry.vestingStartTime();
+      const commissionRate = await c.referralRegistry.COMMISSION_RATE();
+      setStats({
+        total: total.toString(),
+        claimed: claimed.toString(),
+        available: (Number(total) - Number(claimed)).toString(),
+        vestingActive: vestingStart > 0n,
+        commissionRate: (Number(commissionRate) / 100).toFixed(1) + "%",
+      });
+    } catch (e) { console.error(e); }
+  };
+
+  useEffect(() => { if (signer) load(); }, [signer]);
+
+  return (
+    <div>
+      {stats && (
+        <div className="stats-grid" style={{ marginBottom: "1rem" }}>
+          <div className="stat-card">
+            <div className="stat-value">{stats.total}</div>
+            <div className="stat-label">Total Codes</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-value" style={{ color: "#10b981" }}>{stats.available}</div>
+            <div className="stat-label">Available</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-value" style={{ color: "#f59e0b" }}>{stats.claimed}</div>
+            <div className="stat-label">Claimed</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-value">{stats.commissionRate}</div>
+            <div className="stat-label">Commission</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-value" style={{ color: stats.vestingActive ? "#10b981" : "#ef4444" }}>
+              {stats.vestingActive ? "ACTIVE" : "INACTIVE"}
+            </div>
+            <div className="stat-label">Vesting</div>
+          </div>
+        </div>
+      )}
+
+      <h3 style={{ marginTop: "1rem", color: "#f59e0b" }}>🔨 Create New Codes Batch</h3>
+      <div className="admin-grid" style={{ marginTop: "0.5rem" }}>
+        <div className="input-group">
+          <label>Start #</label>
+          <input type="number" value={startNum} onChange={e => setStartNum(e.target.value)} placeholder="101" />
+        </div>
+        <div className="input-group">
+          <label>End #</label>
+          <input type="number" value={endNum} onChange={e => setEndNum(e.target.value)} placeholder="200" />
+        </div>
+        <div className="input-group">
+          <label>Prefix</label>
+          <input type="text" value={prefix} onChange={e => setPrefix(e.target.value)} />
+        </div>
+        <div className="input-group">
+          <label>Pad zeros</label>
+          <input type="number" value={padZeros} onChange={e => setPadZeros(e.target.value)} />
+        </div>
+      </div>
+      <button className="btn btn-primary" disabled={loading || !startNum || !endNum} onClick={() => {
+        const c = getContracts(signer);
+        exec(() => c.referralRegistry.batchCreateCodes(parseInt(startNum), parseInt(endNum), prefix, parseInt(padZeros)),
+          `Batch ${startNum}-${endNum} created`);
+        setStartNum(""); setEndNum(""); load();
+      }}>Create Batch</button>
+
+      <h3 style={{ marginTop: "1.5rem", color: "#ef4444" }}>🚫 Disable Code (abuse)</h3>
+      <div className="admin-grid" style={{ marginTop: "0.5rem" }}>
+        <div className="input-group">
+          <label>Code</label>
+          <input type="text" value={codeToDisable} onChange={e => setCodeToDisable(e.target.value.toUpperCase())} placeholder="DIAMONDWALLREF001" style={{textTransform:'uppercase'}} />
+        </div>
+      </div>
+      <div style={{display:'flex',gap:'0.5rem'}}>
+        <button className="btn btn-warning" disabled={loading || !codeToDisable} onClick={() => {
+          const c = getContracts(signer);
+          exec(() => c.referralRegistry.disableCode(codeToDisable), `Code ${codeToDisable} disabled`);
+        }}>Disable</button>
+        <button className="btn btn-primary" disabled={loading || !codeToDisable} onClick={() => {
+          const c = getContracts(signer);
+          exec(() => c.referralRegistry.enableCode(codeToDisable), `Code ${codeToDisable} re-enabled`);
+        }}>Re-enable</button>
+      </div>
+
+      <h3 style={{ marginTop: "1.5rem", color: "#10b981" }}>💰 Fund Registry with DWALL</h3>
+      <p style={{fontSize:'0.8rem',color:'#94a3b8'}}>Required to pay commissions when referrers claim.</p>
+      <div className="admin-grid" style={{ marginTop: "0.5rem" }}>
+        <div className="input-group">
+          <label>DWALL amount</label>
+          <input type="number" value={fundAmount} onChange={e => setFundAmount(e.target.value)} placeholder="1000000" />
+        </div>
+      </div>
+      <button className="btn btn-primary" disabled={loading || !fundAmount} onClick={async () => {
+        try {
+          const c = getContracts(signer);
+          const amt = ethers.parseUnits(fundAmount, 18);
+          const regAddr = await c.referralRegistry.getAddress();
+          exec(() => c.token.transfer(regAddr, amt), `${fundAmount} DWALL sent to registry`);
+          setFundAmount("");
+        } catch (e) { console.error(e); }
+      }}>Send DWALL</button>
+
+      <h3 style={{ marginTop: "1.5rem", color: "#8b5cf6" }}>🔓 Activate Vesting (after DEX opens)</h3>
+      <p style={{fontSize:'0.8rem',color:'#94a3b8'}}>⚠️ ONE-TIME ACTION. Cannot be undone. Do this when DEX trading opens.</p>
+      <div className="admin-grid" style={{ marginTop: "0.5rem" }}>
+        <div className="input-group">
+          <label>Presale price (DWALL per BNB)</label>
+          <input type="number" value={pricePerBnb} onChange={e => setPricePerBnb(e.target.value)} />
+        </div>
+      </div>
+      <button className="btn btn-warning" disabled={loading || !pricePerBnb || stats?.vestingActive} onClick={() => {
+        if (!window.confirm("Activate vesting? This cannot be undone.")) return;
+        const c = getContracts(signer);
+        const price = ethers.parseUnits(pricePerBnb, 18);
+        exec(() => c.referralRegistry.activateVesting(price), "Vesting activated!");
+        load();
+      }}>{stats?.vestingActive ? "Vesting Already Active" : "Activate Vesting"}</button>
+    </div>
+  );
+}
+

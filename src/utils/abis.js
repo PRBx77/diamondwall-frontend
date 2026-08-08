@@ -253,3 +253,48 @@ export const MARKETING_TREASURY_ABI = [
   // Events
   "event PaymentExecuted(uint256 indexed paymentId, address indexed recipient, uint256 amount, bytes32 indexed category, string reason, uint256 timestamp)"
 ];
+
+export const REFERRAL_REGISTRY_ABI = [
+  // Constants
+  "function COMMISSION_RATE() view returns (uint256)",
+  "function VESTING_DURATION() view returns (uint256)",
+  "function totalCodesCreated() view returns (uint256)",
+  "function vestingStartTime() view returns (uint256)",
+  "function presalePricePerBNB() view returns (uint256)",
+  "function presaleContract() view returns (address)",
+  "function dwallToken() view returns (address)",
+  // Reads - codes
+  "function isCodeAvailable(string) view returns (bool)",
+  "function getCodeStatus(string) view returns (uint8)",
+  "function getCodeOwner(string) view returns (address)",
+  "function getMyCode(address) view returns (string)",
+  "function getCodeData(string) view returns (tuple(uint8 status, address owner, uint256 claimedAt, uint256 uniqueWallets, uint256 totalBnbBrought, uint256 totalDwallSold, uint256 totalCommissionBnb, uint256 commissionClaimed))",
+  "function getAllCodesCount() view returns (uint256)",
+  "function getClaimedCodesCount() view returns (uint256)",
+  "function getAvailableCodesPaginated(uint256 start, uint256 limit) view returns (string[])",
+  "function getClaimedCodesPaginated(uint256 start, uint256 limit) view returns (string[])",
+  // Reads - commissions
+  "function getCommissionInTokens(string) view returns (uint256)",
+  "function getClaimableAmount(string) view returns (uint256)",
+  "function getPendingCommission(string) view returns (uint256)",
+  "function getVestingTimeRemaining() view returns (uint256)",
+  "function buyerReferralCode(address) view returns (string)",
+  // Writes - public
+  "function claimCode(string) external",
+  "function claimCommission(string) external",
+  // Writes - owner only
+  "function batchCreateCodes(uint256 startNum, uint256 endNum, string prefix, uint256 padZeros) external",
+  "function disableCode(string) external",
+  "function enableCode(string) external",
+  "function setPresaleContract(address) external",
+  "function activateVesting(uint256) external",
+  "function emergencyWithdrawDwall(uint256) external",
+  // Events
+  "event CodesBatchCreated(uint256 startNum, uint256 endNum, string prefix, uint256 padZeros)",
+  "event CodeClaimed(string indexed code, address indexed owner)",
+  "event CodeDisabled(string indexed code)",
+  "event CodeEnabled(string indexed code)",
+  "event ReferralRecorded(string indexed code, address indexed buyer, uint256 bnbAmount, uint256 dwallAmount, uint256 commissionBnb, uint256 timestamp)",
+  "event VestingActivated(uint256 startTime, uint256 presalePricePerBNB)",
+  "event CommissionClaimed(string indexed code, address indexed wallet, uint256 dwallAmount)"
+];
