@@ -2,13 +2,10 @@ import { ethers } from "ethers";
 import { CONTRACTS, NETWORK } from "./contracts";
 import { TOKEN_ABI, PRESALE_ABI, TREASURY_V4_ABI, STAKING_ABI, AIRDROP_ABI, LIQUIDITY_ABI, REFERRAL_REGISTRY_ABI } from "./abis";
 
+// Legacy MetaMask-only connect (fallback)
 export async function connectWallet() {
-  if (!window.ethereum) throw new Error("MetaMask no detectado");
-
-  // Solicitar conexión
+  if (!window.ethereum) throw new Error("No wallet detected. Please install MetaMask or connect via WalletConnect.");
   const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-
-  // Verificar/cambiar red
   try {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
@@ -27,10 +24,18 @@ export async function connectWallet() {
       });
     }
   }
-
   const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = await provider.getSigner();
   return { provider, signer, account: accounts[0] };
+}
+
+// NEW: Universal signer getter from AppKit (MetaMask, Trust, SafePal, WalletConnect QR, etc.)
+export async function getSignerFromAppKit(walletProvider) {
+  if (!walletProvider) throw new Error("Wallet not connected");
+  const provider = new ethers.BrowserProvider(walletProvider);
+  const signer = await provider.getSigner();
+  const account = await signer.getAddress();
+  return { provider, signer, account };
 }
 
 export function getProvider() {

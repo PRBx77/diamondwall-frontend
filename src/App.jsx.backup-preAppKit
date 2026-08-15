@@ -1,8 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useAppKit, useAppKitAccount, useAppKitProvider, useDisconnect } from '@reown/appkit/react';
-import { getProvider, getContracts, getSignerFromAppKit, formatTokens, formatETH } from "./utils/web3";
+import { connectWallet, getProvider, getContracts, formatTokens, formatETH } from "./utils/web3";
 import { LanguageProvider, useLang } from "./i18n/LanguageContext";
 import Home from "./pages/Home";
 import Presale from "./pages/Presale";
@@ -24,18 +23,29 @@ import "./App.css";
 function AppContent() {
   const { t, toggleLang } = useLang();
   const [splash, setSplash] = useState(window.location.pathname === '/' || window.location.pathname === '');
+  const [account, setAccount] = useState(null);
   const [signer, setSigner] = useState(null);
   const [balance, setBalance] = useState("0");
   const [ethBalance, setEthBalance] = useState("0");
   const [isOwner, setIsOwner] = useState(false);
 
-  // Reown AppKit hooks
-  const { open } = useAppKit();
-  const { address, isConnected } = useAppKitAccount();
-  const { walletProvider } = useAppKitProvider('eip155');
-  const { disconnect } = useDisconnect();
+  const connect = async () => {
+    try {
+      const { signer, account } = await connectWallet();
+      setAccount(account);
+      setSigner(signer);
+      await loadBalances(account);
+      await checkOwner(account);
+    } catch (err) { alert(err.message); }
+  };
 
-  const account = isConnected ? address : null;
+  const disconnect = () => {
+    setAccount(null);
+    setSigner(null);
+    setBalance("0");
+    setEthBalance("0");
+    setIsOwner(false);
+  };
 
   const checkOwner = async (addr) => {
     try {
@@ -57,27 +67,14 @@ function AppContent() {
     } catch (e) { console.error(e); }
   };
 
-  // Rebuild signer whenever walletProvider or connection state changes
   useEffect(() => {
-    const buildSigner = async () => {
-      if (isConnected && walletProvider && address) {
-        try {
-          const { signer: s } = await getSignerFromAppKit(walletProvider);
-          setSigner(s);
-          await loadBalances(address);
-          await checkOwner(address);
-        } catch (err) {
-          console.error("Signer build error:", err);
-        }
-      } else {
-        setSigner(null);
-        setBalance("0");
-        setEthBalance("0");
-        setIsOwner(false);
-      }
-    };
-    buildSigner();
-  }, [isConnected, walletProvider, address]);
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accs) => {
+        if (accs.length > 0) { setAccount(accs[0]); loadBalances(accs[0]); checkOwner(accs[0]); }
+        else disconnect();
+      });
+    }
+  }, []);
 
   if (splash) return <SplashScreen onEnter={() => setSplash(false)} />;
 
@@ -118,10 +115,10 @@ function AppContent() {
               <span className="wallet-balance">{balance} DWALL</span>
               <span className="wallet-eth">{ethBalance} BNB</span>
               <span className="wallet-addr">{account.slice(0,6)}...{account.slice(-4)}</span>
-              <button onClick={() => disconnect()} className="btn-disconnect">✕</button>
+              <button onClick={disconnect} className="btn-disconnect">✕</button>
             </div>
           ) : (
-            <button onClick={() => open()} className="btn-connect">{t("nav_connect")}</button>
+            <button onClick={connect} className="btn-connect">{t("nav_connect")}</button>
           )}
         </div>
       </nav>
@@ -133,18 +130,18 @@ function AppContent() {
           <Route path="/staking" element={<Staking account={account} signer={signer} onUpdate={() => loadBalances(account)} />} />
           <Route path="/pools" element={<Pools account={account} signer={signer} />} />
           <Route path="/info" element={<Info />} />
-          <Route path="/calculator" element={<Calculator />} />
-          <Route path="/roadmap" element={<Roadmap />} />
-          <Route path="/chess" element={<DiamondChess />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/snake" element={<Snake />} />
-          <Route path="/flight" element={<Flight />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/roadmap" element={<Roadmap />} />
+            <Route path="/chess" element={<DiamondChess />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/snake" element={<Snake />} />
+        <Route path="/flight" element={<Flight />} />
           <Route path="/referral" element={<Referral account={account} signer={signer} />} />
           {isOwner && <Route path="/admin" element={<Admin account={account} signer={signer} />} />}
         </Routes>
       </main>
       <footer className="footer"><p>{t("footer_text")}</p></footer>
-      <Analytics />
+ <Analytics />
     </div>
   );
 }
@@ -160,3 +157,4 @@ function App() {
 }
 
 export default App;
+// lun 13 jul 2026 20:35:40 CEST
