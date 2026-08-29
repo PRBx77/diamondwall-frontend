@@ -9,37 +9,40 @@ const phases = [
     date: "Q3 2025 – Q2 2026",
     color: "#4ade80",
     items: [
-      "8 smart contracts developed",
-      "458 tests passing (92.31% coverage)",
-      "Internal security audit — 0 critical vulnerabilities",
-      "Frontend & backend infrastructure ready"
+      "9 smart contracts developed",
+      "458+ tests passing (92.31% coverage)",
+      "Internal audit + AuditAid manual review",
+      "CertiK Skynet: 86.27/100 · Zero critical alerts",
+      "OpenZeppelin v5 · Ownable2Step · 48h timelocks"
     ]
   },
   {
     id: 2,
-    title: "Mainnet Deployment",
+    title: "Mainnet & Venus Integration",
     subtitle: "COMPLETED",
     status: "done",
-    date: "July 2026",
+    date: "Q3 2026",
     color: "#4ade80",
     items: [
       "Deployed on BSC Mainnet",
-      "Token contract verified on BscScan",
-      "Ecosystem live and operational",
+      "All contracts verified on BscScan",
+      "Venus Protocol integrated (vBNB yield engine)",
+      "Treasury auto-invests presale BNB in Venus",
       "Marketing Treasury fully on-chain"
     ]
   },
   {
     id: 3,
-    title: "Airdrop Live",
+    title: "Airdrop & Community",
     subtitle: "ACTIVE NOW",
     status: "active",
-    date: "July 2026",
+    date: "Q3-Q4 2026",
     color: "#fbbf24",
     items: [
       "100 $DWALL free for first 250 wallets",
-      "Tweet + Verify + Claim flow",
-      "On-chain verification",
+      "4 Web3 games as onboarding (Chess, Quiz, Snake, Flight)",
+      "On-chain referral system (100 codes, 5%)",
+      "WalletConnect: 380+ wallets supported",
       "Community-driven distribution"
     ]
   },
@@ -48,55 +51,56 @@ const phases = [
     title: "Presale",
     subtitle: "COMING SOON",
     status: "next",
-    date: "Q3 2026",
+    date: "Q4 2026",
     color: "#22d3ee",
     items: [
       "620,000 $DWALL per 1 BNB",
       "700M tokens (70% of supply)",
       "No vesting, instant delivery",
-      "BNB deployed to Venus + PancakeSwap"
+      "Every BNB auto-deposited in Venus in same tx",
+      "Referral vesting begins on DEX opening"
     ]
   },
   {
     id: 5,
-    title: "Trading & Liquidity",
+    title: "Trading & Real Yield",
     subtitle: "AUTO-LAUNCH",
     status: "future",
-    date: "Q4 2026",
+    date: "Q1 2027",
     color: "#a78bfa",
     items: [
-      "Automatic liquidity from presale close",
-      "4 pools deployed on PancakeSwap",
-      "20% reserved for CEX listings (timelock)",
-      "10% monthly drip for stability"
+      "Automatic PancakeSwap liquidity from presale close",
+      "Real yield distribution to stakers begins",
+      "Venus yield harvested atomically on demand",
+      "Portfolio tracker listings (CoinGecko / CoinMarketCap)",
+      "Launchpad applications (Legion, Finceptor)"
     ]
   },
   {
     id: 6,
-    title: "Real Yield Distribution",
-    subtitle: "SUSTAINED",
+    title: "Expansion & Governance",
+    subtitle: "ROADMAP AHEAD",
     status: "future",
-    date: "Ongoing",
+    date: "Q2 2027 →",
     color: "#f472b6",
     items: [
-      "Yields from Venus (~15% APY)",
-      "Yields from PancakeSwap LP fees",
-      "Distributed on-chain to holders",
-      "Fully transparent + auditable"
+      "DiamondWall Vaults launch",
+      "Additional yield protocols integrated",
+      "Multi-sig migration for critical functions",
+      "Cross-chain expansion research",
+      "On-chain DAO governance (Q4 2027+)"
     ]
   }
 ];
 
 export default function Roadmap() {
   const [active, setActive] = useState(2);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % phases.length);
     }, 3500);
     return () => clearInterval(interval);
   }, []);
-
   return (
     <div style={{
       maxWidth: '900px',
@@ -124,50 +128,46 @@ export default function Roadmap() {
           margin: 0,
           letterSpacing: '4px',
           textTransform: 'uppercase'
-        }}>From Zero to Real-Yield DeFi</p>
+        }}>Strong Hands. Real Yield. Powered by Venus.</p>
       </div>
 
       <div style={{position: 'relative', paddingLeft: '40px'}}>
         <div style={{
           position: 'absolute',
-          left: '20px',
-          top: '15px',
-          bottom: '15px',
+          left: '12px',
+          top: '10px',
+          bottom: '10px',
           width: '2px',
           background: 'linear-gradient(180deg, #4ade80 0%, #fbbf24 40%, #22d3ee 60%, #a78bfa 80%, #f472b6 100%)'
-        }} />
+        }}></div>
 
         {phases.map((phase, idx) => (
-          <div
-            key={phase.id}
+          <div key={phase.id}
             onClick={() => setActive(idx)}
             style={{
               position: 'relative',
-              marginBottom: '1.5rem',
-              padding: '1rem 1.5rem',
-              background: active === idx ? 'rgba(0,0,0,0.5)' : 'rgba(0,0,0,0.2)',
+              marginBottom: '16px',
+              padding: '16px 20px',
+              background: active === idx ? `${phase.color}15` : 'rgba(255,255,255,0.03)',
+              border: `1px solid ${active === idx ? phase.color : 'rgba(255,255,255,0.08)'}`,
               borderRadius: '12px',
-              border: `1px solid ${active === idx ? phase.color : 'rgba(255,255,255,0.1)'}`,
               cursor: 'pointer',
-              transition: 'all 0.4s ease',
-              transform: active === idx ? 'scale(1.02)' : 'scale(1)',
-              boxShadow: active === idx ? `0 0 30px ${phase.color}30` : 'none'
-            }}
-          >
+              transition: 'all 0.3s ease',
+              transform: active === idx ? 'translateX(4px)' : 'translateX(0)'
+            }}>
             <div style={{
               position: 'absolute',
-              left: '-30px',
+              left: '-34px',
               top: '20px',
-              width: '20px',
-              height: '20px',
+              width: '18px',
+              height: '18px',
               borderRadius: '50%',
               background: phase.color,
-              border: '3px solid rgba(20, 30, 60, 1)',
-              boxShadow: active === idx ? `0 0 15px ${phase.color}` : 'none',
-              transition: 'all 0.4s'
-            }} />
+              boxShadow: active === idx ? `0 0 20px ${phase.color}` : `0 0 8px ${phase.color}80`,
+              border: '3px solid #0f172a'
+            }}></div>
 
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px'}}>
               <div>
                 <div style={{
                   fontSize: '11px',
@@ -191,7 +191,6 @@ export default function Roadmap() {
                 textAlign: 'right'
               }}>{phase.date}</div>
             </div>
-
             {active === idx && (
               <ul style={{
                 margin: '12px 0 0',
@@ -209,12 +208,60 @@ export default function Roadmap() {
         ))}
       </div>
 
-      <div style={{textAlign: 'center', marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(245,158,11,0.2)'}}>
+      {/* Documents section */}
+      <div style={{
+        marginTop: '2rem',
+        padding: '20px',
+        background: 'rgba(6, 182, 212, 0.08)',
+        border: '1px solid rgba(6, 182, 212, 0.3)',
+        borderRadius: '12px',
+        textAlign: 'center'
+      }}>
+        <div style={{
+          fontSize: '12px',
+          color: '#22d3ee',
+          fontWeight: 700,
+          letterSpacing: '3px',
+          marginBottom: '14px'
+        }}>📚 PROJECT DOCUMENTS</div>
+        <div style={{display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap'}}>
+          <a href="/docs/DiamondWall_Whitepaper_v1.0.pdf" target="_blank" rel="noopener noreferrer"
+             style={{
+               display: 'inline-block',
+               padding: '10px 20px',
+               background: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+               color: '#fff',
+               textDecoration: 'none',
+               fontWeight: 700,
+               fontSize: '14px',
+               borderRadius: '8px',
+               letterSpacing: '1px'
+             }}>📄 Download Whitepaper</a>
+          <a href="/docs/DiamondWall_Pitch_Deck_v1.0.pdf" target="_blank" rel="noopener noreferrer"
+             style={{
+               display: 'inline-block',
+               padding: '10px 20px',
+               background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+               color: '#0f172a',
+               textDecoration: 'none',
+               fontWeight: 700,
+               fontSize: '14px',
+               borderRadius: '8px',
+               letterSpacing: '1px'
+             }}>📊 View Pitch Deck</a>
+        </div>
+      </div>
+
+      {/* Quick actions */}
+      <div style={{textAlign: 'center', marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(245,158,11,0.2)'}}>
         <a href="/airdrop" style={{color: '#fbbf24', textDecoration: 'none', fontWeight: 600, fontSize: '15px', marginRight: '20px'}}>
           🎁 Join Airdrop ↗
         </a>
-        <a href="/calculator" style={{color: '#22d3ee', textDecoration: 'none', fontWeight: 600, fontSize: '15px'}}>
+        <a href="/calculator" style={{color: '#22d3ee', textDecoration: 'none', fontWeight: 600, fontSize: '15px', marginRight: '20px'}}>
           📊 Yield Calculator ↗
+        </a>
+        <a href="/info" style={{color: '#a78bfa', textDecoration: 'none', fontWeight: 600, fontSize: '15px'}}>
+          ℹ️ Info ↗
         </a>
       </div>
     </div>
